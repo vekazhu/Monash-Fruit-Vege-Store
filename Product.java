@@ -8,15 +8,23 @@
 public class Product
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private String productID;
+    private String productName;
+    private String shelfLife;
+    private double price;
+    private String category;
+    private String sellingType;
 
     /**
      * Constructor for objects of class Product
      */
     public Product()
     {
-        // initialise instance variables
-        x = 0;
+        productID="";
+        productName="";
+        shelfLife="";
+        price=0;
+        
     }
 
     /**
@@ -25,9 +33,9 @@ public class Product
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public String getProductID()
     {
         // put your code here
-        return x + y;
+        return productID;
     }
 }
