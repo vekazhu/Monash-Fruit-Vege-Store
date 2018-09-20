@@ -8,7 +8,8 @@
 public class Customer extends User
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private String securityAnswer;
+    private String status;
 
     /**
      * Constructor for objects of class Customer
@@ -16,7 +17,15 @@ public class Customer extends User
     public Customer()
     {
         // initialise instance variables
-        x = 0;
+        securityAnswer = "";
+        status = "";
+    }
+    
+    public Customer(String securityAnswer, String status)
+    {
+        // initialise instance variables
+        this.securityAnswer = securityAnswer;
+        this.status = status;
     }
 
     /**
@@ -25,9 +34,25 @@ public class Customer extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public String getSecurityAnswer()
     {
         // put your code here
-        return x + y;
+        return securityAnswer;
+    }
+    
+    public void setSecurityAnswer(String securityAnswer)
+    {
+        this.securityAnswer = securityAnswer;
+    }
+    
+    public String getStatus()
+    {
+        // put your code here
+        return status;
+    }
+    
+    public void setStatus(String status)
+    {
+        this.status = status;
     }
 }
