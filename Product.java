@@ -14,6 +14,7 @@ public class Product
     private double price;
     private String category;
     private String sellingType;
+    private int discount;
     
     public Product() 
     {
@@ -64,6 +65,11 @@ public class Product
     {
         return sellingType;
     }
+    
+    public int getDiscount()
+    {
+        return discount;
+    }
 
     public void setProductID(String productID) 
     {
@@ -93,6 +99,11 @@ public class Product
     public void setSellingType(String sellingType) 
     {
         this.sellingType = sellingType;
+    }
+    
+    public void setDiscount(int discount)
+    {
+        this.discount = discount;
     }
 
 }

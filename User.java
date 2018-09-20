@@ -13,6 +13,16 @@ public class User {
     private String userEmail;
     private String userPhoneNumber;
     private String userPassword;
+    
+    public User() 
+    {
+        userId = "";
+        userName = "";
+        userAddress = "";
+        userEmail = "";
+        userPhoneNumber = "";
+        userPassword = "";
+    }
 
     public User(String userId, String userName, String userAddress, String userEmail, String userPhoneNumber, String userPassword) 
     {
