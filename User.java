@@ -5,29 +5,85 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class User
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class User {
+    
+    private String userId;
+    private String userName;
+    private String userAddress;
+    private String userEmail;
+    private String userPhoneNumber;
+    private String userPassword;
 
-    /**
-     * Constructor for objects of class User
-     */
-    public User()
+    public User(String userId, String userName, String userAddress, String userEmail, String userPhoneNumber, String userPassword) 
     {
-        // initialise instance variables
-        x = 0;
+        this.userId = userId;
+        this.userName = userName;
+        this.userAddress = userAddress;
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+        this.userPassword = userPassword;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public String getUserId() 
     {
-        // put your code here
-        return x + y;
+        return userId;
     }
+
+    public String getUserName() 
+    {
+        return userName;
+    }
+
+    public String getUserAddress() 
+    {
+        return userAddress;
+    }
+
+    public String getUserEmail() 
+    {
+        return userEmail;
+    }
+
+    public String getUserPhoneNumber() 
+    {
+        return userPhoneNumber;
+    }
+
+    public String getUserPassword() 
+    {
+        return userPassword;
+    }
+
+    public void setUserId(String userId) 
+    {
+        this.userId = userId;
+    }
+
+    public void setUserName(String userName) 
+    {
+        this.userName = userName;
+    }
+
+    public void setUserAddress(String userAddress) 
+    {
+        this.userAddress = userAddress;
+    }
+
+    public void setUserEmail(String userEmail) 
+    {
+        this.userEmail = userEmail;
+    }
+
+    public void setUserPhoneNumber(String userPhoneNumber) 
+    {
+        this.userPhoneNumber = userPhoneNumber;
+    }
+
+    public void setUserPassword(String userPassword) 
+    {
+        this.userPassword = userPassword;
+    }
+    
+    
+    
 }
