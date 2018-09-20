@@ -24,9 +24,10 @@ public class Product
         price = 0;
         category = "";
         sellingType = "";
+        discount = 0;
     }
     
-    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType) 
+    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType, int discount) 
     {
         this.productID = productID;
         this.productName = productName;
@@ -34,6 +35,7 @@ public class Product
         this.price = price;
         this.category = category;
         this.sellingType = sellingType;
+        this.discount = discount;
     }
 
     public String getProductID() 
