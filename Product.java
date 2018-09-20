@@ -15,7 +15,18 @@ public class Product
     private String category;
     private String sellingType;
     
-    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType) {
+    public Product() 
+    {
+        productID = "";
+        productName = "";
+        shelfLife = "";
+        price = 0;
+        category = "";
+        sellingType = "";
+    }
+    
+    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType) 
+    {
         this.productID = productID;
         this.productName = productName;
         this.shelfLife = shelfLife;
@@ -24,51 +35,63 @@ public class Product
         this.sellingType = sellingType;
     }
 
-    public String getProductID() {
+    public String getProductID() 
+    {
         return productID;
     }
 
-    public String getProductName() {
+    public String getProductName() 
+    {
         return productName;
     }
 
-    public String getShelfLife() {
+    public String getShelfLife() 
+    {
         return shelfLife;
     }
 
-    public double getPrice() {
+    public double getPrice() 
+    {
         return price;
     }
 
-    public String getCategory() {
+    public String getCategory() 
+    {
         return category;
     }
 
-    public String getSellingType() {
+    public String getSellingType() 
+    {
         return sellingType;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(String productID) 
+    {
         this.productID = productID;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(String productName) 
+    {
         this.productName = productName;
     }
 
-    public void setShelfLife(String shelfLife) {
+    public void setShelfLife(String shelfLife) 
+    {
         this.shelfLife = shelfLife;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price) 
+    {
         this.price = price;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(String category) 
+    {
         this.category = category;
     }
 
-    public void setSellingType(String sellingType) {
+    public void setSellingType(String sellingType) 
+    {
         this.sellingType = sellingType;
     }
 
