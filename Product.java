@@ -14,28 +14,62 @@ public class Product
     private double price;
     private String category;
     private String sellingType;
-
-    /**
-     * Constructor for objects of class Product
-     */
-    public Product()
-    {
-        productID="";
-        productName="";
-        shelfLife="";
-        price=0;
-        
+    
+    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType) {
+        this.productID = productID;
+        this.productName = productName;
+        this.shelfLife = shelfLife;
+        this.price = price;
+        this.category = category;
+        this.sellingType = sellingType;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public String getProductID()
-    {
-        // put your code here
+    public String getProductID() {
         return productID;
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getShelfLife() {
+        return shelfLife;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getSellingType() {
+        return sellingType;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setShelfLife(String shelfLife) {
+        this.shelfLife = shelfLife;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setSellingType(String sellingType) {
+        this.sellingType = sellingType;
+    }
+
 }
