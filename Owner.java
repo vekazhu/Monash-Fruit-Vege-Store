@@ -8,7 +8,7 @@
 public class Owner extends User
 {
     // instance variables - replace the example below with your own
-    private int x;
+    
 
     /**
      * Constructor for objects of class Owner
@@ -16,7 +16,8 @@ public class Owner extends User
     public Owner()
     {
         // initialise instance variables
-        x = 0;
+        super();
+        
     }
 
     /**
@@ -25,9 +26,9 @@ public class Owner extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public void sampleMethod(int y)
     {
         // put your code here
-        return x + y;
+        
     }
 }

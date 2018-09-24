@@ -9,29 +9,29 @@ public class User {
     
     private String userId;
     private String userName;
-    private String userAddress;
     private String userEmail;
     private String userPhoneNumber;
     private String userPassword;
+    private static int userNumber = 1;
     
     public User() 
     {
-        userId = "";
+        userId = generateUserId(userNumber-1);
         userName = "";
-        userAddress = "";
         userEmail = "";
         userPhoneNumber = "";
         userPassword = "";
+        userNumber++;
     }
 
     public User(String userId, String userName, String userAddress, String userEmail, String userPhoneNumber, String userPassword) 
     {
         this.userId = userId;
         this.userName = userName;
-        this.userAddress = userAddress;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
         this.userPassword = userPassword;
+        userNumber++;
     }
 
     public String getUserId() 
@@ -42,11 +42,6 @@ public class User {
     public String getUserName() 
     {
         return userName;
-    }
-
-    public String getUserAddress() 
-    {
-        return userAddress;
     }
 
     public String getUserEmail() 
@@ -74,11 +69,6 @@ public class User {
         this.userName = userName;
     }
 
-    public void setUserAddress(String userAddress) 
-    {
-        this.userAddress = userAddress;
-    }
-
     public void setUserEmail(String userEmail) 
     {
         this.userEmail = userEmail;
@@ -94,6 +84,19 @@ public class User {
         this.userPassword = userPassword;
     }
     
+    private String generateUserId(int i)
+    {
+        String newUserId = "";
+        if (String.valueOf(i+1).length() == 1)
+            newUserId = "u000" + (i+1);
+        if (String.valueOf(i+1).length() == 2)
+            newUserId = "u00" + (i+1);
+        if (String.valueOf(i+1).length() == 3)
+            newUserId = "u0" + (i+1);
+        if (String.valueOf(i+1).length() == 4)
+            newUserId = "u" + (i+1);   
+        return newUserId;
+    }
     
     
 }
