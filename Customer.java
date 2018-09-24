@@ -17,13 +17,15 @@ public class Customer extends User
     public Customer()
     {
         // initialise instance variables
+        super();
         securityAnswer = "";
-        status = "";
+        status = "active";
     }
     
     public Customer(String securityAnswer, String status)
     {
         // initialise instance variables
+        super();
         this.securityAnswer = securityAnswer;
         this.status = status;
     }

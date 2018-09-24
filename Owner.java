@@ -7,17 +7,13 @@
  */
 public class Owner extends User
 {
-    // instance variables - replace the example below with your own
     
-
     /**
      * Constructor for objects of class Owner
      */
     public Owner()
     {
-        // initialise instance variables
-        super();
-        
+        super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs");
     }
 
     /**

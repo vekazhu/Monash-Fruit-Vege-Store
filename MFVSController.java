@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class MFVSController here.
  *
@@ -8,26 +8,43 @@
 public class MFVSController
 {
     // instance variables - replace the example below with your own
-    private int x;
+    ArrayList<Customer> listOfCustomer;
 
     /**
      * Constructor for objects of class MFVSController
      */
     public MFVSController()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * creat 6 default users, one owner and five customers
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public void createDefaultUsers()
     {
-        // put your code here
-        return x + y;
+        listOfCustomer = new ArrayList<Customer>();
+        listOfCustomer.add(new Customer("19900101","active"));
+        listOfCustomer.add(new Customer("19910203","active"));
+        listOfCustomer.add(new Customer("19931102","active"));
+        listOfCustomer.add(new Customer("19940245","active"));
+        listOfCustomer.add(new Customer("19901111","active"));
+        Owner owner = new Owner();
+    }
+    
+    public void start()
+    {
+        createDefaultUsers();
+        //UserMenu menu = new UserMenu();
+        //menu.displayMenu();
+        
+    }
+    
+    public void register()
+    {
+        System.out.println("Please enter your first Name");
+        Scanner scanner = new Scanner(System.in);
+        String firstName = scanner.next();
     }
 }

@@ -24,7 +24,7 @@ public class User {
         userNumber++;
     }
 
-    public User(String userId, String userName, String userAddress, String userEmail, String userPhoneNumber, String userPassword) 
+    public User(String userId, String userName, String userEmail, String userPhoneNumber, String userPassword) 
     {
         this.userId = userId;
         this.userName = userName;
@@ -84,6 +84,9 @@ public class User {
         this.userPassword = userPassword;
     }
     
+    /**
+     * generate userId, like"u0001"
+     */
     private String generateUserId(int i)
     {
         String newUserId = "";
@@ -98,5 +101,21 @@ public class User {
         return newUserId;
     }
     
+    public boolean isNameValid(String name)
+    {
+        if (name.length() >= 10)
+        {
+        
+        }
+        return true;
+    }
     
+    public boolean isPasswValid(String passw)
+    {
+        if (passw.length() >= 10)
+        {
+        
+        }
+        return true;
+    }
 }
