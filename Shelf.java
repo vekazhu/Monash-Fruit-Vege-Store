@@ -1,33 +1,49 @@
-
+import java.util.*;
 /**
  * Write a description of class Shelf here.
  *
- * @author (your name)
+ * @author (Team 114)
  * @version (a version number or a date)
  */
 public class Shelf
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private ArrayList<Product> listOfProduct;
+    private HashMap productQuantity;
 
     /**
-     * Constructor for objects of class Shelf
+     * Default Constructor for objects of class Shelf
      */
     public Shelf()
     {
-        // initialise instance variables
-        x = 0;
+        listOfProduct = new ArrayList<Product>();
+    }
+    
+    /**
+     * Non-Default Constructor for objects of class Shelf
+     */
+    public Shelf(ArrayList<Product> listOfProduct)
+    {
+        this.listOfProduct = listOfProduct;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * get ArrayList of product
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    an arraylist of product
      */
-    public int sampleMethod(int y)
+    public ArrayList<Product> getListOfProduct()
     {
-        // put your code here
-        return x + y;
+        return listOfProduct;
+    }
+    
+    /**
+     * set a new ArrayList of product
+     *
+     * @param    an arraylist of product
+     */
+    public void setListOfProduct(ArrayList<Product> listOfProduc)
+    {
+        this.listOfProduct = listOfProduct;
     }
 }
