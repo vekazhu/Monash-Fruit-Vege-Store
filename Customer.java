@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Customer here.
  *
@@ -14,20 +14,12 @@ public class Customer extends User
     /**
      * Constructor for objects of class Customer
      */
-    public Customer()
+    public Customer(String userId,String userName,String userEmail,String userPhoneNumber,
+                    String userPassword,String securityAnswer)
     {
-        // initialise instance variables
-        super();
-        securityAnswer = "";
-        status = "active";
-    }
-    
-    public Customer(String securityAnswer, String status)
-    {
-        // initialise instance variables
-        super();
+        super(userId,userName,userEmail,userPhoneNumber,userPassword);
         this.securityAnswer = securityAnswer;
-        this.status = status;
+        status = "active";
     }
 
     /**

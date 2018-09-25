@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class User here.
  *
@@ -7,12 +7,12 @@
  */
 public class User {
     
-    private String userId;
-    private String userName;
-    private String userEmail;
-    private String userPhoneNumber;
-    private String userPassword;
-    private static int userNumber = 1;
+    private String userId;// generate automatically
+    private String userName; // first three letters of first name + last three number of userID, eg:abc001
+    private String userEmail; //include @
+    private String userPhoneNumber; // 8 digit
+    private String userPassword; //one upper, one lower, maybe number, length >=4
+    private static int userNumber = 6; //including 5 customers and one owner
     
     public User() 
     {
@@ -103,19 +103,42 @@ public class User {
     
     public boolean isNameValid(String name)
     {
-        if (name.length() >= 10)
+        if (name.trim().length() > 10)
         {
-        
+            System.out.println("Your name should be within 10 characters.");
+            return false;
+        }
+        for (int i = 0; i < name.length(); i++)
+        {
+            if (!Character.isLetter(name.charAt(i)))
+                return false;
         }
         return true;
     }
     
     public boolean isPasswValid(String passw)
     {
-        if (passw.length() >= 10)
+        if (passw.length() < 4)
         {
+            System.out.println("Your password should be at least 4 characters.");
+            return false;
+        }
         
+        for (int i = 0; i < passw.length(); i++)
+        {
+            if (!Character.isUpperCase(passw.charAt(i)))
+                return false;
         }
         return true;
+    }
+    
+    public boolean isEmailValid()
+    {
+        return true;
+    }
+    
+    public void login()
+    {
+        
     }
 }
