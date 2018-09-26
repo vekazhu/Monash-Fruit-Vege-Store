@@ -32,6 +32,14 @@ public class MFVSController
         menu.displayMenu();
     }
     
-    
+    public void displayAllProducts()
+    {
+        Shelf shelf = new Shelf();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-10s%-10s%-10s%-10s%-10s%-10s%","ProductID","Name","Category","SellingType",
+            "Price","discount");
+        shelf.sortProductByAlphabet();
+        shelf.displayListOfProducts();
+    }
     
 }

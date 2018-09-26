@@ -71,8 +71,7 @@ public class Shelf
         String productID = "productName" + "1";
     }
 
-
-    public void sortProductByAlphebet()
+    public void sortProductByAlphabet()
     {
         Product temp = new Product();
         for (int i = 0; i < listOfProducts.size(); i++)
@@ -94,5 +93,12 @@ public class Shelf
         
     }
     
-    
+    public void displayListOfProducts()
+    {
+        for ( Product product: listOfProducts)
+        {
+            System.out.format("%-10s%-10s%-10s%-10s%-10s%-10s%",product.getProductID(),product.getProductName(),
+            product.getCategory(),product.getPrice(),product.getSellingType(),product.getDiscount());
+        }
+    }
 }

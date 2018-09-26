@@ -195,4 +195,11 @@ public class User {
     {
         
     }
+    
+    
+    
+    public void addProductToCart()
+    {
+        
+    }
 }
