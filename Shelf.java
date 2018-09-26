@@ -69,9 +69,5 @@ public class Shelf
         
     }
     
-    public String generateProductID()
-    {
-        String productID = "";
-        return productID;
-    }
+    
 }

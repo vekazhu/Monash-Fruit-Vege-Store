@@ -1,3 +1,6 @@
+import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Write a description of class Cart here.
@@ -8,15 +11,15 @@
 public class Cart
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    private ArrayList<String> productList; // productID + amount
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     /**
      * Constructor for objects of class Cart
      */
     public Cart()
     {
         // initialise instance variables
-        x = 0;
+        
     }
 
     /**
@@ -25,9 +28,16 @@ public class Cart
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public void sampleMethod(int y)
     {
         // put your code here
-        return x + y;
+        
+    }
+    
+    public String generateDate()
+    {
+        LocalDate localDate = LocalDate.now();
+        System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate));
+        return DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate).toString();
     }
 }
