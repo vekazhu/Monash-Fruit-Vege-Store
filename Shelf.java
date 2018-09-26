@@ -46,7 +46,7 @@ public class Shelf
     {
         this.listOfProducts = listOfProducts;
     }
-<<<<<<< HEAD
+
     
     public void addProductToShelf()
     {
@@ -70,7 +70,7 @@ public class Shelf
         int productDiscount = Integer.parseInt(discount);
         String productID = "productName" + "1";
     }
-=======
+
 
     public void sortProductByAlphebet()
     {
@@ -95,5 +95,4 @@ public class Shelf
     }
     
     
->>>>>>> 8b78f801e5f0ea3438ce7e420de39f22a2e3de80
 }
