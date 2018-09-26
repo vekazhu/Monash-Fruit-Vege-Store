@@ -42,7 +42,7 @@ public class Shelf
      *
      * @param    an arraylist of product
      */
-    public void setListOfProduct(ArrayList<Product> listOfProduc)
+    public void setListOfProduct(ArrayList<Product> listOfProduct)
     {
         this.listOfProduct = listOfProduct;
     }

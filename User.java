@@ -1,4 +1,6 @@
 import java.util.*;
+import java.lang.Object;
+import java.util.regex.*;
 /**
  * Write a description of class User here.
  *
@@ -116,25 +118,77 @@ public class User {
         return true;
     }
     
-    public boolean isPasswValid(String passw)
+    public boolean isPasswordValid(String password)
     {
-        if (passw.length() < 4)
+        if (password.length() < 4)
         {
             System.out.println("Your password should be at least 4 characters.");
             return false;
         }
         
-        for (int i = 0; i < passw.length(); i++)
-        {
-            if (!Character.isUpperCase(passw.charAt(i)))
-                return false;
+        int countUpper = 0;
+        int countLower = 0;
+        for (int i = 0; i < password.length(); i++)
+        {  
+             if (Character.isUpperCase(password.charAt(i)))
+                countUpper++;
+             if (Character.isLowerCase(password.charAt(i)))
+                countLower++;
+             if (!Character.isLetterOrDigit(password.charAt(i)))
+                {
+                    System.out.println("Your password should only contain letters or numbers.");
+                    return false;
+                }
+        }
+        if (countUpper == 0 || countLower == 0)
+        {    
+            System.out.println("Your password should contain at least one uppercase and one lowercase.");
+            return false;
         }
         return true;
     }
     
-    public boolean isEmailValid()
+    public boolean isEmailValid(String email)
     {
-        return true;
+        Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
+        Matcher regMatcher = regexPattern.matcher(email);
+        if(regMatcher.matches()) 
+        {
+            return true;
+        } 
+        else 
+        {
+            System.out.println("Please enter a valid email address.");
+            return false;
+        }
+    }
+    
+    public void register()
+    {
+        System.out.println("Please enter your first Name.");
+        Scanner scanner = new Scanner(System.in);
+        String firstName = scanner.next();
+        /**
+         * while (isNameValid(firstName) == true)
+        {
+            System.out.println("Please enter your email address.");
+            String email = scanner.next();
+            while (isEmailValid(email) == true)
+            {
+                System.out.println("Please enter your password.");
+                String passWord = scanner.next();
+                while (isPasswordValid(passWord) == true)
+                {
+                    scanner.close();
+                }
+            }
+        }
+         * 
+         */
+        isNameValid(firstName);
+        
+      
+
     }
     
     public void login()

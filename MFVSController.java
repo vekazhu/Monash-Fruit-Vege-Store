@@ -31,10 +31,6 @@ public class MFVSController
         menu.displayMenu();
     }
     
-    public void register()
-    {
-        System.out.println("Please enter your first Name");
-        Scanner scanner = new Scanner(System.in);
-        String firstName = scanner.next();
-    }
+    
+    
 }
