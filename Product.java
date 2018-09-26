@@ -107,5 +107,11 @@ public class Product
     {
         this.discount = discount;
     }
+    
+    public String generateProductID()
+    {
+        String productID = "";
+        return productID;
+    }
 
 }

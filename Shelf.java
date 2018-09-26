@@ -8,7 +8,7 @@ import java.util.*;
 public class Shelf
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Product> listOfProduct;
+    private ArrayList<Product> listOfProducts;
     private HashMap productQuantity;
 
     /**
@@ -16,15 +16,15 @@ public class Shelf
      */
     public Shelf()
     {
-        listOfProduct = new ArrayList<Product>();
+        listOfProducts = new ArrayList<Product>();
     }
-    
+
     /**
      * Non-Default Constructor for objects of class Shelf
      */
-    public Shelf(ArrayList<Product> listOfProduct)
+    public Shelf(ArrayList<Product> listOfProducts)
     {
-        this.listOfProduct = listOfProduct;
+        this.listOfProducts = listOfProducts;
     }
 
     /**
@@ -32,20 +32,21 @@ public class Shelf
      *
      * @return    an arraylist of product
      */
-    public ArrayList<Product> getListOfProduct()
+    public ArrayList<Product> getListOfProducts()
     {
-        return listOfProduct;
+        return listOfProducts;
     }
-    
+
     /**
      * set a new ArrayList of product
      *
      * @param    an arraylist of product
      */
-    public void setListOfProduct(ArrayList<Product> listOfProduct)
+    public void setListOfProduct(ArrayList<Product> listOfProducts)
     {
-        this.listOfProduct = listOfProduct;
+        this.listOfProducts = listOfProducts;
     }
+<<<<<<< HEAD
     
     public void addProductToShelf()
     {
@@ -69,4 +70,30 @@ public class Shelf
         int productDiscount = Integer.parseInt(discount);
         String productID = "productName" + "1";
     }
+=======
+
+    public void sortProductByAlphebet()
+    {
+        Product temp = new Product();
+        for (int i = 0; i < listOfProducts.size(); i++)
+        {
+            for (int j = i + 1; j < listOfProducts.size(); j++)
+            {
+                if (listOfProducts.get(i).getProductName().compareTo(listOfProducts.get(j).getProductName())>0)
+                {
+                    temp = listOfProducts.get(i);
+                    listOfProducts.set(i,listOfProducts.get(j));
+                    listOfProducts.set(i+1,temp);
+                }
+            }
+        }
+    }
+    
+    public void sortProductByCategory()
+    {
+        
+    }
+    
+    
+>>>>>>> 8b78f801e5f0ea3438ce7e420de39f22a2e3de80
 }

@@ -10,6 +10,7 @@ public class MFVSController
     // instance variables - replace the example below with your own
     
     ArrayList<User> listOfUsers;
+    ArrayList<Transaction> listOfTransactions;
     /**
      * Constructor for objects of class MFVSController
      */
