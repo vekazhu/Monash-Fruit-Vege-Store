@@ -16,7 +16,7 @@ public class Shelf
      */
     public Shelf()
     {
-        listOfProducts = new ArrayList<Product>();
+        listOfProducts = FileController.readProductsInfo("products.txt");
     }
 
     /**
@@ -47,7 +47,6 @@ public class Shelf
         this.listOfProducts = listOfProducts;
     }
 
-    
     public void addProductToShelf()
     {
         Product newProduct = new Product();
@@ -87,18 +86,37 @@ public class Shelf
             }
         }
     }
-    
-    public void sortProductByCategory()
+
+    public void sortProductByCategory(String str)
     {
-        
-    }
-    
-    public void displayListOfProducts()
-    {
+        ArrayList<Product> vege = new ArrayList<Product>();
+        ArrayList<Product> fruit = new ArrayList<Product>();
         for ( Product product: listOfProducts)
         {
-            System.out.format("%-10s%-10s%-10s%-10s%-10s%-10s%",product.getProductID(),product.getProductName(),
-            product.getCategory(),product.getPrice(),product.getSellingType(),product.getDiscount());
+            if (product.getCategory().equals("fruit"))
+                fruit.add(product);
+            else
+                vege.add(product);
+        }
+        if (str.toLowerCase().startsWith("f"))
+        {
+            displayProductsInfo(fruit);
+            displayProductsInfo(vege);
+        }
+        else
+        {
+            displayProductsInfo(vege);
+            displayProductsInfo(fruit);
         }
     }
+
+    public void displayProductsInfo(ArrayList<Product> listOfProduct)
+    {
+        for ( Product product: this.listOfProducts)
+        {
+            System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n",product.getProductID(),product.getProductName(),
+            product.getCategory(),product.getShelfLife(),product.getSellingType(),product.getPrice(),product.getDiscount());
+        }
+    }
+    
 }

@@ -21,6 +21,8 @@ public class MFVSController
     
     public void start()
     {
+        Shelf shelf = new Shelf();
+        /*
         listOfUsers = new ArrayList<User>();
         listOfUsers.add(new Customer("u0001","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
         listOfUsers.add(new Customer("u0002","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
@@ -30,16 +32,16 @@ public class MFVSController
         // System.out.println(listOfUsers.get(0).getClass().getName());
         UserMenu menu = new UserMenu();
         menu.displayMenu();
+        */
     }
     
     public void displayAllProducts()
     {
         Shelf shelf = new Shelf();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-10s%-10s%-10s%-10s%-10s%-10s%","ProductID","Name","Category","SellingType",
-            "Price","discount");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
         shelf.sortProductByAlphabet();
-        shelf.displayListOfProducts();
+        shelf.displayProductsInfo(shelf.getListOfProducts());
     }
     
 }
