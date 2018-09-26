@@ -93,13 +93,13 @@ public class User {
     {
         String newUserId = "";
         if (String.valueOf(i+1).length() == 1)
-            newUserId = "u000" + (i+1);
+            newUserId = "c000" + (i+1);
         if (String.valueOf(i+1).length() == 2)
-            newUserId = "u00" + (i+1);
+            newUserId = "c00" + (i+1);
         if (String.valueOf(i+1).length() == 3)
-            newUserId = "u0" + (i+1);
+            newUserId = "c0" + (i+1);
         if (String.valueOf(i+1).length() == 4)
-            newUserId = "u" + (i+1);   
+            newUserId = "c" + (i+1);   
         return newUserId;
     }
     

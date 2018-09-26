@@ -27,7 +27,7 @@ public class Product
         discount = 0;
     }
     
-    public Product(String productID, String productName, String shelfLife, double price, String category, String sellingType, int discount) 
+    public Product(String productID, String productName, String category, String shelfLife, String sellingType, double price, int discount) 
     {
         this.productID = productID;
         this.productName = productName;

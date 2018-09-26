@@ -1,17 +1,17 @@
 #BlueJ package file
-dependency1.from=Shelf
-dependency1.to=Product
+dependency1.from=MFVSController
+dependency1.to=Customer
 dependency1.type=UsesDependency
 dependency2.from=MFVSController
-dependency2.to=Customer
+dependency2.to=UserMenu
 dependency2.type=UsesDependency
-dependency3.from=MFVSController
-dependency3.to=UserMenu
+dependency3.from=Shelf
+dependency3.to=Product
 dependency3.type=UsesDependency
 editor.fx.0.height=828
 editor.fx.0.width=1343
-editor.fx.0.x=288
-editor.fx.0.y=47
+editor.fx.0.x=46
+editor.fx.0.y=23
 objectbench.height=105
 objectbench.width=571
 package.divider.horizontal=0.5995850622406639

@@ -28,9 +28,7 @@ public class Owner extends User
         
     }
     
-    public void addProduct()
-    {
-    }
+    
     
    
 }
