@@ -15,27 +15,30 @@ public class Product
     private String category;
     private String sellingType;
     private int discount;
+    private static int userNumber = 0;
     
     public Product() 
     {
-        productID = "";
+        productID = generateProductID(userNumber,category);
         productName = "";
         shelfLife = "";
         price = 0;
         category = "";
         sellingType = "";
         discount = 0;
+        userNumber++;
     }
     
-    public Product(String productID, String productName, String category, String shelfLife, String sellingType, double price, int discount) 
+    public Product(String productName, String category, String shelfLife, String sellingType, double price, int discount) 
     {
-        this.productID = productID;
+        this.productID = generateProductID(userNumber,category);
         this.productName = productName;
         this.shelfLife = shelfLife;
         this.price = price;
         this.category = category;
         this.sellingType = sellingType;
         this.discount = discount;
+        userNumber++;
     }
 
     public String getProductID() 
@@ -108,9 +111,33 @@ public class Product
         this.discount = discount;
     }
     
-    public String generateProductID()
+    /**
+     * generate ProductId, like Fruit is f001, vege is v002
+     */
+    public String generateProductID(int i,String category)
     {
         String productID = "";
+        if (category != null)
+            if (category.toLowerCase().equals("fruit") && category != null)
+            {
+                if (String.valueOf(i+1).length() == 1)
+                    productID = "f00" + (i+1);
+                if (String.valueOf(i+1).length() == 2)
+                    productID = "f0" + (i+1);
+                if (String.valueOf(i+1).length() == 3)
+                    productID = "f" + (i+1);
+            }
+            else
+            {
+                if (String.valueOf(i+1).length() == 1)
+                    productID = "v00" + (i+1);
+                if (String.valueOf(i+1).length() == 2)
+                    productID = "v0" + (i+1);
+                if (String.valueOf(i+1).length() == 3)
+                    productID = "v" + (i+1);
+            } 
+        else
+            System.out.println("missing information of product.");
         return productID;
     }
 

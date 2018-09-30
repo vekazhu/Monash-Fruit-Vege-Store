@@ -12,6 +12,7 @@ public class MFVSController
     ArrayList<User> listOfUsers;
     ArrayList<Transaction> listOfTransactions;
     Shelf shelf;
+    Cart cart;
     /**
      * Constructor for objects of class MFVSController
      */
@@ -20,6 +21,7 @@ public class MFVSController
         listOfUsers = new ArrayList<User>();
         listOfTransactions = new ArrayList<Transaction>();
         shelf = new Shelf();
+        cart = new Cart();
     }
 
     public void start()
@@ -64,6 +66,13 @@ public class MFVSController
         System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
+    }
+    
+    public void displayCart()
+    {
+        System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
+        cart.displayCart();
     }
 
 }

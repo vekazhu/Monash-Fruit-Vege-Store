@@ -26,9 +26,9 @@ public class User {
         userNumber++;
     }
 
-    public User(String userId, String userName, String userEmail, String userPhoneNumber, String userPassword) 
+    public User(String userName, String userEmail, String userPhoneNumber, String userPassword) 
     {
-        this.userId = userId;
+        this.userId = generateUserId(userNumber-1);
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;

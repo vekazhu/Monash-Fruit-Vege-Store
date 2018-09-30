@@ -13,7 +13,7 @@ public class Owner extends User
      */
     public Owner()
     {
-        super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs");
+        //super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs");
     }
 
     /**

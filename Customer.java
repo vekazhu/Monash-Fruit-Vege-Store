@@ -17,7 +17,7 @@ public class Customer extends User
     public Customer(String userId,String userName,String userEmail,String userPhoneNumber,
                     String userPassword,String securityAnswer)
     {
-        super(userId,userName,userEmail,userPhoneNumber,userPassword);
+        super(userName,userEmail,userPhoneNumber,userPassword);
         this.securityAnswer = securityAnswer;
         status = "active";
     }

@@ -42,7 +42,7 @@ public class FileController
                     String sellingType = parts[4];
                     double price = Double.parseDouble(parts[5]);
                     int discount = Integer.parseInt(parts[6]);
-                    Product product = new Product(productID,productName,category,shelfLife,sellingType,price,discount);
+                    Product product = new Product(productName,category,shelfLife,sellingType,price,discount);
                     listOfProducts.add(product);
                 }
             }

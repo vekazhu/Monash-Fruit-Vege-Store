@@ -28,10 +28,29 @@ public class Cart
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void sampleMethod(int y)
+    public void addProductToCart(Product product,int amount)
     {
-        // put your code here
-        
+        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPrice());
+    }
+    
+    public ArrayList<String> getProductList()
+    {
+        return productList;
+    }
+    
+    public void displayCart()
+    {
+        for (String str: productList)
+        {
+            String[] parts = str.split(",");
+            String productId = parts[0];
+            String productName = parts[1];
+            int amount = Integer.parseInt(parts[2]);
+            double price = Double.parseDouble(parts[3]);
+            double totalPrice = price * amount;
+            System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,amount,price,totalPrice);
+            //ProductId,productName,amount,price,totalPrice
+        }
     }
     
     public String generateDate()
