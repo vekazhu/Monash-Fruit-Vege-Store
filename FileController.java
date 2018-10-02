@@ -39,10 +39,10 @@ public class FileController
                     String productName = parts[1];
                     String category = parts[2];
                     String shelfLife = parts[3];
-                    String sellingType = parts[4];
-                    double price = Double.parseDouble(parts[5]);
+                    double priceKG = Double.parseDouble(parts[4]);
+                    double priceWhole = Double.parseDouble(parts[5]);
                     int discount = Integer.parseInt(parts[6]);
-                    Product product = new Product(productName,category,shelfLife,sellingType,price,discount);
+                    Product product = new Product(productName,category,shelfLife,priceKG,priceWhole,discount);
                     listOfProducts.add(product);
                 }
             }
@@ -81,4 +81,12 @@ public class FileController
             System.out.println("Unexpected I/O exception occurs.");
         }
     }
+    
+    public static ArrayList<Transaction> readTransactionsInfo(String fileName)
+    {
+        ArrayList<Transaction> listOfTransactions = new ArrayList<Transaction> ();
+        return listOfTransactions;
+    }
+    
+    
 }

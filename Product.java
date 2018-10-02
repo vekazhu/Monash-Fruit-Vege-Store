@@ -11,34 +11,34 @@ public class Product
     private String productID;
     private String productName;
     private String shelfLife;
-    private double price;
+    private double priceKG;
     private String category;
-    private String sellingType;
+    private double priceWhole;
     private int discount;
-    private static int userNumber = 0;
+    private static int productNumber = 0;
     
     public Product() 
     {
-        productID = generateProductID(userNumber,category);
+        productID = generateProductID(productNumber,category);
         productName = "";
         shelfLife = "";
-        price = 0;
+        priceKG = 0;
         category = "";
-        sellingType = "";
+        priceWhole = 0;
         discount = 0;
-        userNumber++;
+        productNumber++;
     }
     
-    public Product(String productName, String category, String shelfLife, String sellingType, double price, int discount) 
+    public Product(String productName, String category, String shelfLife, double priceWhole, double priceKG, int discount) 
     {
-        this.productID = generateProductID(userNumber,category);
+        this.productID = generateProductID(productNumber,category);
         this.productName = productName;
         this.shelfLife = shelfLife;
-        this.price = price;
+        this.priceKG = priceKG;
         this.category = category;
-        this.sellingType = sellingType;
+        this.priceWhole = priceWhole;
         this.discount = discount;
-        userNumber++;
+        productNumber++;
     }
 
     public String getProductID() 
@@ -56,9 +56,9 @@ public class Product
         return shelfLife;
     }
 
-    public double getPrice() 
+    public double getPriceKG() 
     {
-        return price;
+        return priceKG;
     }
 
     public String getCategory() 
@@ -66,9 +66,9 @@ public class Product
         return category;
     }
 
-    public String getSellingType() 
+    public double getPriceWhole() 
     {
-        return sellingType;
+        return priceWhole;
     }
     
     public int getDiscount()
@@ -91,9 +91,9 @@ public class Product
         this.shelfLife = shelfLife;
     }
 
-    public void setPrice(double price) 
+    public void setPrice(double priceKG) 
     {
-        this.price = price;
+        this.priceKG = priceKG;
     }
 
     public void setCategory(String category) 
@@ -101,9 +101,9 @@ public class Product
         this.category = category;
     }
 
-    public void setSellingType(String sellingType) 
+    public void setSellingType(double priceWhole) 
     {
-        this.sellingType = sellingType;
+        this.priceWhole = priceWhole;
     }
     
     public void setDiscount(int discount)

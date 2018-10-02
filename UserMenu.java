@@ -33,7 +33,7 @@ public class UserMenu
     /**
      * A method to display menu when a customer has logined
      */
-    public void displayLoginMenu()
+    public void displayCustomerMenu()
     {
         System.out.println("Hello :)");
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
@@ -78,6 +78,11 @@ public class UserMenu
         System.out.println("A.Back to my menu");  //show user login menu
         System.out.println("X.Exit");
         System.out.println("Enter your choice(A/a)");
+    }
+    
+    public void displayOwnerMenu()
+    {
+        
     }
     
     

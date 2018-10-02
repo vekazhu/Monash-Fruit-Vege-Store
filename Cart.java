@@ -1,6 +1,7 @@
 import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 
 /**
  * Write a description of class Cart here.
@@ -12,7 +13,8 @@ public class Cart
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> productList; // productID + amount
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    private Date date = new Date();
+    
     /**
      * Constructor for objects of class Cart
      */
@@ -30,7 +32,7 @@ public class Cart
      */
     public void addProductToCart(Product product,int amount)
     {
-        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPrice());
+        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
     
     public ArrayList<String> getProductList()
@@ -55,8 +57,9 @@ public class Cart
     
     public String generateDate()
     {
-        LocalDate localDate = LocalDate.now();
-        System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate));
-        return DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate).toString();
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+  
+        //System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate));
+        return dtf.format(date).toString();
     }
 }

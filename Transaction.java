@@ -8,7 +8,7 @@
 public class Transaction
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private double rating;
 
     /**
      * Constructor for objects of class Transaction
@@ -16,18 +16,8 @@ public class Transaction
     public Transaction()
     {
         // initialise instance variables
-        x = 0;
+        this.rating = 0;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    
+   
 }

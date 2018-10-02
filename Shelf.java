@@ -47,7 +47,7 @@ public class Shelf
         this.listOfProducts = listOfProducts;
     }
 
-    public void addProductToShelf()
+    public void createProduct()
     {
         Product newProduct = new Product();
         Scanner scanner = new Scanner(System.in);
@@ -67,7 +67,6 @@ public class Shelf
         String discount = scanner.next();
         //validation of discount.isInt;
         int productDiscount = Integer.parseInt(discount);
-        String productID = "productName" + "1";
     }
 
     public void sortProductByAlphabet()
@@ -115,7 +114,7 @@ public class Shelf
         for ( Product product: this.listOfProducts)
         {
             System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n",product.getProductID(),product.getProductName(),
-            product.getCategory(),product.getShelfLife(),product.getSellingType(),product.getPrice(),product.getDiscount());
+            product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
     }
     
