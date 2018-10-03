@@ -36,17 +36,7 @@ public class MFVSController
             getChoice(option);
         }
         while (!option.toLowerCase().equals("x"));
-        /*
-        listOfUsers = new ArrayList<User>();
-        listOfUsers.add(new Customer("u0001","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
-        listOfUsers.add(new Customer("u0002","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
-        listOfUsers.add(new Customer("u0003","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
-        listOfUsers.add(new Customer("u0004","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
-        listOfUsers.add(new Customer("u0005","yzz001","yzz@gmail.com","12345678","Passw","08031990"));
-        // System.out.println(listOfUsers.get(0).getClass().getName());
-        UserMenu menu = new UserMenu();
-        menu.displayMenu();
-         */
+        
     }
     
     public void getChoice(String option)

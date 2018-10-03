@@ -51,14 +51,12 @@ public class Customer extends User
     {
         this.status = status;
     }
-    
       
     public void register()
     {
         System.out.println("Please enter your first Name.");
         Scanner scanner = new Scanner(System.in);
         String firstName = scanner.next();
-        Validator registerValidator = new Validator();
         /**
          * while (isNameValid(firstName) == true)
         {

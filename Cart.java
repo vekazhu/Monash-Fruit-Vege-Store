@@ -13,22 +13,21 @@ public class Cart
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> productList; // productID + amount
-    private Date date = new Date();
+    private Date date;
     
     /**
      * Constructor for objects of class Cart
      */
     public Cart()
     {
-        // initialise instance variables
-        
+        productList = new ArrayList<String>();
+        date = new Date();
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * A method to add product to cart
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  product and amount
      */
     public void addProductToCart(Product product,int amount)
     {
@@ -38,6 +37,11 @@ public class Cart
     public ArrayList<String> getProductList()
     {
         return productList;
+    }
+    
+    public void setProductList(ArrayList<String> productList)
+    {
+        this.productList = productList;
     }
     
     public void displayCart()
@@ -58,8 +62,6 @@ public class Cart
     public String generateDate()
     {
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
-  
-        //System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate));
         return dtf.format(date).toString();
     }
 }

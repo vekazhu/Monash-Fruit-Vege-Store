@@ -9,25 +9,19 @@ import java.util.*;
  */
 public class Validator
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    
     /**
      * Constructor for objects of class Validator
      */
     public Validator()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * 
      */
-    public boolean isNameValid(String name)
+    public static boolean isNameValid(String name)
     {
         if (name.trim().length() > 10)
         {
@@ -42,7 +36,7 @@ public class Validator
         return true;
     }
     
-        public boolean isPasswordValid(String password)
+    public static boolean isPasswordValid(String password)
     {
         if (password.length() < 4)
         {
@@ -72,7 +66,7 @@ public class Validator
         return true;
     }
     
-    public boolean isEmailValid(String email)
+    public static boolean isEmailValid(String email)
     {
         Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
         Matcher regMatcher = regexPattern.matcher(email);
