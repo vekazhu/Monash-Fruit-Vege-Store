@@ -92,18 +92,12 @@ public class MFVSController
                     //System.out.println("Owner Logged In");
                     menu.displayOwnerMenu();
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
             }
 
 
-=======
-            
->>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
-=======
-            
->>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
+
             break;
             case "x":
             System.out.println("See you next time");
@@ -301,12 +295,6 @@ public class MFVSController
         System.out.println("___________________________________________________________________________________");
         generateUserName(userFirstName, userId);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
-=======
->>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
     
 }
