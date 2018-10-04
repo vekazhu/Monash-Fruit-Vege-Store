@@ -140,11 +140,13 @@ public class FileManager
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    String userName = parts[0];
-                    String userEmail = parts[1];
-                    String userPhoneNumber = parts[2];
-                    String userPassword = parts[3];
-                    User user = new User(userName,userEmail,userPhoneNumber,userPassword);
+                    String userID = parts[0];
+                    String userName = parts[1];
+                    String userEmail = parts[2];
+                    String userPhoneNumber = parts[3];
+                    String userPassword = parts[4];
+                    String securityAnswer = parts[5];
+                    User user = new User(userID, userName,userEmail,userPhoneNumber,userPassword, securityAnswer);
                     listOfUsers.add(user);
                 }
             }
@@ -163,5 +165,7 @@ public class FileManager
         }
         return listOfUsers;
     }
+    
+    
     
 }

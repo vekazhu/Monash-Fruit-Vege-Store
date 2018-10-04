@@ -14,6 +14,7 @@ public class MFVSController
     
     Shelf shelf;
     Cart cart;
+    User user;
     /**
      * Constructor for objects of class MFVSController
      */
@@ -23,6 +24,7 @@ public class MFVSController
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         shelf = new Shelf();
         cart = new Cart();
+        user = new User();
     }
 
     public void start()
@@ -46,6 +48,19 @@ public class MFVSController
         {
             case "a":
             displayAllProducts();
+            break;
+            case "b":
+            String userId = user.login();
+                if (userId.equals("")){
+                    break;
+                }
+                else {
+                    if(userId.startsWith("c"))
+                        System.out.println("Customer Logged In");
+                    else
+                        System.out.println("Owner Logged In");
+                }
+            
             break;
             default:
             System.out.println("The entered vaule is unrecognized!");break;
