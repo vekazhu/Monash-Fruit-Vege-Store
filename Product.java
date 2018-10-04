@@ -17,11 +17,11 @@ public class Product
     private int discount;
     private double quantityKG;
     private double quantityWhole;
-    private static int productNumber = 14;
+    private static int productNumber = 5;
     
     public Product() 
     {
-        productID = generateProductID(productNumber,category);
+        productID = "";
         productName = "";
         shelfLife = "";
         priceKG = 0;
@@ -33,7 +33,7 @@ public class Product
         productNumber++;
     }
     
-    public Product(String ProductID,String productName, String category, String shelfLife, double priceWhole, double priceKG,
+    public Product(String productID,String productName, String category, String shelfLife, double priceWhole, double priceKG,
                     double quantityKG,double quantityWhole,int discount) 
     {
         this.productID = productID;

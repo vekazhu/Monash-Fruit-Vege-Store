@@ -59,7 +59,7 @@ public class Shelf
         {
             for (int j = i + 1; j < listOfProducts.size(); j++)
             {
-                if (listOfProducts.get(i).getProductName().compareTo(listOfProducts.get(j).getProductName())>0)
+                if (listOfProducts.get(i).getProductName().toLowerCase().compareTo(listOfProducts.get(j).getProductName().toLowerCase())>0)
                 {
                     temp = listOfProducts.get(i);
                     listOfProducts.set(i,listOfProducts.get(j));

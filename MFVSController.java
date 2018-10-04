@@ -11,6 +11,7 @@ public class MFVSController
 
     ArrayList<User> listOfUsers;
     ArrayList<Transaction> listOfTransactions;
+    
     Shelf shelf;
     Cart cart;
     /**
@@ -44,6 +45,7 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
+            displayAllProducts();
             break;
             default:
             System.out.println("The entered vaule is unrecognized!");break;

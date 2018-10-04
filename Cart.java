@@ -33,7 +33,7 @@ public class Cart
     {
         
         
-        if (product.getQuantityKG()=0)
+        if (product.getQuantityKG()==0)
         productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
     
@@ -52,7 +52,7 @@ public class Cart
         double totalPrice = 0;
         if (productList != null)
         {
-            productList.get
+            System.out.println();
         }
         return totalPrice;
     }

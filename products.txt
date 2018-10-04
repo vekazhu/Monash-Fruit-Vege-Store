@@ -1,6 +1,5 @@
-apple,fruit,5days,2,0.5,50,200,100
-Banana,fruit,5days,4.40,0.75,100,300,100
-Tangelos,fruit,7days,1.50,0.35,30,150,100
-Broccoli,Vegetable,8days,3.90,1.25,100,250,100
-Cos Lettuce,Vegetable,7days,5,2.5,10,50,100
-
+f001,apple,fruit,5days,2,0.5,50,200,100
+f002,Banana,fruit,5days,4.40,0.75,100,300,100
+f003,Tangelos,fruit,7days,1.50,0.35,30,150,100
+v004,Broccoli,Vegetable,8days,3.90,1.25,100,250,100
+v005,Cos Lettuce,Vegetable,7days,5,2.5,10,50,100
