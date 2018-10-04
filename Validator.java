@@ -43,7 +43,7 @@ public class Validator
     {
         if (password.length() < 4 || password.length() > 15)
         {
-            System.out.println("Your password should be at least 4 characters.");
+            System.out.println("Your password should between 4 and 15 characters.");
             return false;
         }
         int countUpper = 0;
@@ -66,21 +66,39 @@ public class Validator
             return false;
         }
         return true;
-    }
+    }  
     
     public static boolean isEmailValid(String email)
     {
-        Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
-        Matcher regMatcher = regexPattern.matcher(email);
-        if(regMatcher.matches()) 
+     Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
+     Matcher regMatcher = regexPattern.matcher(email);
+     if(regMatcher.matches()) 
+     {
+         return true;
+     } 
+     else 
+     {
+         System.out.println("Please enter a valid email address.");
+         return false;
+     }
+     }
+     
+    public static boolean isPhoneNumberValid(String phoneNumber)
+    {
+        if (phoneNumber.length() != 10 || phoneNumber.startsWith("04") == false)
         {
-            return true;
-        } 
-        else 
-        {
-            System.out.println("Please enter a valid email address.");
+            System.out.println("Please renter your 10 digits phone number begins with 04.");
             return false;
         }
+        for (int i = 0; i < phoneNumber.length(); i ++)
+        {
+            if (Character.isDigit(phoneNumber.charAt(i)) == false)
+            {
+                System.out.println("Please enter numbers only.");
+                return false;
+            }
+        }
+        return true;
     }
     
     public static boolean isDouble(String str)

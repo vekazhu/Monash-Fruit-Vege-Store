@@ -69,6 +69,11 @@ public class User
     {
         return securityAnswer;
     }
+    
+    public int getUserNumber()
+    {
+        return userNumber;
+    }
 
     public void setSecurityAnswer(String securityAnswer) 
     {
@@ -98,33 +103,6 @@ public class User
     public void setUserPassword(String userPassword) 
     {
         this.userPassword = userPassword;
-    }
-
-    /**
-     * generate userId, like"u0001"
-     */
-    public String generateUserId(int i)
-    {
-        String newUserId = "";
-        if (String.valueOf(i+1).length() == 1)
-            newUserId = "c000" + (i+1);
-        if (String.valueOf(i+1).length() == 2)
-            newUserId = "c00" + (i+1);
-        if (String.valueOf(i+1).length() == 3)
-            newUserId = "c0" + (i+1);
-        if (String.valueOf(i+1).length() == 4)
-            newUserId = "c" + (i+1);   
-        return newUserId;
-    }
-
-    public String generateUserName(String firstName, String userId)
-    {
-        String userName = "";
-        String firstThreeLetter = firstName.substring(0, 3);
-        String lastThreeNumber = userId.substring(userId.length()-3);
-        userName = firstThreeLetter + lastThreeNumber;
-        return userName;
-
     }
 
     public String login()
