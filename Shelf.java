@@ -9,14 +9,14 @@ public class Shelf
 {
     // instance variables - replace the example below with your own
     private ArrayList<Product> listOfProducts;
-    private HashMap productQuantity;
+    //private HashMap productQuantity;
 
     /**
      * Default Constructor for objects of class Shelf
      */
     public Shelf()
     {
-        listOfProducts = FileController.readProductsInfo("products.txt");
+        listOfProducts = FileManager.readProductsInfo("products.txt");
     }
 
     /**
@@ -97,8 +97,8 @@ public class Shelf
         for ( Product product: this.listOfProducts)
         {
             System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n",product.getProductID(),product.getProductName(),
-            product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
     }
-    
+
 }

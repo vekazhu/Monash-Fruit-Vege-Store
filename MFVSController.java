@@ -18,8 +18,8 @@ public class MFVSController
      */
     public MFVSController()
     {
-        listOfUsers = new ArrayList<User>();
-        listOfTransactions = new ArrayList<Transaction>();
+        listOfUsers = FileManager.readUserInfo("users.txt");
+        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         shelf = new Shelf();
         cart = new Cart();
     }
@@ -36,9 +36,9 @@ public class MFVSController
             getChoice(option);
         }
         while (!option.toLowerCase().equals("x"));
-        
+
     }
-    
+
     public void getChoice(String option)
     {
         switch (option.toLowerCase())
@@ -57,13 +57,12 @@ public class MFVSController
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
     }
-    
+
     public void displayCart()
     {
         System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
         System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
         cart.displayCart();
     }
-    
 
 }

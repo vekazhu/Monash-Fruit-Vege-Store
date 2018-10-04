@@ -1,1 +1,1 @@
-F001,apple,fruit,5,each,1,100
+apple,fruit,5,2,0.5,50,200,100

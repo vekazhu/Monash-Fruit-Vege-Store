@@ -6,12 +6,12 @@ import java.io.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class FileController
+public class FileManager
 {
     /**
      * Default constructor for objects of class FileController
      */
-    public FileController()
+    public FileManager()
     {
         
     }
@@ -35,14 +35,15 @@ public class FileController
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    String productID = parts[0];
-                    String productName = parts[1];
-                    String category = parts[2];
-                    String shelfLife = parts[3];
-                    double priceKG = Double.parseDouble(parts[4]);
-                    double priceWhole = Double.parseDouble(parts[5]);
-                    int discount = Integer.parseInt(parts[6]);
-                    Product product = new Product(productName,category,shelfLife,priceKG,priceWhole,discount);
+                    String productName = parts[0];
+                    String category = parts[1];
+                    String shelfLife = parts[2];
+                    double priceKG = Double.parseDouble(parts[3]);
+                    double priceWhole = Double.parseDouble(parts[4]);
+                    double quantityKG = Double.parseDouble(parts[5]);
+                    double quantityWhole = Double.parseDouble(parts[6]);
+                    int discount = Integer.parseInt(parts[7]);
+                    Product product = new Product(productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
                     listOfProducts.add(product);
                 }
             }
@@ -95,7 +96,7 @@ public class FileController
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    double rating = Double.parseDouble(parts[0]);;
+                    double rating = Double.parseDouble(parts[0]);
                     String customerID = parts[1];
                     String customerStatus = parts[2];
                     String date = parts[3];
