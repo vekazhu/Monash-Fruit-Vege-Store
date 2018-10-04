@@ -102,27 +102,6 @@ public class Customer extends User
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
         nameScanner();
         
-      
-        
-        
-        /**
-         * while (isNameValid(firstName) == true)
-        {
-            System.out.println("Please enter your email address.");
-            String email = scanner.next();
-            while (isEmailValid(email) == true)
-            {
-                System.out.println("Please enter your password.");
-                String passWord = scanner.next();
-                while (isPasswordValid(passWord) == true)
-                {
-                    scanner.close();
-                }
-            }
-        }
-         * 
-         */
-        
         
     }
     
