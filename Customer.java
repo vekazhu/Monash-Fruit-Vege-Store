@@ -54,6 +54,7 @@ public class Customer extends User
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void nameScanner()
     {
@@ -75,6 +76,9 @@ public class Customer extends User
     
     
     public void addProductToCart()
+=======
+    
+>>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
 =======
     
 >>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
@@ -163,6 +167,7 @@ public class Customer extends User
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     public boolean isProductExist(String productID)
     {
@@ -175,6 +180,8 @@ public class Customer extends User
         }
         return false;
     }
+=======
+>>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
 =======
 >>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
 
