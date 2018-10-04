@@ -23,7 +23,7 @@ public class UserMenu
     {
         System.out.println("Welcome to The MFVS :)");
         System.out.println("~~~~~~~~~~Main Menu~~~~~~~~~~");
-        System.out.println("A.All products");
+        System.out.println("A.View All products");
         System.out.println("B.Login");
         System.out.println("C.Register");
         System.out.println("X.Exit");
@@ -37,9 +37,12 @@ public class UserMenu
     {
         System.out.println("Hello :)");
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
-        System.out.println("A.All products");
-        System.out.println("B.View cart");
-        System.out.println("C.My transactions");
+        System.out.println("A.View All Products"); 
+        System.out.println("B. Add Product to Cart"); 
+        System.out.println("C. View Cart");
+        System.out.println("D. View My Transactions");
+        System.out.println("E. Log Out");
+        System.out.println("F. Unregister");
         System.out.println("X.Exit");
         System.out.println("Enter your choice(A/a)");
     }
@@ -63,8 +66,21 @@ public class UserMenu
     {
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
         System.out.println("A.Checkout");
-        System.out.println("B.All product");
+        System.out.println("B.Edit Cart");
         System.out.println("C.Back to my menu"); //show user login menu
+        System.out.println("X.Exit");
+        System.out.println("Enter your choice(A/a)");
+    }
+    
+    /**
+     * A method to display menu after user chooses 'Edit Cart' in the  displayCartActionMenu menu
+     */
+    public void displayEditCartActionMenu()
+    {
+        System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
+        System.out.println("A.Delete Product");
+        System.out.println("B.Change Quantity");
+        System.out.println("C.Back to 'View Cart' menu"); //show user login menu
         System.out.println("X.Exit");
         System.out.println("Enter your choice(A/a)");
     }
@@ -82,8 +98,14 @@ public class UserMenu
     
     public void displayOwnerMenu()
     {
+        System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
+        System.out.println("A.View All Products"); 
+        System.out.println("B. Add Products"); 
+        System.out.println("C.Edit Products");
+        System.out.println("D. View All Transactions");
+        System.out.println("E. Log Out");
+        System.out.println("X. Exit");
+        System.out.println("Enter your choice(A/a)");
         
     }
-    
-    
 }
