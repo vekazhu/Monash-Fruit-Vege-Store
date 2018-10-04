@@ -17,7 +17,7 @@ public class Product
     private int discount;
     private double quantityKG;
     private double quantityWhole;
-    private static int productNumber = 0;
+    private static int productNumber = 14;
     
     public Product() 
     {
@@ -33,10 +33,10 @@ public class Product
         productNumber++;
     }
     
-    public Product(String productName, String category, String shelfLife, double priceWhole, double priceKG,
+    public Product(String ProductID,String productName, String category, String shelfLife, double priceWhole, double priceKG,
                     double quantityKG,double quantityWhole,int discount) 
     {
-        this.productID = generateProductID(productNumber,category);
+        this.productID = productID;
         this.productName = productName;
         this.shelfLife = shelfLife;
         this.priceKG = priceKG;

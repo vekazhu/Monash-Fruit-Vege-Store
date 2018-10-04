@@ -72,8 +72,6 @@ public class MFVSController
         String productID = input.nextLine();
     }
     
-    
-    
     public void checkOut()
     {
         ArrayList<String> cartInfo = new ArrayList<String>();
