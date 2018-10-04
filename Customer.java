@@ -53,6 +53,7 @@ public class Customer extends User
         this.status = status;
     }
 
+<<<<<<< HEAD
 
     public void nameScanner()
     {
@@ -74,6 +75,9 @@ public class Customer extends User
     
     
     public void addProductToCart()
+=======
+    
+>>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
 
     {
         System.out.println("Enter the productID of the product you want to buy");
@@ -158,6 +162,7 @@ public class Customer extends User
                 return true;
         }
     }
+<<<<<<< HEAD
     
     public boolean isProductExist(String productID)
     {
@@ -170,6 +175,8 @@ public class Customer extends User
         }
         return false;
     }
+=======
+>>>>>>> 79bc71f818ee68ff88b783d7d404262f92cfb21c
 
 
     public void displayCart()
