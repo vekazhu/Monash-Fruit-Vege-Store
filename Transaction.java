@@ -10,7 +10,7 @@ public class Transaction
     private double rating;
     private String customerID;
     private String customerStatus;
-    private String date;
+    private String transactionDate;
     private double totalPrice;
 
     /**
@@ -21,7 +21,7 @@ public class Transaction
         this.rating = 0;
         this.customerID = "";
         this.customerStatus = "";
-        this.date = "";
+        this.transactionDate = "";
         this.totalPrice = 0;
     }
     
@@ -30,7 +30,7 @@ public class Transaction
         this.rating = rating;
         this.customerID = customerID;
         this.customerStatus = customerStatus;
-        this.date = date;
+        this.transactionDate = date;
         this.totalPrice = totalPrice;
     }
     
@@ -49,9 +49,9 @@ public class Transaction
         return customerStatus;
     }
     
-    public String getdate()
+    public String getTransactionDate()
     {
-        return date;
+        return transactionDate;
     }
     
     public double getTotalPrice()
@@ -74,9 +74,9 @@ public class Transaction
         this.customerStatus = customerStatus;
     }
     
-    public void setdate(String date)
+    public void setTransactionDate(String date)
     {
-        this.date = date;
+        this.transactionDate = date;
     }
     
     public void setTotalPrice(double totalPrice)

@@ -13,8 +13,8 @@ public class Cart
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> productList; // one string: productID + productName + priceKG/priceWhole + amount 
-                                           //  + onePrice(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
-                                           //seperate by ","
+    //  + onePrice(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
+    //seperate by ","
     private Date date;
     private double totalPrice; //the total price of whole cart products
 
@@ -36,12 +36,11 @@ public class Cart
      */
     public void addProductToCart(Product product,int amount)
     {
-        
-        
+
         if (product.getQuantityKG()==0)
-        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
+            productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
-    
+
 
     public ArrayList<String> getProductList()
     {
@@ -52,14 +51,14 @@ public class Cart
     {
         this.productList = productList;
     }
-    
+
     public void setTotalPrice(double totalPrice)
     {
 
         this.totalPrice = totalPrice;
 
     }
-    
+
     public double getTotalPrice()
     {
         return totalPrice;
@@ -85,6 +84,5 @@ public class Cart
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
         return dtf.format(date).toString();
     }
-    
 
 }

@@ -91,7 +91,6 @@ public class Customer extends User
     }
 
     public void passwordScanner()
-
     {
         System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");
         Scanner sc = new Scanner (System.in);
@@ -120,8 +119,10 @@ public class Customer extends User
         System.out.println("___________________________________________________________________________________");
         passwordScanner();
         System.out.println("___________________________________________________________________________________");
-    }
 
+        
+
+    }
 
     public void displayCart()
     {
