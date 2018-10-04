@@ -25,7 +25,7 @@ public class Transaction
         this.totalPrice = 0;
     }
     
-    public Transaction(double rating, String customerID, String customerStatus, String date,double totalPrice)
+    public Transaction(String customerID, String customerStatus, String date,double totalPrice,double rating)
     {
         this.rating = rating;
         this.customerID = customerID;

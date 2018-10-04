@@ -13,6 +13,7 @@ public class Customer extends User
 
     private String status;
     private Cart cart;
+    private Shelf shelf;
 
     /**
      * Constructor for objects of class Customer
@@ -24,10 +25,14 @@ public class Customer extends User
 
         status = "active";
         cart = new Cart();
+        shelf = new Shelf();
     }
 
     public Customer()
     {
+        status = "active";
+        cart = new Cart();
+        shelf = new Shelf();
     }
 
     /**
@@ -65,29 +70,102 @@ public class Customer extends User
             sc.close();
         }
     }
-
-    /**
-     * A method to add product to cart
-     *
-     * @param  product and amount
-     */
-    public void addProductToCart(Product product,double amount)
+    
+    public void addProductToCart()
     {
-        double onePrice = 0;
-        double totalPrice = 0; //total price of all products in cart
-        if (product.getQuantityKG()==0)
+        System.out.println("Enter the productID of the product you want to buy");
+        Scanner input = new Scanner(System.in);
+        String productID = input.nextLine();
+        while (!isProductExist(productID))
+        {
+            System.out.println("Please enter a valid productID");
+            productID = input.nextLine();
+        }
+        String productName = shelf.findProduct(productID).getProductName();
+        double priceKG = shelf.findProduct(productID).getPriceKG();
+        double priceWhole = shelf.findProduct(productID).getPriceWhole();
+        int quantityWhole = shelf.findProduct(productID).getQuantityWhole();
+        double quantityKG = shelf.findProduct(productID).getQuantityKG();
+        System.out.println("choose selling type(1/2)");
+        System.out.println("1.purchase by each");
+        System.out.println("2.purchase by KG");
+        int flagKG = 0; // if 'purchase by KG' is chosen, flagKG will become 1
+        String choice = input.nextLine().trim();
+        while (!choice.equals("1") && !choice.equals("2"))
+        {
+            System.out.println("Invalid input, please re-enter");
+            choice = input.nextLine().trim();
+        }
+        if (choice.equals("1")) //purchase by each
+        {
+            System.out.println("There are " + quantityWhole + " left");
+        }
+        if (choice.equals("2")) //purchase by KG
+        {
+            flagKG=1;
+            System.out.println("There are " + quantityKG + "KG left");
+        }
+        if (quantityWhole != 0 && quantityKG != 0)
         {    
-            onePrice = product.getPriceWhole()*amount;
-            cart.getProductList().add(product.getProductID() + "," + product.getProductName() + "," + product.getPriceWhole()+"/each" + "," + amount + "," + onePrice);
-            totalPrice = totalPrice + onePrice;
+            System.out.println("How many do you want to purchase?");
+            String amount = input.nextLine();
+            while (!isAmountValid(amount,flagKG,productID))
+            {
+                System.out.println("please re-enter the amount");
+                amount = input.next().trim();
+            }
+            // add product to productList in cart
+            double onePrice = 0; // the price of one type of product
+            double totalPrice = 0; //total price of all products in cart
+            if (flagKG == 0)
+            {    
+                onePrice = priceWhole * Double.parseDouble(amount);
+                cart.getProductList().add(productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice);
+                totalPrice = totalPrice + onePrice;
+            }
+            else
+            {   
+                onePrice = priceKG * Double.parseDouble(amount);
+                cart.getProductList().add(productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice);
+                totalPrice = totalPrice + onePrice;
+            }
+            cart.setTotalPrice(totalPrice);
+            System.out.println("You have added it in the cart~");
+        }
+        else
+            System.out.println("Please choose other products to purchase");
+    }
+    
+    public boolean isAmountValid(String amount,int flagKG,String productID)
+    {
+        if (!Validator.isDouble(amount))
+        {
+            return false;
         }
         else
         {
-            onePrice = product.getPriceKG()*amount;
-            cart.getProductList().add(product.getProductID() + "," + product.getProductName() + "," + product.getPriceWhole()+"/KG" + "," + amount + "," + onePrice);
-            totalPrice = totalPrice + onePrice;
+            double inventory = 0;
+            if (flagKG==0)
+                inventory = shelf.findProduct(productID).getQuantityWhole();
+            else
+                inventory = shelf.findProduct(productID).getQuantityKG();
+            if (Double.parseDouble(amount) > inventory)
+               return false;
+            else
+                return true;
         }
-        cart.setTotalPrice(totalPrice);
+    }
+    
+    public boolean isProductExist(String productID)
+    {
+        for (int i=0; i<shelf.getListOfProducts().size();i++)
+        {
+            if (productID.equalsIgnoreCase(shelf.getListOfProducts().get(i).getProductID()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void passwordScanner()
@@ -138,8 +216,8 @@ public class Customer extends User
         {
             System.out.println("Thank you for shopping at MFVS~");
             double rating = rate();
-            String transaction = rating + "," +super.getUserId()+","+ status + "," + cart.generateDate() + "," + cart.getTotalPrice();
-            FileManager.
+            String transaction = super.getUserId() + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
+            FileManager.writeFile(transaction,"transactions.txt");
         }
         else
         {
@@ -158,7 +236,7 @@ public class Customer extends User
         System.out.println("5. Very satisfied");
         System.out.println("Enter your rating(e.g.'5')");
         String rating = input.next().trim();
-        while (!Validator.isRatingValid(rating))
+        while (!Validator.isDouble(rating))
         {
             System.out.println("please re-enter your rating");
             rating = input.next().trim();

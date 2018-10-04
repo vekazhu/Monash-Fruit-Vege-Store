@@ -16,7 +16,7 @@ public class Product
     private double priceWhole;
     private int discount;
     private double quantityKG;
-    private double quantityWhole;
+    private int quantityWhole;
     private static int productNumber = 5;
     
     public Product() 
@@ -34,7 +34,7 @@ public class Product
     }
     
     public Product(String productID,String productName, String category, String shelfLife, double priceWhole, double priceKG,
-                    double quantityKG,double quantityWhole,int discount) 
+                    double quantityKG,int quantityWhole,int discount) 
     {
         this.productID = productID;
         this.productName = productName;
@@ -88,7 +88,7 @@ public class Product
         return quantityKG;
     }
     
-    public double getQuantityWhole() 
+    public int getQuantityWhole() 
     {
         return quantityWhole;
     }
@@ -118,7 +118,7 @@ public class Product
         this.quantityKG = quantityKG;
     }
     
-    public void setQuantityWhole(double quantityWhole) 
+    public void setQuantityWhole(int quantityWhole) 
     {
         this.quantityWhole = quantityWhole;
     }

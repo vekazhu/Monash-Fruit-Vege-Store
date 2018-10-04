@@ -83,9 +83,9 @@ public class Validator
         }
     }
     
-    public static boolean isRatingValid(String rating)
+    public static boolean isDouble(String str)
     {
-        if (rating.startsWith(".") || rating.endsWith("."))
+        if (str.startsWith(".") || str.endsWith("."))
         {
             System.out.println("Entered value are not valid");
             return false;
@@ -93,7 +93,7 @@ public class Validator
         
         try
         {
-            Double.parseDouble(rating);
+            Double.parseDouble(str);
             return true;
         }
         catch(NumberFormatException ex){}

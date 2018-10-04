@@ -50,17 +50,22 @@ public class Cart
 
     public void displayCart()
     {
-        for (String str: productList)
-        {
-            String[] parts = str.split(",");
-            String productId = parts[0];
-            String productName = parts[1];
-            String price = parts[2];
-            double amount = Double.parseDouble(parts[3]);
-            double onePrice = Double.parseDouble(parts[4]);
-            System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,price,amount,onePrice);
-            //ProductId,productName,price,amount,onePrice
+        if (productList != null)
+        {    
+            for (String str: productList)
+            {
+                String[] parts = str.split(",");
+                String productId = parts[0];
+                String productName = parts[1];
+                String price = parts[2];
+                double amount = Double.parseDouble(parts[3]);
+                double onePrice = Double.parseDouble(parts[4]);
+                System.out.format("%-10s%-16s%-10d%-10d%-10d%-13d%n",productId,productName,price,amount,onePrice,totalPrice);
+                //ProductId,productName,price,amount,onePrice,totalPrice
+            }
         }
+        else
+            System.out.println("You have nothing in the cart");
     }
 
     public String generateDate()

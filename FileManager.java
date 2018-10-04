@@ -13,7 +13,7 @@ public class FileManager
      */
     public FileManager()
     {
-        
+
     }
 
     /**
@@ -43,9 +43,9 @@ public class FileManager
                     double priceKG = Double.parseDouble(parts[4]);
                     double priceWhole = Double.parseDouble(parts[5]);
                     double quantityKG = Double.parseDouble(parts[6]);
-                    double quantityWhole = Double.parseDouble(parts[7]);
+                    int quantityWhole = Integer.parseInt(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
-                    Product product = new Product(productID,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+                    Product product = new Product(productID,productName,category,shelfLife,priceWhole,priceKG,quantityKG,quantityWhole,discount);
                     listOfProducts.add(product);
                 }
             }
@@ -64,7 +64,7 @@ public class FileManager
         }
         return listOfProducts;
     }
-    
+
     /**
      * A method is to write all the lines in a new file.
      *
@@ -84,7 +84,7 @@ public class FileManager
             System.out.println("Unexpected I/O exception occurs.");
         }
     }
-    
+
     public static ArrayList<Transaction> readTransactionsInfo(String fileName)
     {
         ArrayList<Transaction> listOfTransactions = new ArrayList<Transaction> ();
@@ -98,12 +98,13 @@ public class FileManager
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    double rating = Double.parseDouble(parts[0]);
-                    String customerID = parts[1];
-                    String customerStatus = parts[2];
-                    String date = parts[3];
-                    double totalPrice = Double.parseDouble(parts[4]);
-                    Transaction transaction = new Transaction(rating,customerID,customerStatus,date,totalPrice);
+
+                    String customerID = parts[0];
+                    String customerStatus = parts[1];
+                    String date = parts[2];
+                    double totalPrice = Double.parseDouble(parts[3]);
+                    double rating = Double.parseDouble(parts[4]);
+                    Transaction transaction = new Transaction(customerID,customerStatus,date,totalPrice,rating);
                     listOfTransactions.add(transaction);
                 }
             }
@@ -122,7 +123,7 @@ public class FileManager
         }
         return listOfTransactions;
     }
-    
+
     public static ArrayList<User> readUserInfo(String fileName)
     {
         ArrayList<User> listOfUsers = new ArrayList<User> ();
@@ -161,7 +162,6 @@ public class FileManager
         }
         return listOfUsers;
     }
-    
-    
+
     
 }

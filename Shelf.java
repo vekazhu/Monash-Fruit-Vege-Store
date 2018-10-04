@@ -96,14 +96,26 @@ public class Shelf
     {
         for ( Product product: this.listOfProducts)
         {
-            System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n",product.getProductID(),product.getProductName(),
+            System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
+        
     }
     
-    public void findProduct(String productId)
+    /**
+     * This method is to find the Product object that has the specific productID
+     */
+    public Product findProduct(String productId)
     {
-        
+        Product product = new Product();
+        for ( Product pdct: listOfProducts)
+        {
+            if (productId.equalsIgnoreCase(product.getProductID()))
+            {
+                product = pdct;
+            }
+        }
+        return product;
     }
 
 }

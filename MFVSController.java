@@ -57,7 +57,7 @@ public class MFVSController
             System.out.println("-------------------------------------------------------------------");
 
             break;
-            
+
             case "b":
             System.out.print('\u000C');
             String userId = user.login();
@@ -70,30 +70,29 @@ public class MFVSController
                 else
                     System.out.println("Owner Logged In");
             }
-                if (userId.equals("")){
-                    break;
+            if (userId.equals("")){
+                break;
+            }
+            else {
+                if(userId.startsWith("c")){
+
+                    String customerOption = "";
+                    do
+                    {
+                        Scanner input = new Scanner(System.in);
+                        menu.displayCustomerMenu();
+                        customerOption = input.nextLine();
+                        System.out.println("--------------------------------------------------\n\n");
+                        getCustomerChoice(customerOption);
+                    }
+                    while (!customerOption.toLowerCase().equals("x"));
+
                 }
                 else {
-                    if(userId.startsWith("c")){
-                    
-                        String customerOption = "";
-                        do
-                        {
-                            Scanner input = new Scanner(System.in);
-                            menu.displayCustomerMenu();
-                            customerOption = input.nextLine();
-                            System.out.println("--------------------------------------------------\n\n");
-                            getCustomerChoice(customerOption);
-                        }
-                        while (!customerOption.toLowerCase().equals("x"));
-                        
-                    }
-                    else {
-                        //System.out.println("Owner Logged In");
-                        menu.displayOwnerMenu();
-                    }
+                    //System.out.println("Owner Logged In");
+                    menu.displayOwnerMenu();
                 }
-            
+            }
 
             break;
             case "x":
@@ -114,47 +113,38 @@ public class MFVSController
             displayAllProducts();
             System.out.println("-------------------------------------------------------------------");
             break;
-            
+
             case "b":
             System.out.print('\u000C');
             break;
-            
+
             default:
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
         }
     }
-    
+
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-        System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
+        System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
     }
-    
+
     public void displayAllTransactions()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        //double rating, String customerID, String customerStatus, String date,double totalPrice
-        System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","Rating","Name","Category","ShelfLife","SellingType","Price","Discount");
-        shelf.sortProductByAlphabet();
-        shelf.displayProductsInfo(shelf.getListOfProducts());
+        // String customerID, String customerStatus, String date,double totalPrice
+        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","CustomerID","Customer Status","Date","Total Price","Rating");
+        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
+        for (Transaction transaction : listOfTransactions)
+        {
+            System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
+                transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
+        }
     }
 
-    public void addProductToCart()
-    {
-        System.out.println("Enter the productID of the product you want to buy");
-        Scanner input = new Scanner(System.in);
-        String productID = input.nextLine();  //no validation
-        
-    }
-    
-    
-
-    
-
-    
     
 }
