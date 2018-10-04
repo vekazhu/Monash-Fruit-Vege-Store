@@ -64,5 +64,28 @@ public class MFVSController
         System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
         cart.displayCart();
     }
+    
+    public void addProductToCart()
+    {
+        System.out.println("Enter the productID of the product you want to buy");
+        Scanner input = new Scanner(System.in);
+        String productID = input.nextLine();
+    }
+    
+    
+    
+    public void checkOut()
+    {
+        ArrayList<String> cartInfo = new ArrayList<String>();
+        displayCart();
+        System.out.println("Are you sure you want to checkout? (y/n)");
+        Scanner input = new Scanner(System.in);
+        String answer = input.nextLine();
+        if (answer.toLowerCase().startsWith("y"))
+        {
+            cart.displayCart();//get cartInfo(ArrayList<String>)
+        }
+        
+    }
 
 }

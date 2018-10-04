@@ -100,5 +100,10 @@ public class Shelf
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
     }
+    
+    public void findProduct(String productId)
+    {
+        
+    }
 
 }
