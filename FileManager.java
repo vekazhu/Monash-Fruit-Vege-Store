@@ -34,8 +34,6 @@ public class FileManager
                 while(parser.hasNextLine())
                 {
                     String str = parser.nextLine();
-
-
                     String[] parts = str.split(",");
                     String productID = parts[0];
                     String productName = parts[1];

@@ -29,12 +29,10 @@ public class Cart
      *
      * @param  product and amount
      */
-    public void addProductToCart(Product product,int amount)
+    public void addProductToCart(Product product,double amount)
     {
-        
-        
         if (product.getQuantityKG()=0)
-        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
+            productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
     
     public ArrayList<String> getProductList()
@@ -47,7 +45,7 @@ public class Cart
         this.productList = productList;
     }
     
-    public double countTotalPrice()
+    public double countTotalPrice(double price, double amount)
     {
         double totalPrice = 0;
         if (productList != null)
@@ -65,7 +63,7 @@ public class Cart
             String[] parts = str.split(",");
             String productId = parts[0];
             String productName = parts[1];
-            int amount = Integer.parseInt(parts[2]);
+            double amount = Integer.parseInt(parts[2]);
             double price = Double.parseDouble(parts[3]);
             double totalPrice = price * amount;
             System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,amount,price,totalPrice);
