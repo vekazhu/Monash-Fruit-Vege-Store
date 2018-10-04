@@ -74,11 +74,6 @@ public class Customer extends User
         cart.setTotalPrice(totalPrice);
     }
 
-   
-
-    
-
-
     public void displayCart()
     {
         System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
@@ -96,7 +91,8 @@ public class Customer extends User
         {
             System.out.println("Thank you for shopping at MFVS~");
             double rating = rate();
-            Transaction transaction = new Transaction(rating,super.getUserId(),status,cart.generateDate(),cart.getTotalPrice());
+            String transaction = rating + "," +super.getUserId()+","+ status + "," + cart.generateDate() + "," + cart.getTotalPrice();
+            FileManager.
         }
         else
         {
@@ -114,10 +110,13 @@ public class Customer extends User
         System.out.println("4. Satisfied");
         System.out.println("5. Very satisfied");
         System.out.println("Enter your rating(e.g.'5')");
-        double rating = input.nextDouble();
-        return rating;
+        String rating = input.next().trim();
+        while (!Validator.isRatingValid(rating))
+        {
+            System.out.println("please re-enter your rating");
+            rating = input.next().trim();
+        }
+        return Double.parseDouble(rating);
     }
     
-    
-
 }

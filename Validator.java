@@ -100,4 +100,23 @@ public class Validator
         }
         return true;
     }
+    
+    public static boolean isRatingValid(String rating)
+    {
+        if (rating.startsWith(".") || rating.endsWith("."))
+        {
+            System.out.println("Entered value are not valid");
+            return false;
+        }
+        
+        try
+        {
+            Double.parseDouble(rating);
+            return true;
+        }
+        catch(NumberFormatException ex){}
+        return false;
+    }
+    
+    
 }

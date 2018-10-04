@@ -46,8 +46,6 @@ public class FileManager
                     double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
                     Product product = new Product(productID,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
-                    
-
                     listOfProducts.add(product);
                 }
             }
@@ -72,9 +70,9 @@ public class FileManager
      *
      * @param a String: contents
      */
-    public static void writeFile(String content)
+    public static void writeFile(String content,String fileName)
     {
-        String fileName = "statistics.txt";
+        String file = fileName;
         try
         {
             PrintWriter outputFile = new PrintWriter(fileName);
