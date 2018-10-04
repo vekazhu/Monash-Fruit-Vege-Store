@@ -34,7 +34,7 @@ public class FileManager
                 while(parser.hasNextLine())
                 {
                     String str = parser.nextLine();
-                    String[] parts = str.split(",");
+
 
                     String productID = parts[0];
                     String productName = parts[1];
@@ -46,6 +46,7 @@ public class FileManager
                     double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
                     Product product = new Product(productID,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+
 
                     listOfProducts.add(product);
                 }
