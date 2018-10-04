@@ -38,11 +38,12 @@ public class UserMenu
         System.out.println("Hello :)");
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
         System.out.println("A.View All Products"); 
-        System.out.println("B. Add Product to Cart"); 
-        System.out.println("C. View Cart");
-        System.out.println("D. View My Transactions");
-        System.out.println("E. Log Out");
-        System.out.println("F. Unregister");
+        System.out.println("B. Search Product");
+        System.out.println("C. Add Product to Cart"); 
+        System.out.println("D. View Cart");
+        System.out.println("E. View My Transactions");
+        System.out.println("F. Log Out");
+        System.out.println("G. Unregister");
         System.out.println("X.Exit");
         System.out.println("Enter your choice(A/a)");
     }
@@ -100,10 +101,11 @@ public class UserMenu
     {
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
         System.out.println("A.View All Products"); 
-        System.out.println("B. Add Products"); 
-        System.out.println("C.Edit Products");
-        System.out.println("D. View All Transactions");
-        System.out.println("E. Log Out");
+        System.out.println("B. Search Product"); 
+        System.out.println("C. Create Products"); 
+        System.out.println("D.Edit Products");
+        System.out.println("E. View All Transactions");
+        System.out.println("F. Log Out");
         System.out.println("X. Exit");
         System.out.println("Enter your choice(A/a)");
         
