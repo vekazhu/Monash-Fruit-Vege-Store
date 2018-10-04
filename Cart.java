@@ -28,20 +28,6 @@ public class Cart
         totalPrice=0;
     }
 
-
-    /**
-     * A method to add product to cart
-     *
-     * @param  product and amount
-     */
-    public void addProductToCart(Product product,int amount)
-    {
-
-        if (product.getQuantityKG()==0)
-            productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
-    }
-
-
     public ArrayList<String> getProductList()
     {
         return productList;
@@ -54,9 +40,7 @@ public class Cart
 
     public void setTotalPrice(double totalPrice)
     {
-
         this.totalPrice = totalPrice;
-
     }
 
     public double getTotalPrice()

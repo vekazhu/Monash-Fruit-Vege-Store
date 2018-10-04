@@ -125,7 +125,6 @@ public class MFVSController
         }
     }
     
-   
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -134,13 +133,24 @@ public class MFVSController
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
     }
+    
+    public void displayAllTransactions()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        //double rating, String customerID, String customerStatus, String date,double totalPrice
+        System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","Rating","Name","Category","ShelfLife","SellingType","Price","Discount");
+        shelf.sortProductByAlphabet();
+        shelf.displayProductsInfo(shelf.getListOfProducts());
+    }
 
     public void addProductToCart()
     {
         System.out.println("Enter the productID of the product you want to buy");
         Scanner input = new Scanner(System.in);
-        String productID = input.nextLine();
+        String productID = input.nextLine();  //no validation
+        
     }
+    
     
 
     

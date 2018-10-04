@@ -17,8 +17,8 @@ public class User
     private String securityAnswer;
     private static int userNumber = 6;//including 5 customers and one owner
     private ArrayList<User> usersList;
-    
- public User() 
+
+    public User() 
     {
         userId = "";
         userName = "";
@@ -64,6 +64,7 @@ public class User
     {
         return userPassword;
     }
+
     public String getSecurityAnswer() 
     {
         return securityAnswer;
@@ -98,8 +99,8 @@ public class User
     {
         this.userPassword = userPassword;
     }
-    
-       /**
+
+    /**
      * generate userId, like"u0001"
      */
     public String generateUserId(int i)
@@ -115,18 +116,20 @@ public class User
             newUserId = "c" + (i+1);   
         return newUserId;
     }
+
     public String generateUserName(String firstName, String userId)
     {
-          String userName = "";
+        String userName = "";
         String firstThreeLetter = firstName.substring(0, 3);
         String lastThreeNumber = userId.substring(userId.length()-3);
         userName = firstThreeLetter + lastThreeNumber;
         return userName;
-        
+
     }
+
     public String login()
     {
-      
+
         //Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));
         Scanner keyboard = new Scanner (System.in);
         int flag = 0;
@@ -138,7 +141,6 @@ public class User
         System.out.println("Enter your Password");
         String inpPass = keyboard.nextLine(); // gets input from user
 
-        
         for(int i=0; i<usersList.size();i++)
         {
             user = usersList.get(i);
@@ -146,7 +148,7 @@ public class User
             String password = usersList.get(i).getUserPassword();
             if (inpUser.equals(userId) ) {
                 userExists = 1;
-                
+
                 for(int j= 0;j<2;j++) {
                     if(inpPass.equals(password)) {
                         flag = 1;
@@ -156,48 +158,48 @@ public class User
                         System.out.println("Invalid Password!! TRY AGAIN");
                         System.out.println("Re-Enter your Password, This is your " +(j+2) + "attempt");
                         inpPass = keyboard.nextLine();
+                    }
                 }
+                break;
             }
-            break;
         }
-    }
-    
-    if (userExists == 1){
-        
-        if (flag == 1){
-            System.out.println("Hi! ,you are successfully logged in. ");
-            return user.getUserId();
-        }
-        else {
-            System.out.println("3 attempts are done!!, Do you wish to Answer your security questions to login?(s|n)");
-            String status = keyboard.nextLine();
-            switch (status.toLowerCase())
-        {
-            case "s":
-            System.out.println("Who is your favourite Singer?");
-            String answer = keyboard.nextLine();
-            if(user.getSecurityAnswer().equals(answer)) {
+
+        if (userExists == 1){
+
+            if (flag == 1){
                 System.out.println("Hi! ,you are successfully logged in. ");
                 return user.getUserId();
             }
-            else{
-                return "";
+            else {
+                System.out.println("3 attempts are done!!, Do you wish to Answer your security questions to login?(s|n)");
+                String status = keyboard.nextLine();
+                switch (status.toLowerCase())
+                {
+                    case "s":
+                    System.out.println("Who is your favourite Singer?");
+                    String answer = keyboard.nextLine();
+                    if(user.getSecurityAnswer().equals(answer)) {
+                        System.out.println("Hi! ,you are successfully logged in. ");
+                        return user.getUserId();
+                    }
+                    else{
+                        return "";
+                    }
+
+                    case "n":
+                    return "";
+
+                    default:
+                    System.out.println("The entered vaule is unrecognized!");
+                    return "";
+
+                }
             }
-            
-            case "n":
-            return "";
-            
-            default:
-            System.out.println("The entered vaule is unrecognized!");
-            return "";
-            
         }
+        else {
+            System.out.println("User Doesnot Exists");
+            return "";
         }
     }
-    else {
-        System.out.println("User Doesnot Exists");
-        return "";
-    }
-}
-    
+
 }
