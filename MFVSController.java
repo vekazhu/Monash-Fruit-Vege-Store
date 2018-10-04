@@ -149,8 +149,7 @@ public class MFVSController
         String productID = input.nextLine();  //no validation
         
     }
-    
-<<<<<<< HEAD
+
     public String nameScanner()
     {
         System.out.println("Please enter your first Name between 3-20 letters and only letters are allowed.");
@@ -166,12 +165,7 @@ public class MFVSController
         sc.close();
         return firstName;
     }
-=======
-    
 
->>>>>>> 4b3ba06296e0e7bd039c8eeb2eb9075a8e88989e
-    
-    
      public String passwordScanner()
     {
         System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");

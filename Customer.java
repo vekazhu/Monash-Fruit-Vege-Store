@@ -74,40 +74,7 @@ public class Customer extends User
         cart.setTotalPrice(totalPrice);
     }
 
-<<<<<<< HEAD
-=======
-    public void passwordScanner()
-    {
-        System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");
-        Scanner sc = new Scanner (System.in);
-        String enteredToken = sc.next().trim();
-        while (Validator.isPasswordValid(enteredToken) == false)
-        {
-            System.out.println("Please renter your password.");
-            enteredToken = sc.next().trim();
-        }
-        if (Validator.isPasswordValid(enteredToken) == true)
-        {
-            String password = enteredToken;
-            sc.close();
-        }
-    }
 
-    public void emailScanner()
-    {
-        System.out.println("Please enter your email address.");
-    }
-
-    public void register()
-    {
-        System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
-        nameScanner();
-        System.out.println("___________________________________________________________________________________");
-        passwordScanner();
-        System.out.println("___________________________________________________________________________________");
-    }
-
->>>>>>> 4b3ba06296e0e7bd039c8eeb2eb9075a8e88989e
     public void displayCart()
     {
         System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");

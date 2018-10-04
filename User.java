@@ -105,36 +105,6 @@ public class User
         this.userPassword = userPassword;
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * generate userId, like"u0001"
-     */
-    public String generateUserId(int i)
-    {
-        String newUserId = "";
-        if (String.valueOf(i+1).length() == 1)
-            newUserId = "c000" + (i+1);
-        if (String.valueOf(i+1).length() == 2)
-            newUserId = "c00" + (i+1);
-        if (String.valueOf(i+1).length() == 3)
-            newUserId = "c0" + (i+1);
-        if (String.valueOf(i+1).length() == 4)
-            newUserId = "c" + (i+1);   
-        return newUserId;
-    }
-
-    public String generateUserName(String firstName, String userId)
-    {
-        String userName = "";
-        String firstThreeLetter = firstName.substring(0, 3);
-        String lastThreeNumber = userId.substring(userId.length()-3);
-        userName = firstThreeLetter + lastThreeNumber;
-        return userName;
-
-    }
-
->>>>>>> 4b3ba06296e0e7bd039c8eeb2eb9075a8e88989e
     public String login()
     {
 
