@@ -12,9 +12,12 @@ import java.text.SimpleDateFormat;
 public class Cart
 {
     // instance variables - replace the example below with your own
-    private ArrayList<String> productList; // productID + amount
+    private ArrayList<String> productList; // one string: productID + productName + priceKG/priceWhole + amount 
+    //  + onePrice(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
+    //seperate by ","
     private Date date;
-    
+    private double totalPrice; //the total price of whole cart products
+
     /**
      * Constructor for objects of class Cart
      */
@@ -22,6 +25,7 @@ public class Cart
     {
         productList = new ArrayList<String>();
         date = new Date();
+        totalPrice=0;
     }
 
     /**
@@ -31,55 +35,52 @@ public class Cart
      */
     public void addProductToCart(Product product,int amount)
     {
-        
-        
+
         if (product.getQuantityKG()==0)
-        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
+            productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
-    
+
     public ArrayList<String> getProductList()
     {
         return productList;
     }
-    
+
     public void setProductList(ArrayList<String> productList)
     {
         this.productList = productList;
     }
-    
-    public double countTotalPrice()
+
+    public void setTotalPrice(double totalPrice)
     {
-        double totalPrice = 0;
-        if (productList != null)
-        {
-            System.out.println();
-        }
+
+        this.totalPrice = totalPrice;
+
+    }
+
+    public double getTotalPrice()
+    {
         return totalPrice;
     }
-    
-    public ArrayList<String> displayCart()
+
+    public void displayCart()
     {
-        ArrayList<String> cartInfo = new ArrayList<String>();
         for (String str: productList)
         {
             String[] parts = str.split(",");
             String productId = parts[0];
             String productName = parts[1];
-            int amount = Integer.parseInt(parts[2]);
-            double price = Double.parseDouble(parts[3]);
-            double totalPrice = price * amount;
-            System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,amount,price,totalPrice);
-            //ProductId,productName,amount,price,totalPrice
-            cartInfo.add(productId+","+productName+","+amount+","+price+","+totalPrice);
+            String price = parts[2];
+            double amount = Double.parseDouble(parts[3]);
+            double onePrice = Double.parseDouble(parts[4]);
+            System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,price,amount,onePrice);
+            //ProductId,productName,price,amount,onePrice
         }
-        return cartInfo;
     }
-    
+
     public String generateDate()
     {
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
         return dtf.format(date).toString();
     }
-    
-    
+
 }

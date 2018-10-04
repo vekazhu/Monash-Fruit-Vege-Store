@@ -21,29 +21,31 @@ public class Validator
     /**
      * 
      */
-    public static boolean isNameValid(String name)
+    public static boolean isFirstNameValid(String enteredToken)
     {
-        if (name.trim().length() > 10)
-        {
-            System.out.println("Your name should be within 10 characters.");
-            return false;
-        }
-        for (int i = 0; i < name.length(); i++)
-        {
-            if (!Character.isLetter(name.charAt(i)))
-                return false;
-        }
-        return true;
+     if (enteredToken.length() < 3 || enteredToken.length() > 20)
+     {
+         System.out.println("Your name should be 3-20 letters long.");
+         return false;
+     }
+     for (int i = 0; i < enteredToken.length(); i++)
+         {  
+             if (Character.isLetter(enteredToken.charAt(i)) == false)
+             {
+                 System.out.println("Please enter letters only.");
+                 return false;
+             }
+         }
+     return true;
     }
     
     public static boolean isPasswordValid(String password)
     {
-        if (password.length() < 4)
+        if (password.length() < 4 || password.length() > 15)
         {
             System.out.println("Your password should be at least 4 characters.");
             return false;
         }
-        
         int countUpper = 0;
         int countLower = 0;
         for (int i = 0; i < password.length(); i++)

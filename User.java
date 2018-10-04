@@ -7,7 +7,8 @@ import java.util.regex.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class User {
+public class User 
+{
     private String userId;// generate automatically
     private String userName; // first three letters of first name + last three number of userID, eg:abc001
     private String userEmail; //include @
@@ -17,7 +18,7 @@ public class User {
     private static int userNumber = 6;//including 5 customers and one owner
     private ArrayList<User> usersList;
     
-    public User() 
+ public User() 
     {
         userId = "";
         userName = "";
@@ -98,10 +99,10 @@ public class User {
         this.userPassword = userPassword;
     }
     
-    /**
+       /**
      * generate userId, like"u0001"
      */
-    private String generateUserId(int i)
+    public String generateUserId(int i)
     {
         String newUserId = "";
         if (String.valueOf(i+1).length() == 1)
@@ -114,9 +115,18 @@ public class User {
             newUserId = "c" + (i+1);   
         return newUserId;
     }
-    
+    public String generateUserName(String firstName, String userId)
+    {
+          String userName = "";
+        String firstThreeLetter = firstName.substring(0, 3);
+        String lastThreeNumber = userId.substring(userId.length()-3);
+        userName = firstThreeLetter + lastThreeNumber;
+        return userName;
+        
+    }
     public String login()
     {
+      
         //Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));
         Scanner keyboard = new Scanner (System.in);
         int flag = 0;
