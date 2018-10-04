@@ -91,6 +91,10 @@ public class Customer extends User
     {
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
         nameScanner();
+        System.out.println("___________________________________________________________________________________");
+        passwordScanner();
+        System.out.println("___________________________________________________________________________________");
+        
         
         
     }

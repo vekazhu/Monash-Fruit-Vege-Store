@@ -7,7 +7,8 @@ import java.util.regex.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class User {
+public class User 
+{
     private String userId;// generate automatically
     private String userName; // first three letters of first name + last three number of userID, eg:abc001
     private String userEmail; //include @
@@ -17,7 +18,7 @@ public class User {
     private static int userNumber = 6;//including 5 customers and one owner
     private ArrayList<User> usersList;
     
-    public User() 
+ public User() 
     {
         userId = "";
         userName = "";
@@ -114,20 +115,18 @@ public class User {
             newUserId = "c" + (i+1);   
         return newUserId;
     }
-    
-<<<<<<< HEAD
     public String generateUserName(String firstName, String userId)
-=======
-    public String login()
->>>>>>> bf19ac81feb774de2835c2ea18319fdbf68db8f0
     {
-<<<<<<< HEAD
-        String userName = "";
+          String userName = "";
         String firstThreeLetter = firstName.substring(0, 3);
         String lastThreeNumber = userId.substring(userId.length()-3);
         userName = firstThreeLetter + lastThreeNumber;
         return userName;
-=======
+        
+    }
+    public String login()
+    {
+      
         //Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));
         Scanner keyboard = new Scanner (System.in);
         int flag = 0;
@@ -161,16 +160,8 @@ public class User {
             }
             break;
         }
->>>>>>> bf19ac81feb774de2835c2ea18319fdbf68db8f0
     }
     
-<<<<<<< HEAD
-        
-    
-   
-    
-    
-=======
     if (userExists == 1){
         
         if (flag == 1){
@@ -208,6 +199,5 @@ public class User {
         return "";
     }
 }
->>>>>>> bf19ac81feb774de2835c2ea18319fdbf68db8f0
     
 }
