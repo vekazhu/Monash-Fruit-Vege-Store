@@ -8,7 +8,6 @@ import java.util.regex.*;
  * @version (a version number or a date)
  */
 public class User {
-    
     private String userId;// generate automatically
     private String userName; // first three letters of first name + last three number of userID, eg:abc001
     private String userEmail; //include @

@@ -35,7 +35,8 @@ public class FileManager
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    String productId = parts[0];
+
+                    String productID = parts[0];
                     String productName = parts[1];
                     String category = parts[2];
                     String shelfLife = parts[3];
@@ -44,7 +45,8 @@ public class FileManager
                     double quantityKG = Double.parseDouble(parts[6]);
                     double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
-                    Product product = new Product(productId,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+                    Product product = new Product(productID,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+
                     listOfProducts.add(product);
                 }
             }
