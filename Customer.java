@@ -10,7 +10,7 @@ import java.lang.*;
 public class Customer extends User
 {
     // instance variables - replace the example below with your own
-    
+
     private String status;
     private Cart cart;
 
@@ -18,14 +18,14 @@ public class Customer extends User
      * Constructor for objects of class Customer
      */
     public Customer(String userId,String userName,String userEmail,String userPhoneNumber,
-                    String userPassword,String securityAnswer)
+    String userPassword,String securityAnswer)
     {
         super(userId,userName,userEmail,userPhoneNumber,userPassword,securityAnswer);
-        
+
         status = "active";
         cart = new Cart();
     }
-    
+
     public Customer()
     {
     }
@@ -36,18 +36,18 @@ public class Customer extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    
+
     public String getStatus()
     {
         // put your code here
         return status;
     }
-    
+
     public void setStatus(String status)
     {
         this.status = status;
     }
-    
+
     public void nameScanner()
     {
         System.out.println("Please enter your first Name between 3-20 letters and only letters are allowed.");
@@ -55,8 +55,8 @@ public class Customer extends User
         String enteredToken = sc.next().trim();
         while (Validator.isFirstNameValid(enteredToken) == false)
         {
-         System.out.println("Please renter your first name.");
-         enteredToken = sc.next().trim();
+            System.out.println("Please renter your first name.");
+            enteredToken = sc.next().trim();
         }
         if (Validator.isFirstNameValid(enteredToken) == true)
         {
@@ -65,19 +65,14 @@ public class Customer extends User
             sc.close();
         }
     }
-    
-<<<<<<< HEAD
+
     /**
      * A method to add product to cart
      *
      * @param  product and amount
      */
     public void addProductToCart(Product product,double amount)
-=======
-    public void passwordScanner()
->>>>>>> 1731787fe56a679a9d26705143496cc3a577ac1b
     {
-<<<<<<< HEAD
         double onePrice = 0;
         double totalPrice = 0; //total price of all products in cart
         if (product.getQuantityKG()==0)
@@ -93,14 +88,18 @@ public class Customer extends User
             totalPrice = totalPrice + onePrice;
         }
         cart.setTotalPrice(totalPrice);
-=======
+    }
+
+    public void passwordScanner()
+
+    {
         System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         while (Validator.isPasswordValid(enteredToken) == false)
         {
-         System.out.println("Please renter your password.");
-         enteredToken = sc.next().trim();
+            System.out.println("Please renter your password.");
+            enteredToken = sc.next().trim();
         }
         if (Validator.isPasswordValid(enteredToken) == true)
         {
@@ -108,13 +107,12 @@ public class Customer extends User
             sc.close();
         }
     }
-    
+
     public void emailScanner()
     {
         System.out.println("Please enter your email address.");
     }
 
-    
     public void register()
     {
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
@@ -122,20 +120,16 @@ public class Customer extends User
         System.out.println("___________________________________________________________________________________");
         passwordScanner();
         System.out.println("___________________________________________________________________________________");
-        
-        
-        
->>>>>>> 1731787fe56a679a9d26705143496cc3a577ac1b
     }
-    
-<<<<<<< HEAD
+
+
     public void displayCart()
     {
         System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
         System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
         cart.displayCart();
     }
-    
+
     public void checkOut()
     {
         displayCart();
@@ -153,7 +147,7 @@ public class Customer extends User
             displayCart();
         }
     }
-    
+
     public double rate()
     {
         Scanner input = new Scanner(System.in);
@@ -167,7 +161,5 @@ public class Customer extends User
         double rating = input.nextDouble();
         return rating;
     }
-    
-=======
->>>>>>> 1731787fe56a679a9d26705143496cc3a577ac1b
+
 }
