@@ -34,16 +34,22 @@ public class FileManager
                 while(parser.hasNextLine())
                 {
                     String str = parser.nextLine();
+
+
                     String[] parts = str.split(",");
-                    String productName = parts[0];
-                    String category = parts[1];
-                    String shelfLife = parts[2];
-                    double priceKG = Double.parseDouble(parts[3]);
-                    double priceWhole = Double.parseDouble(parts[4]);
-                    double quantityKG = Double.parseDouble(parts[5]);
-                    double quantityWhole = Double.parseDouble(parts[6]);
-                    int discount = Integer.parseInt(parts[7]);
-                    Product product = new Product(productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+                    System.out.println(parts.length);
+                    String productID = parts[0];
+                    String productName = parts[1];
+                    String category = parts[2];
+                    String shelfLife = parts[3];
+                    double priceKG = Double.parseDouble(parts[4]);
+                    double priceWhole = Double.parseDouble(parts[5]);
+                    double quantityKG = Double.parseDouble(parts[6]);
+                    double quantityWhole = Double.parseDouble(parts[7]);
+                    int discount = Integer.parseInt(parts[8]);
+                    Product product = new Product(productID,productName,category,shelfLife,priceKG,priceWhole,quantityKG,quantityKG,discount);
+                    
+
                     listOfProducts.add(product);
                 }
             }
@@ -134,11 +140,13 @@ public class FileManager
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    String userName = parts[0];
-                    String userEmail = parts[1];
-                    String userPhoneNumber = parts[2];
-                    String userPassword = parts[3];
-                    User user = new User(userName,userEmail,userPhoneNumber,userPassword);
+                    String userID = parts[0];
+                    String userName = parts[1];
+                    String userEmail = parts[2];
+                    String userPhoneNumber = parts[3];
+                    String userPassword = parts[4];
+                    String securityAnswer = parts[5];
+                    User user = new User(userID, userName,userEmail,userPhoneNumber,userPassword, securityAnswer);
                     listOfUsers.add(user);
                 }
             }
@@ -157,5 +165,7 @@ public class FileManager
         }
         return listOfUsers;
     }
+    
+    
     
 }

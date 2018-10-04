@@ -11,8 +11,10 @@ public class MFVSController
 
     ArrayList<User> listOfUsers;
     ArrayList<Transaction> listOfTransactions;
+    
     Shelf shelf;
     Cart cart;
+    User user;
     /**
      * Constructor for objects of class MFVSController
      */
@@ -22,6 +24,7 @@ public class MFVSController
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         shelf = new Shelf();
         cart = new Cart();
+        user = new User();
     }
 
     public void start()
@@ -44,6 +47,20 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
+            displayAllProducts();
+            break;
+            case "b":
+            String userId = user.login();
+                if (userId.equals("")){
+                    break;
+                }
+                else {
+                    if(userId.startsWith("c"))
+                        System.out.println("Customer Logged In");
+                    else
+                        System.out.println("Owner Logged In");
+                }
+            
             break;
             default:
             System.out.println("The entered vaule is unrecognized!");break;
@@ -53,6 +70,7 @@ public class MFVSController
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        
         System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
@@ -65,9 +83,30 @@ public class MFVSController
         cart.displayCart();
     }
     
+<<<<<<< HEAD
     public void logIn()
     {
         
+=======
+    public void addProductToCart()
+    {
+        System.out.println("Enter the productID of the product you want to buy");
+        Scanner input = new Scanner(System.in);
+        String productID = input.nextLine();
+    }
+    
+    public void checkOut()
+    {
+        ArrayList<String> cartInfo = new ArrayList<String>();
+        displayCart();
+        System.out.println("Are you sure you want to checkout? (y/n)");
+        Scanner input = new Scanner(System.in);
+        String answer = input.nextLine();
+        if (answer.toLowerCase().startsWith("y"))
+        {
+            cart.displayCart();//get cartInfo(ArrayList<String>)
+        }
+>>>>>>> bf19ac81feb774de2835c2ea18319fdbf68db8f0
         
     }
 

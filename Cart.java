@@ -31,6 +31,9 @@ public class Cart
      */
     public void addProductToCart(Product product,int amount)
     {
+        
+        
+        if (product.getQuantityKG()==0)
         productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
     }
     
@@ -44,8 +47,19 @@ public class Cart
         this.productList = productList;
     }
     
-    public void displayCart()
+    public double countTotalPrice()
     {
+        double totalPrice = 0;
+        if (productList != null)
+        {
+            System.out.println();
+        }
+        return totalPrice;
+    }
+    
+    public ArrayList<String> displayCart()
+    {
+        ArrayList<String> cartInfo = new ArrayList<String>();
         for (String str: productList)
         {
             String[] parts = str.split(",");
@@ -56,7 +70,9 @@ public class Cart
             double totalPrice = price * amount;
             System.out.format("%-15s%-10s%-10d%-10d%-10d%n",productId,productName,amount,price,totalPrice);
             //ProductId,productName,amount,price,totalPrice
+            cartInfo.add(productId+","+productName+","+amount+","+price+","+totalPrice);
         }
+        return cartInfo;
     }
     
     public String generateDate()
@@ -64,4 +80,6 @@ public class Cart
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
         return dtf.format(date).toString();
     }
+    
+    
 }

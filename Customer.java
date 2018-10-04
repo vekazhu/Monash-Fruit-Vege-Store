@@ -10,7 +10,7 @@ import java.lang.*;
 public class Customer extends User
 {
     // instance variables - replace the example below with your own
-    private String securityAnswer;
+    
     private String status;
 
     /**
@@ -19,8 +19,8 @@ public class Customer extends User
     public Customer(String userId,String userName,String userEmail,String userPhoneNumber,
                     String userPassword,String securityAnswer)
     {
-        super(userName,userEmail,userPhoneNumber,userPassword);
-        this.securityAnswer = securityAnswer;
+        super(userId,userName,userEmail,userPhoneNumber,userPassword,securityAnswer);
+        
         status = "active";
     }
     
@@ -34,16 +34,6 @@ public class Customer extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public String getSecurityAnswer()
-    {
-        // put your code here
-        return securityAnswer;
-    }
-    
-    public void setSecurityAnswer(String securityAnswer)
-    {
-        this.securityAnswer = securityAnswer;
-    }
     
     public String getStatus()
     {

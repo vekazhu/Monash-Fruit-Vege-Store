@@ -59,7 +59,7 @@ public class Shelf
         {
             for (int j = i + 1; j < listOfProducts.size(); j++)
             {
-                if (listOfProducts.get(i).getProductName().compareTo(listOfProducts.get(j).getProductName())>0)
+                if (listOfProducts.get(i).getProductName().toLowerCase().compareTo(listOfProducts.get(j).getProductName().toLowerCase())>0)
                 {
                     temp = listOfProducts.get(i);
                     listOfProducts.set(i,listOfProducts.get(j));
@@ -99,6 +99,11 @@ public class Shelf
             System.out.format("%-15s%-10s%-13s%-15s%-10s%-10s%-13s%n",product.getProductID(),product.getProductName(),
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
+    }
+    
+    public void findProduct(String productId)
+    {
+        
     }
 
 }
