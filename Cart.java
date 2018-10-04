@@ -28,6 +28,22 @@ public class Cart
         totalPrice=0;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * A method to add product to cart
+     *
+     * @param  product and amount
+     */
+    public void addProductToCart(Product product,int amount)
+    {
+        
+        
+        if (product.getQuantityKG()==0)
+        productList.add(product.getProductID() + "," + product.getProductName() + "," + amount + "," + product.getPriceKG());
+    }
+    
+>>>>>>> 1731787fe56a679a9d26705143496cc3a577ac1b
     public ArrayList<String> getProductList()
     {
         return productList;
@@ -40,7 +56,16 @@ public class Cart
     
     public void setTotalPrice(double totalPrice)
     {
+<<<<<<< HEAD
         this.totalPrice = totalPrice;
+=======
+        double totalPrice = 0;
+        if (productList != null)
+        {
+            System.out.println();
+        }
+        return totalPrice;
+>>>>>>> 1731787fe56a679a9d26705143496cc3a577ac1b
     }
     
     public double getTotalPrice()
