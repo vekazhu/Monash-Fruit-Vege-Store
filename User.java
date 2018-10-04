@@ -86,10 +86,10 @@ public class User {
         this.userPassword = userPassword;
     }
     
-    /**
+       /**
      * generate userId, like"u0001"
      */
-    private String generateUserId(int i)
+    public String generateUserId(int i)
     {
         String newUserId = "";
         if (String.valueOf(i+1).length() == 1)
@@ -103,9 +103,19 @@ public class User {
         return newUserId;
     }
     
-    public void login()
+    public String generateUserName(String firstName, String userId)
     {
-        
+        String userName = "";
+        String firstThreeLetter = firstName.substring(0, 3);
+        String lastThreeNumber = userId.substring(userId.length()-3);
+        userName = firstThreeLetter + lastThreeNumber;
+        return userName;
     }
+    
+        
+    
+   
+    
+    
     
 }

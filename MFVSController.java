@@ -64,5 +64,11 @@ public class MFVSController
         System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
         cart.displayCart();
     }
+    
+    public void logIn()
+    {
+        
+        
+    }
 
 }
