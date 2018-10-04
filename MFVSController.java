@@ -150,6 +150,7 @@ public class MFVSController
         
     }
     
+<<<<<<< HEAD
     public String nameScanner()
     {
         System.out.println("Please enter your first Name between 3-20 letters and only letters are allowed.");
@@ -165,6 +166,10 @@ public class MFVSController
         sc.close();
         return firstName;
     }
+=======
+    
+
+>>>>>>> 4b3ba06296e0e7bd039c8eeb2eb9075a8e88989e
     
     
      public String passwordScanner()
