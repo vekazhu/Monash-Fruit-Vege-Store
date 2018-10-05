@@ -44,7 +44,6 @@ public class Customer extends User
 
     public String getStatus()
     {
-        // put your code here
         return status;
     }
 

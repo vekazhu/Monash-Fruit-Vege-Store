@@ -376,7 +376,7 @@ public class MFVSController
 
     public void register()
     {
-        Customer customer = new Customer();
+        User user = new Customer();
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
         String userFirstName = nameScanner();
         System.out.println("___________________________________________________________________________________");
@@ -399,9 +399,7 @@ public class MFVSController
         user.setUserName(userName);
         System.out.println("Registration has been completed! Please log in and continue shopping.");
         addUser(user);
-        for (int i = 0; i < listOfUsers.size(); i++) {
-			System.out.println(listOfUsers.get(i));
-		}
+        user.login();
     }
 
     public void searchForProduct()
