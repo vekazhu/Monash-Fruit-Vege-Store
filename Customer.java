@@ -82,11 +82,11 @@ public class Customer extends User
             System.out.println("Please enter a valid productID");
             productID = input.nextLine();
         }
-        String productName = shelf.findProduct(productID).getProductName();
-        double priceKG = shelf.findProduct(productID).getPriceKG();
-        double priceWhole = shelf.findProduct(productID).getPriceWhole();
-        int quantityWhole = shelf.findProduct(productID).getQuantityWhole();
-        double quantityKG = shelf.findProduct(productID).getQuantityKG();
+        String productName = shelf.findProductById(productID).getProductName();
+        double priceKG = shelf.findProductById(productID).getPriceKG();
+        double priceWhole = shelf.findProductById(productID).getPriceWhole();
+        int quantityWhole = shelf.findProductById(productID).getQuantityWhole();
+        double quantityKG = shelf.findProductById(productID).getQuantityKG();
         System.out.println("choose selling type(1/2)");
         System.out.println("1.purchase by each");
         System.out.println("2.purchase by KG");
@@ -147,9 +147,9 @@ public class Customer extends User
         {
             double inventory = 0;
             if (flagKG==0)
-                inventory = shelf.findProduct(productID).getQuantityWhole();
+                inventory = shelf.findProductById(productID).getQuantityWhole();
             else
-                inventory = shelf.findProduct(productID).getQuantityKG();
+                inventory = shelf.findProductById(productID).getQuantityKG();
             if (Double.parseDouble(amount) > inventory)
                return false;
             else

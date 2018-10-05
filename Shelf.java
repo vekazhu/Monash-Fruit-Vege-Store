@@ -94,7 +94,7 @@ public class Shelf
 
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
-        for ( Product product: this.listOfProducts)
+        for ( Product product: listOfProduct)
         {
             System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
@@ -105,7 +105,7 @@ public class Shelf
     /**
      * This method is to find the Product object that has the specific productID
      */
-    public Product findProduct(String productId)
+    public Product findProductById(String productId)
     {
         Product product = new Product();
         for ( Product pdct: listOfProducts)
@@ -113,9 +113,27 @@ public class Shelf
             if (productId.equalsIgnoreCase(pdct.getProductID()))
             {
                 product = pdct;
+                break;
             }
         }
         return product;
+    }
+    
+    /**
+     * This method is to find the Product object that has the specific productID
+     */
+    public ArrayList<Product> findProductByName(String name)
+    {
+        ArrayList<Product> foundProductList = new ArrayList<Product>();
+        
+        for ( Product pdct: listOfProducts)
+        {
+            if (name.equalsIgnoreCase(pdct.getProductName()))
+            {
+                foundProductList.add(pdct);
+            }
+        }
+        return foundProductList;
     }
 
 }
