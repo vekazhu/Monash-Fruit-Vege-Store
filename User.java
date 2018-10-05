@@ -118,6 +118,7 @@ public class User
         String inpUser = keyboard.nextLine();
         System.out.println("Enter your Password");
         String inpPass = keyboard.nextLine(); // gets input from user
+        System.out.print('\u000C');
 
         for(int i=0; i<usersList.size();i++)
         {

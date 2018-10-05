@@ -168,7 +168,7 @@ public class Product
         return productID;
     }
     
-    public void creatProduct()
+    public void createProduct()
     {
         Product newProduct = new Product();
         Scanner scanner = new Scanner(System.in);

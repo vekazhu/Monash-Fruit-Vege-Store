@@ -61,15 +61,7 @@ public class MFVSController
             case "b":
             System.out.print('\u000C');
             String userId = user.login();
-            if (userId.equals("")){
-                break;
-            }
-            else {
-                if(userId.startsWith("c"))
-                    System.out.println("Customer Logged In");
-                else
-                    System.out.println("Owner Logged In");
-            }
+            user.setUserId(userId);
             if (userId.equals("")){
                 break;
             }
@@ -79,28 +71,41 @@ public class MFVSController
                     String customerOption = "";
                     do
                     {
+                        System.out.println("Inside Do.................");
                         Scanner input = new Scanner(System.in);
+                        //System.out.print('\u000C');
                         menu.displayCustomerMenu();
-                        customerOption = input.nextLine();
+        
+                        customerOption = input.next();
+                        
                         System.out.println("--------------------------------------------------\n\n");
                         getCustomerChoice(customerOption);
                     }
-                    while (!customerOption.toLowerCase().equals("x"));
+                    while (!customerOption.toLowerCase().equals("f"));
 
                 }
                 else {
-                    //System.out.println("Owner Logged In");
-                    menu.displayOwnerMenu();
+                    String ownerOption = "";
+                    do
+                    {
+                        
+                        Scanner input = new Scanner(System.in);
+                        //System.out.println('\u000C');
+                        menu.displayOwnerMenu();
+                        ownerOption = input.nextLine();
+                        System.out.println("--------------------------------------------------\n\n");
+                        getOwnerChoice(ownerOption);
+                    }
+                    while (!ownerOption.toLowerCase().equals("x") | !ownerOption.toLowerCase().equals("f"));
                 }
 
 
             }
 
-
-
             break;
             case "x":
             System.out.println("See you next time");
+            break;
             default:
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
@@ -108,6 +113,40 @@ public class MFVSController
     }
 
     public void getCustomerChoice(String option)
+    {
+        System.out.println("Inside get customer choice "+option);
+        switch (option.toLowerCase())
+        {
+            case "a":
+            System.out.print('\u000C');
+            System.out.println("-------------------------------------------------------------------");
+            displayAllProducts();
+            System.out.println("-------------------------------------------------------------------");
+            break;
+
+            case "b":
+            System.out.print('\u000C');
+            searchForProduct();
+            break;
+            
+            case "e":
+            System.out.print('\u000C');
+            getCustomerTransaction(user.getUserId());
+            break;
+            
+            case "f":
+            System.out.print('\u000C');
+            logout();
+            System.out.println("Logout Successful!!\n Thank you :)\n");
+            break;
+
+            default:
+            System.out.print('\u000C');
+            System.out.println("The entered vaule is unrecognized!");break;
+        }
+    }
+    
+    public void getOwnerChoice(String option)
     {
         switch (option.toLowerCase())
         {
@@ -120,7 +159,20 @@ public class MFVSController
 
             case "b":
             System.out.print('\u000C');
+            searchForProduct();
             break;
+            
+            case "e":
+            System.out.print('\u000C');
+            displayAllTransactions();
+            break;
+            
+            case "f":
+            System.out.print('\u000C');
+            logout();
+            System.out.println("Logout Successful!!\n Thank you :)\n");
+            break;
+            
 
             default:
             System.out.print('\u000C');
@@ -136,18 +188,42 @@ public class MFVSController
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
     }
+    
+    public void displayProducts(ArrayList<Product> productList)
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
+        //shelf.sortProductByAlphabet();
+        shelf.displayProductsInfo(productList);
+    }
+    
 
     public void displayAllTransactions()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // String customerID, String customerStatus, String date,double totalPrice
-        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","CustomerID","Customer Status","Date","Total Price","Rating");
-        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
+        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","CustomerID","Customer Status","Transaction Date","Total Amount","Rating");
         for (Transaction transaction : listOfTransactions)
         {
             System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
                 transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
         }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
+    }
+    
+    public void displayCustomerTransactions(ArrayList<Transaction> listOfTransactions)
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        // , String date,double totalPrice
+        System.out.println("Customer ID: "+listOfTransactions.get(0).getCustomerID()+"\n\n");
+        System.out.format("%-20s%-20s%-15s%n","Transaction Date","Total Amount","Your Rating");
+        for (Transaction transaction : listOfTransactions)
+        {
+            System.out.format("%-20s%-20.2f%-15.1f%n",transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
 
@@ -296,5 +372,46 @@ public class MFVSController
         generateUserName(userFirstName, userId);
     }
 
+    public void searchForProduct()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.print('\u000C');
+        System.out.println("Enter the product name to SEARCH");
+        String searchName = input.nextLine();
+        ArrayList<Product> foundProducts = shelf.findProductByName(searchName);
+        System.out.println("Found"+ foundProducts.size() + " "+searchName);
+        if(foundProducts.size() == 0)
+        {
+            System.out.println("SORRY!! "+searchName + " are unavailable.\n");
+        }
+        else{
+            displayProducts(foundProducts);
+        }
+    }
+    
+    public void getCustomerTransaction(String userId){
+        ArrayList<Transaction> customerTransactionList = new ArrayList<Transaction>() ;
+        if (listOfTransactions.size() !=0)
+        {
+            for (Transaction transaction : listOfTransactions) {
+                if (userId.equalsIgnoreCase(transaction.getCustomerID()))
+                {
+                customerTransactionList.add(transaction);
+                }     
+            }
+        }
+        if(customerTransactionList.size() == 0) {
+            System.out.println("You havent made any transactions yet.\n ");
+        }
+        else {
+            displayCustomerTransactions(customerTransactionList);
+        }
+        
+        
+    }
+    
+    public void logout(){
+        user = new User();
+    }
     
 }
