@@ -27,8 +27,7 @@ public class MFVSController
         user = new User();
 
     }
-    
-    
+
 
     public void start()
     {
@@ -93,10 +92,7 @@ public class MFVSController
                     menu.displayOwnerMenu();
                 }
 
-
             }
-
-
 
             break;
             case "x":
@@ -149,14 +145,26 @@ public class MFVSController
                 transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
         }
     }
-
+    
+    public void displayAllUsers()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Users~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        // String customerID, String customerStatus, String date,double totalPrice
+        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","UserID","Customer Status","Date","Total Price","Rating");
+        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
+        for (Transaction transaction : listOfTransactions)
+        {
+            System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
+                transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
+        }
+    }
 
     public void addProductToCart()
     {
         System.out.println("Enter the productID of the product you want to buy");
         Scanner input = new Scanner(System.in);
         String productID = input.nextLine();  //no validation
-        
+
     }
 
     public String nameScanner()
@@ -175,7 +183,7 @@ public class MFVSController
         return firstName;
     }
 
-     public String passwordScanner()
+    public String passwordScanner()
     {
         System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");
         Scanner sc = new Scanner (System.in);
@@ -190,7 +198,7 @@ public class MFVSController
         sc.close(); 
         return passWord;
     }
-    
+
     public boolean doesEmailExist(String email)
     {
         for (int i = 0; i < listOfUsers.size(); i++)
@@ -203,7 +211,7 @@ public class MFVSController
         }
         return false;
     }
-    
+
     public String emailScanner()
     {
         System.out.println("Please enter your email address.");
@@ -218,7 +226,7 @@ public class MFVSController
         sc.close();
         return userEmail;
     }
-    
+
     public String phoneNumberScanner()
     {
         System.out.println("Please enter your 10 digits phone number begins with 04.");
@@ -233,7 +241,7 @@ public class MFVSController
         sc.close();            
         return userPhoneNumber;
     }
-    
+
     public String securityAnswerScanner()
     {
         System.out.println("Now we are going to ask you a security question.");
@@ -241,12 +249,13 @@ public class MFVSController
         System.out.println("Please make sure you will remember the answer of the security question.");
         System.out.println("Security Question: Who is your favourite singer?");
         Scanner sc = new Scanner (System.in);
-        String securityAnswer = sc.next().trim();
-        System.out.println("Your answer is " + securityAnswer + ".");
-        sc.close();
-        return securityAnswer;
+        String enteredToken = sc.next().trim();
+        System.out.println("Your answer is " + enteredToken + ".");
+        //String securityAnswer = enteredToken;
+        //sc.close();
+        return enteredToken;
     }
-    
+
     /**
      * generate userId, like"u0001"
      */
@@ -264,7 +273,14 @@ public class MFVSController
         System.out.println("Your userID is " + newUserId + ".");
         return newUserId;
     }
-    
+
+    /**
+     * Method generateUserName
+     *
+     * @param firstName A parameter
+     * @param userId A parameter
+     * @return The return value
+     */
     public String generateUserName(String firstName, String userId)
     {
         String userName = "";
@@ -275,26 +291,38 @@ public class MFVSController
         return userName;    
     }
     
-    public void register()
+     public void addUser(User user)
     {
-        System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
-        nameScanner();
-        String userFirstName = nameScanner();
-        System.out.println("___________________________________________________________________________________");
-        passwordScanner();
-        String userPassWord = passwordScanner();
-        System.out.println("___________________________________________________________________________________");
-        emailScanner();
-        System.out.println("___________________________________________________________________________________");
-        phoneNumberScanner();
-        System.out.println("___________________________________________________________________________________");
-        securityAnswerScanner();
-        System.out.println("___________________________________________________________________________________");
-        generateUserId(user.getUserNumber());
-        String userId = generateUserId(user.getUserNumber());
-        System.out.println("___________________________________________________________________________________");
-        generateUserName(userFirstName, userId);
+        listOfUsers.add(user);
     }
 
-    
+    public void register()
+    {
+        Customer customer = new Customer();
+        System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
+        String userFirstName = nameScanner();
+        System.out.println("___________________________________________________________________________________");
+        String userPassWord = passwordScanner();
+        user.setUserPassword(userPassWord);
+        System.out.println("___________________________________________________________________________________");
+        String userEmail = emailScanner();
+        user.setUserEmail(userEmail);
+        System.out.println("___________________________________________________________________________________");
+        String userPhoneNumber = phoneNumberScanner();
+        user.setUserPhoneNumber(userPhoneNumber);
+        System.out.println("___________________________________________________________________________________");
+        String userSecurityAnswer = securityAnswerScanner();
+        user.setSecurityAnswer(userSecurityAnswer);
+        System.out.println("___________________________________________________________________________________");
+        String userId = generateUserId(user.getUserNumber());
+        user.setUserId(userId);
+        System.out.println("___________________________________________________________________________________");
+        String userName = generateUserName(userFirstName, userId);
+        user.setUserName(userName);
+        System.out.println("Registration has been completed! Please log in and continue shopping.");
+        addUser(user);
+        for (int i = 0; i < listOfUsers.size(); i++) {
+			System.out.println(listOfUsers.get(i));
+		}
+    }
 }
