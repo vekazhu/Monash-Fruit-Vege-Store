@@ -14,6 +14,7 @@ public class Cart
     // instance variables - replace the example below with your own
     private ArrayList<String> cartInfo; // one string: productID + productName + priceKG/priceWhole + amount 
     //  + Price(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
+    // + flagKG (if flagKG=1 then selling by KG, otherwise selling by each)
     //seperate by ","
     
     private Date date;
@@ -29,12 +30,12 @@ public class Cart
         totalPrice=0;
     }
 
-    public ArrayList<String> getcartInfo()
+    public ArrayList<String> getCartInfo()
     {
         return cartInfo;
     }
 
-    public void setcartInfo(ArrayList<String> cartInfo)
+    public void setCartInfo(ArrayList<String> cartInfo)
     {
         this.cartInfo = cartInfo;
     }
@@ -74,6 +75,11 @@ public class Cart
     {
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
         return dtf.format(date).toString();
+    }
+    
+    public void clearCartInfo()
+    {
+        cartInfo.clear();
     }
 
 }

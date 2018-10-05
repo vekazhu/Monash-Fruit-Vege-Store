@@ -51,6 +51,46 @@ public class Shelf
     {
         listOfProducts.add(product);
     }
+    
+    /**
+     * Method editInventory is to reduce the inventory in the store
+     * and return an arrayList with updated inventory
+     * for all product,1 each = 0.25KG
+     *
+     */
+    public void reduceInventory(String productID, double amount, int flagKG)
+    {
+        for (Product product: listOfProducts)
+        {
+            if (productID.equals(product.getProductID()))
+            {
+                if (flagKG==0)
+                {    
+                    product.setQuantityWhole(product.getQuantityWhole() - amount);
+                    product.setQuantityKG(product.getQuantityKG() - amount * 0.25);
+                }
+                else
+                {
+                    product.setQuantityKG(product.getQuantityKG() - amount);
+                    product.setQuantityWhole(product.getQuantityWhole() - amount * 4);
+                }
+            }
+        }
+        
+    }
+    
+    public void updateInventory()
+    {
+        String content = "";
+        for (Product product: listOfProducts)
+        {
+            if (content.equals(""))
+                content = product.getProductInfo();
+            else
+                content = content + "\n" + product.getProductInfo();
+        }
+        FileManager.writeFile(content,"products.txt");
+    }
 
     public void sortProductByAlphabet()
     {

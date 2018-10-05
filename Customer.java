@@ -70,7 +70,6 @@ public class Customer extends User
         }
     }
     
-    
     public void addProductToCart()
     {
         System.out.println("Enter the productID of the product you want to buy");
@@ -84,7 +83,7 @@ public class Customer extends User
         String productName = shelf.findProductById(productID).getProductName();
         double priceKG = shelf.findProductById(productID).getPriceKG();
         double priceWhole = shelf.findProductById(productID).getPriceWhole();
-        int quantityWhole = shelf.findProductById(productID).getQuantityWhole();
+        double quantityWhole = shelf.findProductById(productID).getQuantityWhole();
         double quantityKG = shelf.findProductById(productID).getQuantityKG();
         System.out.println("choose selling type(1/2)");
         System.out.println("1.purchase by each");
@@ -120,13 +119,13 @@ public class Customer extends User
             if (flagKG == 0)
             {    
                 onePrice = priceWhole * Double.parseDouble(amount);
-                cart.getcartInfo().add(productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice);
+                cart.getCartInfo().add(productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice + flagKG);
                 totalPrice = totalPrice + onePrice;
             }
             else
             {   
                 onePrice = priceKG * Double.parseDouble(amount);
-                cart.getcartInfo().add(productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice);
+                cart.getCartInfo().add(productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice + flagKG);
                 totalPrice = totalPrice + onePrice;
             }
             cart.setTotalPrice(totalPrice);
@@ -178,7 +177,7 @@ public class Customer extends User
 
     public void checkOut()
     {
-       if (cart.getcartInfo()!= null )
+       if (cart.getCartInfo()!= null )
        {
             displayCart();
             System.out.println("Are you sure you want to checkout? (y/n)");
@@ -186,10 +185,17 @@ public class Customer extends User
             String answer = input.nextLine();
             if (answer.toLowerCase().startsWith("y"))
             {
+                for (String productInfo : cart.getCartInfo())
+                {
+                    String[] parts = productInfo.split(",");
+                    shelf.reduceInventory(parts[0],Double.parseDouble(parts[3]),Integer.parseInt(parts[5]));
+                }
+                shelf.updateInventory(); // write updated products info in "products.txt"
                 System.out.println("Thank you for shopping at MFVS~");
                 double rating = rate();
                 String transaction = super.getUserId() + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
                 FileManager.writeFile(transaction,"transactions.txt");
+                cart.clearCartInfo();
             }
             else
             {

@@ -10,6 +10,7 @@ public class MFVSController
     // instance variables - replace the example below with your own
     ArrayList<User> listOfUsers;
     ArrayList<Transaction> listOfTransactions;
+    Customer customer;
     UserMenu menu;
     Shelf shelf;
     Cart cart;
@@ -25,7 +26,7 @@ public class MFVSController
         shelf = new Shelf();
         cart = new Cart();
         user = new User();
-
+        customer = new Customer();
     }
 
 
@@ -235,14 +236,6 @@ public class MFVSController
             System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
                 transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
         }
-    }
-
-    public void addProductToCart()
-    {
-        System.out.println("Enter the productID of the product you want to buy");
-        Scanner input = new Scanner(System.in);
-        String productID = input.nextLine();  //no validation
-
     }
 
     public String nameScanner()

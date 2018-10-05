@@ -43,7 +43,7 @@ public class FileManager
                     double priceKG = Double.parseDouble(parts[4]);
                     double priceWhole = Double.parseDouble(parts[5]);
                     double quantityKG = Double.parseDouble(parts[6]);
-                    int quantityWhole = Integer.parseInt(parts[7]);
+                    double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
                     Product product = new Product(productID,productName,category,shelfLife,priceWhole,priceKG,quantityKG,quantityWhole,discount);
                     listOfProducts.add(product);
