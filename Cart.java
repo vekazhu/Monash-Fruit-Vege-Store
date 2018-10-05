@@ -13,7 +13,7 @@ public class Cart
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> cartInfo; // one string: productID + productName + priceKG/priceWhole + amount 
-    //  + onePrice(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
+    //  + Price(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
     //seperate by ","
     
     private Date date;
@@ -58,12 +58,13 @@ public class Cart
                 String[] parts = str.split(",");
                 String productId = parts[0];
                 String productName = parts[1];
-                String price = parts[2];
+                String unitPrice = parts[2];
                 double amount = Double.parseDouble(parts[3]);
-                double onePrice = Double.parseDouble(parts[4]);
-                System.out.format("%-10s%-16s%-10d%-10d%-10d%-13d%n",productId,productName,price,amount,onePrice,totalPrice);
+                double price = Double.parseDouble(parts[4]);
+                System.out.format("%-13s%-16s%-10.1f%-14s%-10.2f%n",productId,productName,amount,unitPrice,price);
                 //ProductId,productName,price,amount,onePrice,totalPrice
             }
+            System.out.println("Your total price is " + totalPrice + " AUD");
         }
         else
             System.out.println("You have nothing in the cart");

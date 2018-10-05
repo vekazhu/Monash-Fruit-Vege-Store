@@ -171,8 +171,9 @@ public class Customer extends User
 
     public void displayCart()
     {
-        System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-15s%-10s%-10d%-10d%-10d%n","ProductId","Name","Amount","Price","Total Price");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-13s%-16s%-10s%-14s%-10s%n","ProductId","Name","Amount","UnitPrice","Price");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         cart.displayCart();
     }
 
@@ -203,6 +204,7 @@ public class Customer extends User
     public double rate()
     {
         Scanner input = new Scanner(System.in);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("We need your advices, please rate our services");
         System.out.println("1. Very disdatified");
         System.out.println("2. Disatisfied");
@@ -216,6 +218,8 @@ public class Customer extends User
             System.out.println("please re-enter your rating");
             rating = input.next().trim();
         }
+        System.out.println("Thanks for you rating, we'll improve our services");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         return Double.parseDouble(rating);
     }
     
