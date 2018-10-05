@@ -110,7 +110,7 @@ public class Shelf
         Product product = new Product();
         for ( Product pdct: listOfProducts)
         {
-            if (productId.equalsIgnoreCase(product.getProductID()))
+            if (productId.equalsIgnoreCase(pdct.getProductID()))
             {
                 product = pdct;
             }

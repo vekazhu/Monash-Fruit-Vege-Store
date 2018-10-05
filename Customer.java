@@ -53,8 +53,6 @@ public class Customer extends User
         this.status = status;
     }
 
-
-
     public void nameScanner()
     {
         System.out.println("Please enter your first Name between 3-20 letters and only letters are allowed.");
@@ -75,8 +73,6 @@ public class Customer extends User
     
     
     public void addProductToCart()
-
-
     {
         System.out.println("Enter the productID of the product you want to buy");
         Scanner input = new Scanner(System.in);
@@ -119,19 +115,19 @@ public class Customer extends User
                 System.out.println("please re-enter the amount");
                 amount = input.next().trim();
             }
-            // add product to productList in cart
+            // add product to cartInfo in cart
             double onePrice = 0; // the price of one type of product
             double totalPrice = 0; //total price of all products in cart
             if (flagKG == 0)
             {    
                 onePrice = priceWhole * Double.parseDouble(amount);
-                cart.getProductList().add(productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice);
+                cart.getcartInfo().add(productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice);
                 totalPrice = totalPrice + onePrice;
             }
             else
             {   
                 onePrice = priceKG * Double.parseDouble(amount);
-                cart.getProductList().add(productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice);
+                cart.getcartInfo().add(productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice);
                 totalPrice = totalPrice + onePrice;
             }
             cart.setTotalPrice(totalPrice);
@@ -160,7 +156,6 @@ public class Customer extends User
                 return true;
         }
     }
-
     
     public boolean isProductExist(String productID)
     {
@@ -174,8 +169,6 @@ public class Customer extends User
         return false;
     }
 
-
-
     public void displayCart()
     {
         System.out.println("~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~");
@@ -185,21 +178,26 @@ public class Customer extends User
 
     public void checkOut()
     {
-        displayCart();
-        System.out.println("Are you sure you want to checkout? (y/n)");
-        Scanner input = new Scanner(System.in);
-        String answer = input.nextLine();
-        if (answer.toLowerCase().startsWith("y"))
-        {
-            System.out.println("Thank you for shopping at MFVS~");
-            double rating = rate();
-            String transaction = super.getUserId() + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
-            FileManager.writeFile(transaction,"transactions.txt");
-        }
-        else
-        {
+       if (cart.getcartInfo()!= null )
+       {
             displayCart();
-        }
+            System.out.println("Are you sure you want to checkout? (y/n)");
+            Scanner input = new Scanner(System.in);
+            String answer = input.nextLine();
+            if (answer.toLowerCase().startsWith("y"))
+            {
+                System.out.println("Thank you for shopping at MFVS~");
+                double rating = rate();
+                String transaction = super.getUserId() + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
+                FileManager.writeFile(transaction,"transactions.txt");
+            }
+            else
+            {
+                displayCart();
+            }
+       }
+       else
+            System.out.println("You have nothing in your cart, add products to checkout~");
     }
 
     public double rate()

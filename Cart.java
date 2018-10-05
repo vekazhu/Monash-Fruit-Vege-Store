@@ -12,9 +12,10 @@ import java.text.SimpleDateFormat;
 public class Cart
 {
     // instance variables - replace the example below with your own
-    private ArrayList<String> productList; // one string: productID + productName + priceKG/priceWhole + amount 
+    private ArrayList<String> cartInfo; // one string: productID + productName + priceKG/priceWhole + amount 
     //  + onePrice(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
     //seperate by ","
+    
     private Date date;
     private double totalPrice; //the total price of whole cart products
 
@@ -23,19 +24,19 @@ public class Cart
      */
     public Cart()
     {
-        productList = new ArrayList<String>();
+        cartInfo = new ArrayList<String>();
         date = new Date();
         totalPrice=0;
     }
 
-    public ArrayList<String> getProductList()
+    public ArrayList<String> getcartInfo()
     {
-        return productList;
+        return cartInfo;
     }
 
-    public void setProductList(ArrayList<String> productList)
+    public void setcartInfo(ArrayList<String> cartInfo)
     {
-        this.productList = productList;
+        this.cartInfo = cartInfo;
     }
 
     public void setTotalPrice(double totalPrice)
@@ -50,9 +51,9 @@ public class Cart
 
     public void displayCart()
     {
-        if (productList != null)
+        if (cartInfo != null)
         {    
-            for (String str: productList)
+            for (String str: cartInfo)
             {
                 String[] parts = str.split(",");
                 String productId = parts[0];
