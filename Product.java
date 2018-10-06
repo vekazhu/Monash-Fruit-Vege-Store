@@ -196,5 +196,39 @@ public class Product
         //validation of discount.isInt;
         int productDiscount = Integer.parseInt(discount);
     }
+    
+    public void disposalProduct(ArrayList<Product> listOfProducts)
+    {
+        System.out.println("Please enter the ID of the product: ");
+        Scanner scan = new Scanner(System.in);
+        String ID = scan.nextLine();
+        for(int i = 0; i< listOfProducts.size(); i++)
+        {
+            Product product = listOfProducts.get(i);
+            if(product.productID == ID)
+            {
+                listOfProducts.remove(i);
+                System.out.println("The product has been removed.");
+                return;
+            }
+        }
+        
+        System.out.println("The Product is not found.");
+    }
+    
+    public void updateProduct(ArrayList<Product> listOfProducts)
+    {
+        System.out.println("Please enter the ID of the product you want to update: ");
+        Scanner scan = new Scanner (System.in);
+        String ID = scan.nextLine();
+        for(int i = 0; i < listOfProducts.size(); i++)
+        {
+            Product product = listOfProducts.get(i);
+            if(product.productID == ID)
+            {
+                System.out.println("Please enter the ");
+            }
+        }
+    }
 
 }
