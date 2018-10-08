@@ -111,6 +111,11 @@ public class MFVSController
         }
     }
 
+    /**
+     * Method getCustomerChoice
+     *
+     * @param option A parameter
+     */
     public void getCustomerChoice(String option)
     {
         System.out.println("Inside get customer choice "+option);
@@ -298,6 +303,11 @@ public class MFVSController
         return userEmail;
     }
 
+    /**
+     * Method phoneNumberScanner
+     *
+     * @return The return value
+     */
     public String phoneNumberScanner()
     {
         System.out.println("Please enter your 10 digits phone number begins with 04.");
@@ -313,6 +323,11 @@ public class MFVSController
         return userPhoneNumber;
     }
 
+    /**
+     * Method securityAnswerScanner
+     *
+     * @return The return value
+     */
     public String securityAnswerScanner()
     {
         System.out.println("Now we are going to ask you a security question.");
@@ -329,6 +344,8 @@ public class MFVSController
 
     /**
      * generate userId, like"u0001"
+     * 
+     * @param int i
      */
     public String generateUserId(int i)
     {
@@ -350,7 +367,7 @@ public class MFVSController
      *
      * @param firstName A parameter
      * @param userId A parameter
-     * @return The return value
+     * @return The userName
      */
     public String generateUserName(String firstName, String userId)
     {
@@ -367,6 +384,10 @@ public class MFVSController
         listOfUsers.add(user);
     }
 
+    /**
+     * Method register
+     *
+     */
     public void register()
     {
         User user = new Customer();
