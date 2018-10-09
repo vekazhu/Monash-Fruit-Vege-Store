@@ -14,6 +14,7 @@ public class Cart
     private ArrayList<String> cartInfo; // one string: productID + productName + priceKG/priceWhole + amount 
                                         //  + Price(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
                                        // + flagKG (if flagKG=1 then selling by KG, otherwise selling by each)
+                                       // + discount
                                        //seperate by ","
     private Date date;
     private double totalPrice; //the total price of whole cart products
@@ -55,7 +56,7 @@ public class Cart
 
     public void displayCart()
     {
-        if (cartInfo != null)
+        if (cartInfo.size() != 0)
         {    
             for (String str: cartInfo)
             {
@@ -65,8 +66,9 @@ public class Cart
                 String unitPrice = parts[2];
                 double amount = Double.parseDouble(parts[3]);
                 double price = Double.parseDouble(parts[4]);
-                System.out.format("%-13s%-16s%-10.1f%-14s%-10.2f%n",productId,productName,amount,unitPrice,price);
-                //ProductId,productName,price,amount,onePrice,totalPrice
+                int discount = Integer.parseInt(parts[6]);
+                System.out.format("%-13s%-16s%-10.1f%-16s%-13.2f%-10d%n",productId,productName,amount,unitPrice,price,discount);
+                //ProductId,productName,price,amount,onePrice,totalPrice,discount
             }
             System.out.println("Your total price is " + totalPrice + " AUD");
         }
@@ -85,14 +87,31 @@ public class Cart
         cartInfo.clear();
     }
     
-    public void deleteProductInCart(String deleteProductId)
+    public String findProductInfo(String productID)
     {
+        String productInfo = "";
         for (String str: cartInfo)
         {
             String[] parts = str.split(",");
             String productId = parts[0];
+            if (productID.equals(productId))
+                productInfo = str;
+        }
+        return productInfo;
+    }
+    
+    public void deleteProductInCart(String deleteProductId)
+    {
+        for (int i = 0; i < cartInfo.size(); i++)
+        {
+            String[] parts = cartInfo.get(i).split(",");
+            String productId = parts[0];
             if (deleteProductId.equals(productId))
-                cartInfo.remove(str);
+            {    
+                double price = Double.parseDouble(parts[4]);
+                cartInfo.remove(i);
+                totalPrice = totalPrice - price;
+            }
         }
     }
     
@@ -103,28 +122,32 @@ public class Cart
     
     public void editProductQuantity(String changeProductId,double changeAmount)
     {
-        for (String str: cartInfo)
+        for (int i = 0; i < cartInfo.size(); i++)
         {
-            String[] parts = str.split(",");
+            String[] parts = cartInfo.get(i).split(",");
             String productId = parts[0];
             if (changeProductId.equals(productId))
             {    
                 String productName = parts[1];
                 String unitPrice = parts[2];
-                double amount = Double.parseDouble(parts[3]);
+                //double amount = Double.parseDouble(parts[3]);
                 double price = Double.parseDouble(parts[4]);
                 int flagKG = Integer.parseInt(parts[5]);
-                cartInfo.remove(str);
-                // extract int from String unitprice
+                int discount = Integer.parseInt(parts[6]);
+                //extract int from String unitprice
                 String[] strs = unitPrice.split("/");
                 double priceNumber = Double.parseDouble(strs[0]);
-                double changePrice = priceNumber * changeAmount;
-                //update productInfo
-                String productInfo = productId + "," + productName + "," + unitPrice + "," + changeAmount + "," + changePrice + flagKG;
+                //calculate new product price
+                double changePrice = priceNumber * changeAmount * (100 - discount)/100;
+                //remove old product information
+                cartInfo.remove(i);
+                //add new productInfo
+                String productInfo = productId + "," + productName + "," + unitPrice + "," + changeAmount + "," + changePrice + "," + flagKG + "," + discount;
                 cartInfo.add(productInfo);
                 totalPrice = totalPrice - price + changePrice;
             }
         }
+        
     }
     
     public boolean isProductExistInCart(String userInput)
