@@ -8,13 +8,13 @@ import java.util.*;
 public class MFVSController
 {
     // instance variables - replace the example below with your own
-    ArrayList<User> listOfUsers;
-    ArrayList<Transaction> listOfTransactions;
-    Customer customer;
-    UserMenu menu;
-    Shelf shelf;
-    Cart cart;
-    User user;
+    private ArrayList<User> listOfUsers;
+    private ArrayList<Transaction> listOfTransactions;
+    private Customer customer;
+    private UserMenu menu;
+    private Shelf shelf;
+    private Cart cart;
+    private User user;
     /**
      * Constructor for objects of class MFVSController
      */

@@ -1,19 +1,22 @@
 import java.util.*;
 /**
- * Write a description of class Owner here.
+ * Owner class stores the information of the default MFVSowner and the method will
+ * be used by the owner
+ * 
+ * super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs")
  *
  * @author (your name)
  * @version (a version number or a date)
  */
 public class Owner extends User
 {
-    
+    private Shelf shelf;
     /**
      * Constructor for objects of class Owner
      */
     public Owner()
     {
-        //super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs");
+        shelf = new Shelf();
     }
 
     /**
@@ -22,11 +25,39 @@ public class Owner extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void sampleMethod(int y)
+    public String productNameScanner()
     {
-        // put your code here
-        
+        System.out.println("Please enter the name of the new product.");
+        Scanner sc = new Scanner (System.in);
+        String enteredToken = sc.next().trim();
+        while (Validator.isFirstNameValid(enteredToken) == false)
+        {
+            enteredToken = sc.next().trim();
+        }
+        System.out.println("The name of new product is " + enteredToken + ".");
+        String newProductName = enteredToken;
+        sc.close();
+        return newProductName;
     }
+    
+    public String shelfLifeScanner()
+    {
+        System.out.println("Please enter the shelf life (in weeks) of the new product, only numbers are allowed.");
+        Scanner sc = new Scanner (System.in);
+        String enteredToken = sc.next().trim();
+        while (Validator.isFirstNameValid(enteredToken) == false)
+        {
+            enteredToken = sc.next().trim();
+        }
+        System.out.println("The name of new product is " + enteredToken + ".");
+        String newProductName = enteredToken;
+        sc.close();
+        return newProductName;
+    }
+    
+    
+        
+    
     
     
     
