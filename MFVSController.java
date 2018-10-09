@@ -259,6 +259,11 @@ public class MFVSController
         return firstName;
     }
 
+    /**
+     * Method passwordScanner is to scan the input of user password
+     *
+     * @return The return value
+     */
     public String passwordScanner()
     {
         System.out.println("Please set your password between 4 and 15 with at least one uppercase and one lowercase letters, but no special characters are allowed.");
@@ -275,6 +280,13 @@ public class MFVSController
         return passWord;
     }
 
+    /**
+     * Method doesEmailExist is to validate the existence of inputed email address
+     *
+     * @param String email,the inputed email address
+     * @return boolean, true if inputed email already exists
+     *                  false if inputed email has not been saved before
+     */
     public boolean doesEmailExist(String email)
     {
         for (int i = 0; i < listOfUsers.size(); i++)
@@ -288,6 +300,11 @@ public class MFVSController
         return false;
     }
 
+    /**
+     * Method emailScanner is to scan the input of user email address
+     *
+     * @return String userEmail, 
+     */
     public String emailScanner()
     {
         System.out.println("Please enter your email address.");
@@ -304,9 +321,9 @@ public class MFVSController
     }
 
     /**
-     * Method phoneNumberScanner
+     * Method phoneNumberScanner is to scan the input of user phone number
      *
-     * @return The return value
+     * @return String userPhoneNumber
      */
     public String phoneNumberScanner()
     {
@@ -324,9 +341,10 @@ public class MFVSController
     }
 
     /**
-     * Method securityAnswerScanner
+     * Method securityAnswerScanner is to scan theinput of user sercurity answer
+     * of security question
      *
-     * @return The return value
+     * @return String enteredToken
      */
     public String securityAnswerScanner()
     {
@@ -363,7 +381,7 @@ public class MFVSController
     }
 
     /**
-     * Method generateUserName
+     * Method generateUserName is to generate the unique user name
      *
      * @param firstName A parameter
      * @param userId A parameter
