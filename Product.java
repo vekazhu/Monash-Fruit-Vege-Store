@@ -108,7 +108,7 @@ public class Product
         this.shelfLife = shelfLife;
     }
 
-    public void setPrice(double priceKG) 
+    public void setPriceKG(double priceKG) 
     {
         this.priceKG = priceKG;
     }
@@ -128,7 +128,7 @@ public class Product
         this.category = category;
     }
 
-    public void setSellingType(double priceWhole) 
+    public void setPriceWhole(double priceWhole) 
     {
         this.priceWhole = priceWhole;
     }

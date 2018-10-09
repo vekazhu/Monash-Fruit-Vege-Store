@@ -40,9 +40,14 @@ public class Owner extends User
         return newProductName;
     }
     
+    public double quantityWholeScanner()
+    {
+        
+    }
+    
     public String shelfLifeScanner()
     {
-        System.out.println("Please enter the shelf life (in weeks) of the new product, only integers are allowed.");
+        System.out.println("Please enter a number for the shelf life (in weeks) of the new product, only integers are allowed.");
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         while (Validator.isInt(enteredToken) == false)
@@ -56,9 +61,8 @@ public class Owner extends User
         return newProductShelfLife;
     }
     
-    public String priceScanner()
+    public double doubleInputScanner()
     {
-        System.out.println("Please enter the price per KG of the new product, only numbers are allowed.");
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         while (Validator.isDouble(enteredToken) == false)
@@ -66,15 +70,13 @@ public class Owner extends User
             System.out.println("Please enter numbers only.");
             enteredToken = sc.next().trim();
         }
-        System.out.println("Price per KG is " + enteredToken + ".");
-        String newProductShelfLife = enteredToken;
+        double newProductPrice = Double.parseDouble(enteredToken);
         sc.close();
-        return newProductShelfLife;
+        return newProductPrice;
     }
     
-    public int discountScanner()
+    public int intInputScanner()
     {
-        System.out.println("Please enter the discount (e.g. 20 means 20% off) of the new product, only integers are allowed.");
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         while (Validator.isInt(enteredToken) == false)
@@ -82,10 +84,46 @@ public class Owner extends User
             System.out.println("Please enter integers only.");
             enteredToken = sc.next().trim();
         }
-        System.out.println("Product discount is " + enteredToken + "% off.");
         int newProductDiscount = Integer.parseInt(enteredToken);
         sc.close();
         return newProductDiscount;
+    }
+    
+    public void createProduct()
+    {
+        Product product = new Product();
+        String newProductName = productNameScanner(); 
+        product.setProductName(newProductName);
+        System.out.println("________________________________________________________________________________________________");
+        String newProductSheLife = shelfLifeScanner();
+        product.setShelfLife(newProductSheLife);
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please enter the price for selling it per KG.");
+        double priceKG = doubleInputScanner();
+        System.out.println("Price per KG is $" + priceKG + ".");
+        product.setPriceKG(priceKG);
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please enter the total KG of this product.");
+        double quantityKG = doubleInputScanner();
+        product.setQuantityKG(quantityKG);
+        System.out.println("There are total " + quantityKG + "KG of this product.");
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please enter the price for selling it as a whole.");
+        double priceWhole = doubleInputScanner();
+        product.setPriceWhole(priceWhole);
+        System.out.println("Price as a whole is $" + priceWhole + ".");
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please enter the total amount of this product.");
+        double quantityKG = doubleInputScanner();
+        product.setQuantityKG(quantityKG);
+        System.out.println("There are total " + quantityKG + "KG of this product.");
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please enter the discount (e.g. 20 means 20% off) of the new product, only integers are allowed.");
+        int productDiscount = intInputScanner();
+        product.setDiscount(productDiscount);
+        System.out.println("The discount for the product is " + productDiscount + "% off.");
+        
+        
     }
     
     
