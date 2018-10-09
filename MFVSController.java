@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class MFVSController
 {
-    // instance variables - replace the example below with your own
     ArrayList<User> listOfUsers;
     ArrayList<Transaction> listOfTransactions;
     Customer customer;
@@ -29,10 +28,8 @@ public class MFVSController
         customer = new Customer();
     }
 
-
     public void start()
     {
-
         String option="";
         do
         {
@@ -43,7 +40,6 @@ public class MFVSController
             getChoice(option);
         }
         while (!option.toLowerCase().equals("x"));
-
     }
 
     public void getChoice(String option)

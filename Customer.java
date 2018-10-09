@@ -9,8 +9,6 @@ import java.lang.*;
  */
 public class Customer extends User
 {
-    // instance variables - replace the example below with your own
-
     private String status;
     private Cart cart;
     private Shelf shelf;
@@ -22,7 +20,6 @@ public class Customer extends User
     String userPassword,String securityAnswer)
     {
         super(userId,userName,userEmail,userPhoneNumber,userPassword,securityAnswer);
-
         status = "active";
         cart = new Cart();
         shelf = new Shelf();
@@ -30,18 +27,14 @@ public class Customer extends User
 
     public Customer()
     {
+        super();
         status = "active";
         cart = new Cart();
         shelf = new Shelf();
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
      */
-
     public String getStatus()
     {
         return status;
@@ -69,26 +62,12 @@ public class Customer extends User
     {
         Scanner input = new Scanner(System.in);
         String productID = input.nextLine();
-        while (!isProductExistInCart(productID))
+        while (!cart.isProductExistInCart(productID))
         {
             System.out.println("Please enter a valid productID that already in the cart");
             productID = input.nextLine();
         }
         return productID;
-    }
-    
-    public boolean isProductExistInCart(String userInput)
-    {
-        for (String str: cart.getCartInfo())
-        {
-            String[] parts = str.split(",");
-            String productId = parts[0];
-            if (userInput.toLowerCase().equals(productId))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void addProductToCart()
@@ -96,7 +75,7 @@ public class Customer extends User
         System.out.println("Enter the productID of the product you want to buy");
         Scanner input = new Scanner(System.in);
         String productID = input.nextLine();
-        while (!isProductExistInShelf(productID))
+        while (!shelf.isProductExistInShelf(productID))
         {
             System.out.println("Please enter a valid productID");
             productID = input.nextLine();
@@ -162,36 +141,32 @@ public class Customer extends User
             System.out.println("Please choose other products to purchase");
     }
 
-    public boolean isAmountValid(String amount,int flagKG,String productID)
+    public boolean isAmountValid(String amount,int flagKG,String productID) //private
     {
-        if (!Validator.isDouble(amount))
+        double inventory = 0;
+        if (flagKG == 0)
         {
-            return false;
+            if (!Validator.isInt(amount))
+                return false;
+            else
+            {
+                inventory = shelf.findProductById(productID).getQuantityWhole();
+                if (Double.parseDouble(amount) > inventory)
+                    return false;
+            }
         }
         else
         {
-            double inventory = 0;
-            if (flagKG==0)
-                inventory = shelf.findProductById(productID).getQuantityWhole();
-            else
-                inventory = shelf.findProductById(productID).getQuantityKG();
-            if (Double.parseDouble(amount) > inventory)
+            if (!Validator.isDouble(amount))
                 return false;
             else
-                return true;
-        }
-    }
-
-    public boolean isProductExistInShelf(String productID)
-    {
-        for (int i=0; i<shelf.getListOfProducts().size();i++)
-        {
-            if (productID.equalsIgnoreCase(shelf.getListOfProducts().get(i).getProductID()))
             {
-                return true;
+                inventory = shelf.findProductById(productID).getQuantityKG();
+                if (Double.parseDouble(amount) > inventory)
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void displayCart()
