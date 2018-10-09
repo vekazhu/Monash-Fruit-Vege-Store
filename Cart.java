@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
  */
 public class Cart
 {
-    // instance variables - replace the example below with your own
     private ArrayList<String> cartInfo; // one string: productID + productName + priceKG/priceWhole + amount 
                                         //  + Price(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
                                        // + flagKG (if flagKG=1 then selling by KG, otherwise selling by each)
@@ -111,11 +110,28 @@ public class Cart
             if (changeProductId.equals(productId))
             {    
                 cartInfo.remove(str);
-                changePrice = u
+                // extract int from String unitprice
+                String number = unitPrice.replace("\\D+","");
+                double priceNumber = Double.parseDouble(number);
+                double changePrice = priceNumber * changeAmount;
                 String productInfo = productId + "," + productName + "," + unitPrice + "," + changeAmount + "," + changePrice + flagKG;
                 cartInfo.add(productInfo);
             }
         }
+    }
+    
+    public boolean isProductExistInCart(String userInput)
+    {
+        for (String str: cartInfo)
+        {
+            String[] parts = str.split(",");
+            String productId = parts[0];
+            if (userInput.toLowerCase().equals(productId))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

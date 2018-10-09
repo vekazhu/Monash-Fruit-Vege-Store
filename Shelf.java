@@ -165,7 +165,6 @@ public class Shelf
     public ArrayList<Product> findProductByName(String name)
     {
         ArrayList<Product> foundProductList = new ArrayList<Product>();
-        
         for ( Product pdct: listOfProducts)
         {
             if (name.equalsIgnoreCase(pdct.getProductName()))
@@ -176,6 +175,15 @@ public class Shelf
         return foundProductList;
     }
     
-    
-
+    public boolean isProductExistInShelf(String productID)
+    {
+        for (Product pdct: listOfProducts)
+        {
+            if (productID.equalsIgnoreCase(pdct.getProductID()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

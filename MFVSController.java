@@ -15,6 +15,7 @@ public class MFVSController
     private Shelf shelf;
     private Cart cart;
     private User user;
+
     /**
      * Constructor for objects of class MFVSController
      */
@@ -29,10 +30,8 @@ public class MFVSController
         customer = new Customer();
     }
 
-
     public void start()
     {
-
         String option="";
         do
         {
@@ -43,7 +42,6 @@ public class MFVSController
             getChoice(option);
         }
         while (!option.toLowerCase().equals("x"));
-
     }
 
     public void getChoice(String option)
