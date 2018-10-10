@@ -186,4 +186,16 @@ public class Shelf
         }
         return false;
     }
+    
+    public String getProductIdAleadyInShelf()
+    {
+        Scanner input = new Scanner(System.in);
+        String productID = input.nextLine();
+        while (!isProductExistInShelf(productID))
+        {
+            System.out.println("Please enter a valid productID that already in the shelf.");
+            productID = input.nextLine();
+        }
+        return productID;
+    }
 }
