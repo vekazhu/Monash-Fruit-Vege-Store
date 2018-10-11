@@ -128,41 +128,39 @@ public class Owner extends User
  
     public void createProduct()
     {
-        Product product = new Product();
         String newProductName = productNameScanner(); 
-        product.setProductName(newProductName);
         System.out.println("________________________________________________________________________________________________");
-        System.out.println("Please select product category from the menu.");
+        String newProductCategory = productCategoryScanner();
         System.out.println("________________________________________________________________________________________________");
-        String newProductSheLife = shelfLifeScanner();
-        product.setShelfLife(newProductSheLife);
+        String newProductShelfLife = shelfLifeScanner();        
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the price for selling it per KG.");
         double priceKG = doubleInputScanner();
-        System.out.println("Price per KG is $" + priceKG + ".");
-        product.setPriceKG(priceKG);
+        System.out.println("Price per KG is $" + priceKG + ".");        
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the total KG of this product.");
         double quantityKG = doubleInputScanner();
-        product.setQuantityKG(quantityKG);
         System.out.println("There are total " + quantityKG + "KG of this product.");
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the price for selling it as a whole.");
         double priceWhole = doubleInputScanner();
-        product.setPriceWhole(priceWhole);
         System.out.println("Price as a whole is $" + priceWhole + ".");
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the total amount of this product.");
         double quantityWhole = quantityWholeScanner();
-        product.setQuantityKG(quantityWhole);
         System.out.println("There are total " + quantityWhole + " this product.");
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the discount (e.g. 20 means 20% off) of the new product, only integers are allowed.");
         int productDiscount = intInputScanner();
-        product.setDiscount(productDiscount);
         System.out.println("The discount for the product is " + productDiscount + "% off.");
-                
+        System.out.println("________________________________________________________________________________________________");       
+        Product product = new Product(newProductName,newProductCategory,newProductShelfLife, priceWhole, 
+        priceKG, quantityKG, quantityWhole, productDiscount);         
+        System.out.println("The new product ID is " + product.getProductID() + ".");
+        shelf.addProduct(product);
+        shelf.updateInventory();        
     }
+    
     
     public void disposalProductFromShelf()
     {

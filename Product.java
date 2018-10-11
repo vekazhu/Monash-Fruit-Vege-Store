@@ -47,6 +47,22 @@ public class Product
         this.discount = discount;
         productNumber++;
     }
+    
+    public Product(String productName, String category, String shelfLife, double priceWhole, double priceKG,
+                    double quantityKG,double quantityWhole,int discount) 
+    {
+        this.productID = generateProductID(productNumber, category);
+        this.productName = productName;
+        this.shelfLife = shelfLife;
+        this.priceKG = priceKG;
+        this.category = category;
+        this.priceWhole = priceWhole;
+        this.quantityKG = quantityKG;
+        this.quantityWhole = quantityWhole;
+        this.discount = discount;
+        productNumber++;
+    }
+
 
     public String getProductID() 
     {
@@ -91,6 +107,11 @@ public class Product
     public double getQuantityWhole() 
     {
         return quantityWhole;
+    }
+    
+    public int getProductNumber()
+    {
+        return productNumber;
     }
 
     public void setProductID(String productID) 
