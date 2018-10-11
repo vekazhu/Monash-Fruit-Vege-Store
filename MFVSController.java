@@ -37,7 +37,6 @@ public class MFVSController
             Scanner input = new Scanner(System.in);
             menu.displayMainMenu();
             option = input.nextLine();
-            System.out.println("--------------------------------------------------\n\n");
             getChoice(option);
         }
         while (!option.toLowerCase().equals("x"));
@@ -75,7 +74,6 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
-            System.out.print('\u000C');
             System.out.println("-------------------------------------------------------------------");
             displayAllProducts();
             System.out.println("-------------------------------------------------------------------");
@@ -83,7 +81,6 @@ public class MFVSController
             break;
 
             case "b":
-            System.out.print('\u000C');
             String userId = user.login();
             user.setUserId(userId);
             if (userId.equals("")){
@@ -95,7 +92,7 @@ public class MFVSController
                     String customerOption = "";
                     do
                     {
-                        System.out.println("Inside Do.................");
+                        //System.out.println("Inside Do.................");
                         Scanner input = new Scanner(System.in);
                         //System.out.print('\u000C');
                         menu.displayCustomerMenu();
