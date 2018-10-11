@@ -35,7 +35,7 @@ public class FileManager
                 {
                     String str = parser.nextLine();
                     String[] parts = str.split(",");
-                    System.out.println(parts.length);
+                    //System.out.println(parts.length);
                     String productID = parts[0];
                     String productName = parts[1];
                     String category = parts[2];
@@ -124,9 +124,9 @@ public class FileManager
         return listOfTransactions;
     }
 
-    public static ArrayList<Customer> readCustomerInfo(String fileName)
+    public static ArrayList<User> readUserInfo(String fileName)
     {
-        ArrayList<Customer> listOfCustomers = new ArrayList<Customer> ();
+        ArrayList<User> listOfUsers = new ArrayList<User> ();
         try
         {
             FileReader inputFile = new FileReader(fileName);
@@ -143,8 +143,8 @@ public class FileManager
                     String userPhoneNumber = parts[3];
                     String userPassword = parts[4];
                     String securityAnswer = parts[5];
-                    Customer customer = new Customer(userID, userName,userEmail,userPhoneNumber,userPassword, securityAnswer);
-                    listOfCustomers.add(customer);
+                    User user = new User(userID, userName,userEmail,userPhoneNumber,userPassword, securityAnswer);
+                    listOfUsers.add(user);
                 }
             }
             finally
@@ -160,7 +160,7 @@ public class FileManager
         {
             System.out.println("Unexpected I/O exception occurs.");
         }
-        return listOfCustomers;
+        return listOfUsers;
     }
 
     

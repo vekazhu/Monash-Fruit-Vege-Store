@@ -16,7 +16,7 @@ public class User
     private String userPassword; //one upper, one lower, maybe number, length >=4
     private String securityAnswer;
     private static int userNumber = 6;//including 5 customers and one owner
-    private ArrayList<Customer> usersList;
+    private ArrayList<User> usersList;
 
     public User() 
     {
@@ -105,6 +105,12 @@ public class User
         this.userPassword = userPassword;
     }
 
+    public String getUserInfo()
+    {
+        String customerInfo = getUserId() + "," + getUserName() + "," + getUserEmail() + "," + getUserPhoneNumber() + "," + getUserPassword() + "," + getSecurityAnswer();
+        return customerInfo;
+    }
+    
     public String login()
     {
 
@@ -113,7 +119,7 @@ public class User
         int flag = 0;
         int userExists = 0;
         User user = new User();
-        usersList = FileManager.readCustomerInfo("users.txt");
+        usersList = FileManager.readUserInfo("users.txt");
         System.out.println("Enter your UserId");
         String inpUser = keyboard.nextLine();
         System.out.println("Enter your Password");

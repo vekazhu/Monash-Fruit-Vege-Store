@@ -8,7 +8,7 @@ import java.util.*;
 public class MFVSController
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Customer> listOfCustomers;
+    private ArrayList<User> listOfUsers;
     private ArrayList<Transaction> listOfTransactions;
     private Customer customer;
     private Owner owner;
@@ -21,7 +21,7 @@ public class MFVSController
      */
     public MFVSController()
     {
-        listOfCustomers = FileManager.readCustomerInfo("users.txt");
+        listOfUsers = FileManager.readUserInfo("users.txt");
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         menu = new UserMenu();
         customer = new Customer();
@@ -44,10 +44,10 @@ public class MFVSController
     
     public void deleteUserInFiles(String userId)
     {
-        for (int i = 0; i < listOfCustomers.size(); i++)
+        for (int i = 0; i < listOfUsers.size(); i++)
         {
-            if (userId.equals(listOfCustomers.get(i).getUserId())) 
-                listOfCustomers.remove(i);
+            if (userId.equals(listOfUsers.get(i).getUserId())) 
+                listOfUsers.remove(i);
         }
         //update users.txt file
         updateUserList();
@@ -174,7 +174,7 @@ public class MFVSController
             break;
             
             case "g":
-            unregister();
+            //unregister();
             System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
             
@@ -352,9 +352,9 @@ public class MFVSController
      */
     public boolean doesEmailExist(String email)
     {
-        for (int i = 0; i < listOfCustomers.size(); i++)
+        for (int i = 0; i < listOfUsers.size(); i++)
         {
-            if (listOfCustomers.get(i).getUserEmail().equals(email))
+            if (listOfUsers.get(i).getUserEmail().equals(email))
             {
                 System.out.println("This email already exists, please enter another one.");
                 return true;
@@ -460,9 +460,9 @@ public class MFVSController
         return userName;    
     }
     
-     public void addUser(Customer customer)
+     public void addUser(User user)
     {
-        listOfCustomers.add(customer);
+        listOfUsers.add(user);
     }
 
     /**
@@ -497,9 +497,9 @@ public class MFVSController
         
         String userName = generateUserName(userFirstName, userId);
         user.setUserName(userName);
-        Customer customer = new Customer(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
+        User customer = new Customer(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
         System.out.println("Registration has been completed! Please log in and continue shopping.");
-        addUser(customer);
+        addUser(user);
         updateUserList();
         user.login();
     }
@@ -507,12 +507,12 @@ public class MFVSController
     public void updateUserList()
     {
         String content = "";
-        for (Customer customer: listOfCustomers)
+        for (User user: listOfUsers)
         {
             if (content.equals(""))
-                content = customer.getCustomerInfo();
+                content = user.getUserInfo();
             else
-                content = content + "\n" + customer.getCustomerInfo();
+                content = content + "\n" + user.getUserInfo();
         }
         FileManager.writeFile(content,"users.txt");
     }
