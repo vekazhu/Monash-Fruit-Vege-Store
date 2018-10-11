@@ -129,9 +129,20 @@ public class MFVSController
             searchForProduct();
             break;
             
+            case "c":
+            System.out.print('\u000C');
+            customer.addProductToCart();
+            break;
+            
+            case "d":
+            System.out.print('\u000C');
+            customer.displayCart();
+            break;
+            
             case "e":
             System.out.print('\u000C');
             getCustomerTransaction(user.getUserId());
+            menu.displayCustomerMenu();
             break;
             
             case "f":
@@ -139,12 +150,57 @@ public class MFVSController
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
+            
+            case "g":
+            System.out.print('\u000C');
+            customer.unregister();
+            System.out.println("You are no longer with MFVS, wish you will come back :)");
+            break;
+            
+            case "x":
+            System.out.print('\u000C');
+            System.exit(0);
+            System.out.println("You have exited the system, see you.");
+            break;
 
             default:
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
         }
     }
+    
+    public void getCartChoice(String option)
+    {
+        switch (option.toLowerCase())
+        {
+            case "a":
+            System.out.println("-------------------------------------------------------------------");
+            customer.checkOut();
+            System.out.println("-------------------------------------------------------------------");
+            menu.displayCustomerMenu();
+            break;
+
+            case "b":
+            customer.editProduct();
+            break;
+            
+            case "c":
+            menu.displayCustomerMenu();
+            break;
+            
+            case "x":
+            System.exit(0);
+            System.out.println("You have exited the system, see you.");
+            break;
+            
+
+            default:
+            System.out.print('\u000C');
+            System.out.println("The entered vaule is unrecognized!");break;
+        }
+    }
+    
+    
     
     public void getOwnerChoice(String option)
     {
