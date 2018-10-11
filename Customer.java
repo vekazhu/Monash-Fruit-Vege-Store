@@ -251,7 +251,12 @@ public class Customer extends User
             System.out.println("Are you sure you want to checkout? (y/n)");
             Scanner input = new Scanner(System.in);
             String answer = input.nextLine();
-            if (answer.toLowerCase().startsWith("y"))
+            while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
+            {
+                System.out.println("please enter y or n only");
+                answer = input.nextLine();
+            }
+            if (answer.toLowerCase().equals("y"))
             {
                 for (String productInfo : cart.getCartInfo())
                 {
@@ -269,6 +274,7 @@ public class Customer extends User
             }
             else
             {
+                System.out.println("It seems you don't want to checkout, you can check you cart again");
                 displayCart();
             }
         }
