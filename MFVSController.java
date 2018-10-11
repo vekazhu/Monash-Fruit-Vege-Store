@@ -184,6 +184,7 @@ public class MFVSController
             break;
             
             case "i":
+            customer.displayCart();
             customer.editProduct();
             break;
             

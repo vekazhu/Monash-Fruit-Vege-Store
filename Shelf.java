@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * Write a description of class Shelf here.
  *
@@ -102,6 +103,13 @@ public class Shelf
                 content.add(product.getProductInfo());
             //else
                 //content.add(content + "\n" + product.getProductInfo());
+        }  
+        
+        File f = new File("products.txt");
+        if (f.exists())
+        {
+          //delete if exists
+           f.delete();
         }
         FileManager.writeFile(content,"products.txt");
     }

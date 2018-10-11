@@ -57,50 +57,64 @@ public class Customer extends User
     
     public void editProduct()
     {
-        System.out.println("Enter the productID of the product you want to edit");
-        String productID = getProductIdAleadyInCart();
-        //find productInfo
-        String productInfo = cart.findProductInfo(productID);
-        //find flagKG--used to validate quantity
-        String[] strs = productInfo.split(",");
-        int flagKG = Integer.parseInt(strs[5]);
-        String productName = strs[1];
-        //asking amount
-        System.out.println("enter the number you want to change to");
-        Scanner input = new Scanner(System.in);
-        String amount = input.nextLine().trim();
-        while (!isAmountValid(amount,flagKG,productID))
-        {
-            System.out.println("please re-enter the amount");
-            amount = input.next().trim();
-        }
-        double changeAmount = Double.parseDouble(amount);
-        System.out.println("The product is " + productName);
-        System.out.println("Edit completed! The quantity has changed to " + amount);
-        cart.editProductQuantity(productID,changeAmount);
+       if (cart.getCartInfo().size() != 0)     
+       {    
+            System.out.println("Enter the productID of the product you want to edit");
+            String productID = getProductIdAleadyInCart();
+            //find productInfo
+            String productInfo = cart.findProductInfo(productID);
+            //find flagKG--used to validate quantity
+            String[] strs = productInfo.split(",");
+            int flagKG = Integer.parseInt(strs[5]);
+            String productName = strs[1];
+            //asking amount
+            System.out.println("enter the number you want to change to");
+            Scanner input = new Scanner(System.in);
+            String amount = input.nextLine().trim();
+            while (!isAmountValid(amount,flagKG,productID))
+            {
+                System.out.println("please re-enter the amount");
+                amount = input.next().trim();
+            }
+            double changeAmount = Double.parseDouble(amount);
+            System.out.println("The product is " + productName);
+            System.out.println("Edit completed! The quantity has changed to " + amount);
+            cart.editProductQuantity(productID,changeAmount);
+       }
+       else
+       {
+           System.out.println("You have nothing in your cart, start to add products~");
+       }
     }
 
     public void deleteProductFromCart()
     {
-        System.out.println("Enter the productID of the product you want to delete");
-        String productID = getProductIdAleadyInCart();
-        System.out.println("Are you sure you want to delete this ?(y/n)");
-        Scanner input = new Scanner(System.in);
-        String answer = input.nextLine();
-        while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
+        if (cart.getCartInfo().size() != 0)
         {
-            System.out.println("enter your choice again");
-            answer = input.nextLine();
-        }
-        if (answer.toLowerCase().equals("y"))
-        {    
-            cart.deleteProductInCart(productID);
-            System.out.println("Product is deleted");
+            System.out.println("Enter the productID of the product you want to delete");
+            String productID = getProductIdAleadyInCart();
+            System.out.println("Are you sure you want to delete this ?(y/n)");
+            Scanner input = new Scanner(System.in);
+            String answer = input.nextLine();
+            while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
+            {
+                System.out.println("enter your choice again");
+                answer = input.nextLine();
+            }
+            if (answer.toLowerCase().equals("y"))
+            {    
+                cart.deleteProductInCart(productID);
+                System.out.println("Product is deleted");
+            }
+            else
+            {    
+                System.out.println("It seems you don't want to checkout, check your cart again");
+                cart.displayCart();
+            }
         }
         else
-        {    
-            System.out.println("It seems you don't want to checkout, check your cart again");
-            cart.displayCart();
+        {
+            System.out.println("You have nothing in your cart, start to add products~");
         }
     }
     
@@ -270,6 +284,7 @@ public class Customer extends User
                 String transaction = userId + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
                 customerTransactions.add(transaction);
                 FileManager.writeFile(customerTransactions,"transactions.txt");
+                cart.setTotalPrice(0);
                 cart.clearCartInfo();
             }
             else
