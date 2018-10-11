@@ -121,8 +121,12 @@ public class MFVSController
                 }
 
             }
-
             break;
+            
+            case"c":
+            register();
+            break;
+            
             case "x":
             System.out.println("See you next time");
             break;
