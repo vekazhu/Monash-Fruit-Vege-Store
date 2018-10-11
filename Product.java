@@ -175,28 +175,6 @@ public class Product
         return productID;
     }
     
-    public void createProduct()
-    {
-        Product newProduct = new Product();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the product name.");
-        String productName = scanner.next();
-        System.out.println("Please choose the product category.");
-        //choose from categoryMenu();
-        System.out.println("Please enter the product shelflife.");
-        String shelfLife = scanner.next();
-        System.out.println("Please choose two from the three product selling types.");
-        //choose from typeMenu();
-        System.out.println("Please enter the product price.");
-        String price = scanner.next();
-        //validation of price.isDigit();
-        double productPrice = Double.parseDouble(price);
-        System.out.println("Please enter the product discount.");
-        String discount = scanner.next();
-        //validation of discount.isInt;
-        int productDiscount = Integer.parseInt(discount);
-    }
-    
     public void disposalProduct(ArrayList<Product> listOfProducts)
     {
         System.out.println("Please enter the ID of the product: ");

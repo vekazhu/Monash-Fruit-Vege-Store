@@ -42,7 +42,16 @@ public class Owner extends User
     
     public double quantityWholeScanner()
     {
-        
+        Scanner sc = new Scanner (System.in);
+        String enteredToken = sc.next().trim();
+        while (Validator.isInt(enteredToken) == false)
+        {
+            System.out.println("Please enter integers only.");
+            enteredToken = sc.next().trim();
+        }
+        double quantityWhole = Double.parseDouble(enteredToken);
+        sc.close();
+        return quantityWhole;    
     }
     
     public String shelfLifeScanner()
@@ -88,12 +97,42 @@ public class Owner extends User
         sc.close();
         return newProductDiscount;
     }
+   
     
+    public String productCategoryScanner()
+    {
+        System.out.println("Please select the product category from the menu:");
+        System.out.println("1. fruit");
+        System.out.println("2. vegetable");
+        Scanner sc = new Scanner (System.in);
+        String enteredToken = sc.next().trim();
+        String productCategory = "";
+        if (Integer.parseInt(enteredToken) == 1)
+        {
+            productCategory = "fruit"; 
+            System.out.println("This is categorised as " + productCategory + ".");
+        }
+        if (Integer.parseInt(enteredToken) == 2)
+        {
+            productCategory = "vegetable"; 
+            System.out.println("This is categorised as " + productCategory + ".");
+        }
+        if (Integer.parseInt(enteredToken) != 2 && Integer.parseInt(enteredToken) != 1)
+        {
+            System.out.println("Invalid selection!");
+            productCategoryScanner();
+        }
+        sc.close();
+        return productCategory;
+    }
+ 
     public void createProduct()
     {
         Product product = new Product();
         String newProductName = productNameScanner(); 
         product.setProductName(newProductName);
+        System.out.println("________________________________________________________________________________________________");
+        System.out.println("Please select product category from the menu.");
         System.out.println("________________________________________________________________________________________________");
         String newProductSheLife = shelfLifeScanner();
         product.setShelfLife(newProductSheLife);
@@ -114,16 +153,15 @@ public class Owner extends User
         System.out.println("Price as a whole is $" + priceWhole + ".");
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the total amount of this product.");
-        double quantityKG = doubleInputScanner();
-        product.setQuantityKG(quantityKG);
-        System.out.println("There are total " + quantityKG + "KG of this product.");
+        double quantityWhole = quantityWholeScanner();
+        product.setQuantityKG(quantityWhole);
+        System.out.println("There are total " + quantityWhole + " this product.");
         System.out.println("________________________________________________________________________________________________");
         System.out.println("Please enter the discount (e.g. 20 means 20% off) of the new product, only integers are allowed.");
         int productDiscount = intInputScanner();
         product.setDiscount(productDiscount);
         System.out.println("The discount for the product is " + productDiscount + "% off.");
-        
-        
+                
     }
     
     
