@@ -8,9 +8,10 @@ import java.util.*;
 public class MFVSController
 {
     // instance variables - replace the example below with your own
-    private ArrayList<User> listOfUsers;
+    private ArrayList<Customer> listOfCustomers;
     private ArrayList<Transaction> listOfTransactions;
     private Customer customer;
+    private Owner owner;
     private UserMenu menu;
     private User user;
     private Shelf shelf;
@@ -20,7 +21,7 @@ public class MFVSController
      */
     public MFVSController()
     {
-        listOfUsers = FileManager.readUserInfo("users.txt");
+        listOfCustomers = FileManager.readCustomerInfo("users.txt");
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         menu = new UserMenu();
         customer = new Customer();
@@ -162,6 +163,16 @@ public class MFVSController
             searchForProduct();
             break;
             
+            case "c":
+            System.out.print('\u000C');
+            owner.createProduct();
+            break;
+            
+            case "d":
+            System.out.print('\u000C');
+            owner.updateProduct();
+            break;
+            
             case "e":
             System.out.print('\u000C');
             displayAllTransactions();
@@ -171,6 +182,10 @@ public class MFVSController
             System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
+            break;
+            
+            case "x":
+            menu.displayMainMenu();
             break;
             
 
@@ -285,9 +300,9 @@ public class MFVSController
      */
     public boolean doesEmailExist(String email)
     {
-        for (int i = 0; i < listOfUsers.size(); i++)
+        for (int i = 0; i < listOfCustomers.size(); i++)
         {
-            if (listOfUsers.get(i).getUserEmail().equals(email))
+            if (listOfCustomers.get(i).getUserEmail().equals(email))
             {
                 System.out.println("This email already exists, please enter another one.");
                 return true;
@@ -393,9 +408,9 @@ public class MFVSController
         return userName;    
     }
     
-     public void addUser(User user)
+     public void addUser(Customer customer)
     {
-        listOfUsers.add(user);
+        listOfCustomers.add(customer);
     }
 
     /**
@@ -404,31 +419,52 @@ public class MFVSController
      */
     public void register()
     {
-        User user = new Customer();
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
         String userFirstName = nameScanner();
         System.out.println("___________________________________________________________________________________");
+        
         String userPassWord = passwordScanner();
-        user.setUserPassword(userPassWord);
+        
         System.out.println("___________________________________________________________________________________");
+        
         String userEmail = emailScanner();
-        user.setUserEmail(userEmail);
+        
         System.out.println("___________________________________________________________________________________");
+        
         String userPhoneNumber = phoneNumberScanner();
-        user.setUserPhoneNumber(userPhoneNumber);
+        
         System.out.println("___________________________________________________________________________________");
+        
         String userSecurityAnswer = securityAnswerScanner();
-        user.setSecurityAnswer(userSecurityAnswer);
+        
         System.out.println("___________________________________________________________________________________");
+        
         String userId = generateUserId(user.getUserNumber());
-        user.setUserId(userId);
+        
         System.out.println("___________________________________________________________________________________");
+        
         String userName = generateUserName(userFirstName, userId);
         user.setUserName(userName);
+        Customer customer = new Customer(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
         System.out.println("Registration has been completed! Please log in and continue shopping.");
-        addUser(user);
+        addUser(customer);
+        updateUserList();
         user.login();
     }
+    
+    public void updateUserList()
+    {
+        String content = "";
+        for (Customer customer: listOfCustomers)
+        {
+            if (content.equals(""))
+                content = customer.getCustomerInfo();
+            else
+                content = content + "\n" + customer.getCustomerInfo();
+        }
+        FileManager.writeFile(content,"users.txt");
+    }
+    
 
     public void searchForProduct()
     {

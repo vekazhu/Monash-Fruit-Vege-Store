@@ -220,46 +220,6 @@ public class Product
 
     }
     
-    public void updateProduct(ArrayList<Product> listOfProducts)
-    {
-        System.out.println("Please enter the ID of the product you want to update: ");
-        Scanner scan = new Scanner (System.in);
-        String ID = scan.nextLine();
-        for(int i = 0; i < listOfProducts.size(); i++)
-        {
-            Product product = listOfProducts.get(i);
-            if(product.productID == ID)
-            {
-                System.out.println("Please enter a new product ID for this product:");
-                product.productID = scan.next();
-                
-                System.out.println("Please enter a new name for this product: ");
-                product.productName = scan.next();
-                
-                System.out.println("Please enter a new shelf life for this product: ");
-                product.shelfLife = scan.next();
-                
-                System.out.println("Please enter a new price per kg for this product: ");
-                product.priceKG = scan.nextDouble();
-                
-                System.out.println("Please enter a new category for this product: ");
-                product.category = scan.next();
-                
-                System.out.println("Please enter a new price per whole for this product: ");
-                product.priceWhole = scan.nextDouble();
-                
-                System.out.println("Please enter a new discount for this product: ");
-                product.discount = scan.nextInt();
-                
-                System.out.println("Please enter a new quantity of the product measured with KG: ");
-                product.quantityKG = scan.nextDouble();
-                
-                System.out.println("Please enter a new quantity of the product measured with a whole: ");
-                product.quantityWhole = scan.nextDouble();
-            }
-        }
-        
-        System.out.println("The product is not found.");
-    }
+    
 
 }

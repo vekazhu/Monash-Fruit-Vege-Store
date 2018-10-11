@@ -11,15 +11,12 @@ import java.util.*;
 public class Owner extends User
 {
     private Shelf shelf;
-    
-    private Cart cart;
     /**
      * Constructor for objects of class Owner
      */
     public Owner()
     {
         shelf = new Shelf();
-        cart = new Cart();
     }
 
     /**
@@ -176,13 +173,80 @@ public class Owner extends User
         String answer = input.nextLine();
         if (answer.startsWith("y"))
         {
-            cart.deleteProductInCart(productID);
+            shelf.deleteProductInShelf(productID);
         }
         else
         {
             shelf.displayProductsInfo();
         }
             
+    }
+    
+    public void updateProduct()
+    {
+        System.out.println("Please enter the ID of the product you want to update: ");
+        Scanner scan = new Scanner (System.in);
+        String id = scan.nextLine();
+        for(int i = 0; i < shelf.getListOfProducts().size(); i++)
+        {
+            
+            if(shelf.getListOfProducts().get(i).getProductID() == id)
+            {
+                System.out.println("What attribute you want to change about this product: ");
+                System.out.println("1. Name");
+                System.out.println("2. Shelf life");
+                System.out.println("3. Price per KG");
+                System.out.println("4. Price per whole");
+                System.out.println("5. Discount");
+                System.out.println("6. Quantity per KG");
+                System.out.println("7. Quantity per whole");
+                String option = scan.nextLine();
+                switch (option)
+                {
+                    case "1":
+                    System.out.println("Please enter a new name for this product: ");
+                    shelf.getListOfProducts().get(i).setProductName(scan.next());
+                    break;
+                    
+                    case "2":
+                    System.out.println("Please enter a new shelf life for this product: ");
+                    shelf.getListOfProducts().get(i).setShelfLife(scan.next());
+                    break;
+                    
+                    case "3":
+                    System.out.println("Please enter a new price per kg for this product: ");
+                    shelf.getListOfProducts().get(i).setPriceKG(scan.nextDouble());
+                    break;
+                    
+                    case "4":
+                    System.out.println("Please enter a new price per whole for this product: ");
+                    shelf.getListOfProducts().get(i).setPriceWhole(scan.nextDouble());
+                    break;
+                    
+                    case "5":
+                    System.out.println("Please enter a new discount for this product: ");
+                    shelf.getListOfProducts().get(i).setDiscount(scan.nextInt());
+                    break;
+                    
+                    case "6":
+                    System.out.println("Please enter a new quantity of the product measured with KG: ");
+                    shelf.getListOfProducts().get(i).setQuantityKG(scan.nextDouble());
+                    break;
+                    
+                    case "7":
+                    System.out.println("Please enter a new quantity of the product measured with a whole: ");
+                    shelf.getListOfProducts().get(i).setQuantityWhole(scan.nextDouble());
+                    break;
+                    
+                }
+            }
+            else
+            {
+                System.out.println("The product is not found.");
+            }
+        }
+        
+        
     }
     
 

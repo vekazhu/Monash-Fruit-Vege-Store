@@ -142,6 +142,17 @@ public class Shelf
         
     }
     
+    public void deleteProductInShelf(String deleteProductId)
+    {
+        for (int i = 0; i < listOfProducts.size(); i++)
+        {
+            if (deleteProductId.equals(listOfProducts.get(i).getProductID()))
+            {    
+                listOfProducts.remove(i);
+            }
+        }
+    }
+    
     public void displayProductsInfo()
     {
         for ( Product product: listOfProducts)

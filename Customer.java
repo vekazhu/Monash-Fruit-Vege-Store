@@ -46,6 +46,12 @@ public class Customer extends User
         this.status = status;
     }
     
+    public String getCustomerInfo()
+    {
+        String customerInfo = getUserId() + "," + getUserName() + "," + getUserEmail() + "," + getUserPhoneNumber() + "," + getUserPassword() + "," + getSecurityAnswer();
+        return customerInfo;
+    }
+    
     public void editProduct()
     {
         System.out.println("Enter the productID of the product you want to edit");
