@@ -167,7 +167,8 @@ public class Owner extends User
         System.out.println("The new product ID is " + product.getProductID() + ".");
         
         shelf.addProduct(product);
-        shelf.updateInventory();        
+        shelf.updateInventory(); 
+        shelf.displayProductsInfo();       
     }
     
     
