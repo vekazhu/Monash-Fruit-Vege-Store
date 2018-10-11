@@ -247,8 +247,8 @@ public class MFVSController
             break;
             
             case "c":
-            System.out.print('\u000C');
             owner.createProduct();
+            displayAllProducts();
             break;
             
             case "d":
@@ -450,7 +450,7 @@ public class MFVSController
         String enteredToken = sc.next().trim();
         System.out.println("Your answer is " + enteredToken + ".");
         //String securityAnswer = enteredToken;
-        //sc.close();
+        sc.close();
         return enteredToken;
     }
 

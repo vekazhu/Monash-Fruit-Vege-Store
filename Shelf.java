@@ -52,6 +52,20 @@ public class Shelf
         listOfProducts.add(product);
     }
     
+    public boolean doesProductExist(String productName)
+    {
+        for (int i = 0; i < listOfProducts.size(); i++)
+        {
+            if (listOfProducts.get(i).getProductName().equals(productName))
+            {
+                System.out.println("This product already exists, please enter another one or update it.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
     /**
      * Method editInventory is to reduce the inventory in the store
      * and return an arrayList with updated inventory
