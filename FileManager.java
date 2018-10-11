@@ -40,8 +40,8 @@ public class FileManager
                     String productName = parts[1];
                     String category = parts[2];
                     String shelfLife = parts[3];
-                    double priceKG = Double.parseDouble(parts[4]);
-                    double priceWhole = Double.parseDouble(parts[5]);
+                    double priceKG = Double.parseDouble(parts[5]);
+                    double priceWhole = Double.parseDouble(parts[4]);
                     double quantityKG = Double.parseDouble(parts[6]);
                     double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);

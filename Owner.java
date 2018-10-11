@@ -11,12 +11,15 @@ import java.util.*;
 public class Owner extends User
 {
     private Shelf shelf;
+    
+    private Cart cart;
     /**
      * Constructor for objects of class Owner
      */
     public Owner()
     {
         shelf = new Shelf();
+        cart = new Cart();
     }
 
     /**
@@ -164,7 +167,25 @@ public class Owner extends User
                 
     }
     
+    public void disposalProductFromShelf()
+    {
+        System.out.println("Enter the productID of the product you want to disposal: ");
+        String productID = shelf.getProductIdAleadyInShelf();
+        System.out.println("Are you sure you want to disposal this product?(y/n)");
+        Scanner input = new Scanner(System.in);
+        String answer = input.nextLine();
+        if (answer.startsWith("y"))
+        {
+            cart.deleteProductInCart(productID);
+        }
+        else
+        {
+            shelf.displayProductsInfo();
+        }
+            
+    }
     
+
     
     
         

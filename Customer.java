@@ -31,6 +31,7 @@ public class Customer extends User
         status = "active";
         cart = new Cart();
         shelf = new Shelf();
+        cart.clearCartInfo();
     }
 
     /**
@@ -44,6 +45,31 @@ public class Customer extends User
     {
         this.status = status;
     }
+    
+    public void editProduct()
+    {
+        System.out.println("Enter the productID of the product you want to edit");
+        String productID = getProductIdAleadyInCart();
+        //find productInfo
+        String productInfo = cart.findProductInfo(productID);
+        //find flagKG--used to validate quantity
+        String[] strs = productInfo.split(",");
+        int flagKG = Integer.parseInt(strs[5]);
+        String productName = strs[1];
+        //asking amount
+        System.out.println("enter the number you want to change to");
+        Scanner input = new Scanner(System.in);
+        String amount = input.nextLine().trim();
+        while (!isAmountValid(amount,flagKG,productID))
+        {
+            System.out.println("please re-enter the amount");
+            amount = input.next().trim();
+        }
+        double changeAmount = Double.parseDouble(amount);
+        System.out.println("The product is " + productName);
+        System.out.println("Edit completed! The quantity has changed to " + amount);
+        cart.editProductQuantity(productID,changeAmount);
+    }
 
     public void deleteProductFromCart()
     {
@@ -53,7 +79,10 @@ public class Customer extends User
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
         if (answer.startsWith("y"))
+        {    
             cart.deleteProductInCart(productID);
+            System.out.println("Product is deleted");
+        }
         else
             cart.displayCart();
     }
@@ -85,6 +114,7 @@ public class Customer extends User
         double priceWhole = shelf.findProductById(productID).getPriceWhole();
         double quantityWhole = shelf.findProductById(productID).getQuantityWhole();
         double quantityKG = shelf.findProductById(productID).getQuantityKG();
+        int discount = shelf.findProductById(productID).getDiscount();
         System.out.println("choose selling type(1/2)");
         System.out.println("1.purchase by each");
         System.out.println("2.purchase by KG");
@@ -115,26 +145,24 @@ public class Customer extends User
             }
             // add product to cartInfo in cart
             double onePrice = 0; // the price of one type of product
-            double totalPrice = 0; //total price of all products in cart
             String productInfo = "";//including productID + productName + priceKG/priceWhole + amount 
                                     //  + Price(price of one kind of product) like: 5 apples, each one dollar, onePrice = 5 dollors
                                     // + flagKG (if flagKG=1 then selling by KG, otherwise selling by each)
                                     //seperate by ","
             if (flagKG == 0)
             {    
-                onePrice = priceWhole * Double.parseDouble(amount);
-                productInfo = productID + "," + productName + "," + priceWhole +"/each" + "," + amount + "," + onePrice + flagKG;
+                onePrice = priceWhole * Double.parseDouble(amount) * (100 - discount)/100;
+                productInfo = productID + "," + productName + "," + priceWhole + "/each" + "," + amount + "," + onePrice + "," + flagKG + "," + discount;
                 cart.addProductInCart(productInfo);
-                totalPrice = totalPrice + onePrice;
+                cart.addTotalPrice(onePrice);
             }
             else
             {   
-                onePrice = priceKG * Double.parseDouble(amount);
-                productInfo = productID + "," + productName + "," + priceKG +"/KG" + "," + amount + "," + onePrice + flagKG;
+                onePrice = priceKG * Double.parseDouble(amount) * (100 - discount)/100;
+                productInfo = productID + "," + productName + "," + priceKG + "/KG" + "," + amount + "," + onePrice + "," + flagKG + "," + discount;
                 cart.addProductInCart(productInfo);
-                totalPrice = totalPrice + onePrice;
+                cart.addTotalPrice(onePrice);
             }
-            cart.setTotalPrice(totalPrice);
             System.out.println("You have added it in the cart~");
         }
         else
@@ -144,6 +172,11 @@ public class Customer extends User
     public boolean isAmountValid(String amount,int flagKG,String productID) //private
     {
         double inventory = 0;
+        if (Double.parseDouble(amount) == 0)
+        {
+            System.out.println("Amount should be larger than 0");
+            return false;
+        }
         if (flagKG == 0)
         {
             if (!Validator.isInt(amount))
@@ -152,7 +185,10 @@ public class Customer extends User
             {
                 inventory = shelf.findProductById(productID).getQuantityWhole();
                 if (Double.parseDouble(amount) > inventory)
+                {    
+                    System.out.println("Amount should be less than " + inventory);
                     return false;
+                }
             }
         }
         else
@@ -163,7 +199,10 @@ public class Customer extends User
             {
                 inventory = shelf.findProductById(productID).getQuantityKG();
                 if (Double.parseDouble(amount) > inventory)
-                return false;
+                {    
+                    System.out.println("Amount should be less than " + inventory);
+                    return false;
+                }
             }
         }
         return true;
@@ -171,15 +210,20 @@ public class Customer extends User
 
     public void displayCart()
     {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-10s%-14s%-10s%n","ProductId","Name","Amount","UnitPrice","Price");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        cart.displayCart();
+        if (cart.getCartInfo().size() != 0)
+        {
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.format("%-13s%-16s%-10s%-16s%-13s%-10s%n","ProductId","Name","Amount","UnitPrice(AUD)","Price(AUD)","Discount(%off)");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            cart.displayCart();
+        }
+        else
+            System.out.println("You have nothing in your cart, start to add products~");
     }
 
     public void checkOut()
     {
-        if (cart.getCartInfo()!= null )
+        if (cart.getCartInfo().size() != 0)
         {
             displayCart();
             System.out.println("Are you sure you want to checkout? (y/n)");

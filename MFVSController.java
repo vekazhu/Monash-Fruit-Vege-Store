@@ -12,9 +12,8 @@ public class MFVSController
     private ArrayList<Transaction> listOfTransactions;
     private Customer customer;
     private UserMenu menu;
-    private Shelf shelf;
-    private Cart cart;
     private User user;
+    private Shelf shelf;
 
     /**
      * Constructor for objects of class MFVSController
@@ -24,10 +23,9 @@ public class MFVSController
         listOfUsers = FileManager.readUserInfo("users.txt");
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         menu = new UserMenu();
-        shelf = new Shelf();
-        cart = new Cart();
-        user = new User();
         customer = new Customer();
+        user = new User();
+        shelf = new Shelf();
     }
 
     public void start()
