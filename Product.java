@@ -175,7 +175,7 @@ public class Product
         return productID;
     }
     
-<<<<<<< HEAD
+
     public void disposalProduct(ArrayList<Product> listOfProducts)
     {
         System.out.println("Please enter the ID of the product: ");
@@ -195,7 +195,8 @@ public class Product
         }
         
         System.out.println("The Product is not found.");
-=======
+    }
+    
     public void createProduct()
     {
         Product newProduct = new Product();
@@ -216,7 +217,7 @@ public class Product
         String discount = scanner.next();
         //validation of discount.isInt;
         int productDiscount = Integer.parseInt(discount);
->>>>>>> 0e3d1e56879046783af3adb74f5cb20cc8ac1b6f
+
     }
     
     public void updateProduct(ArrayList<Product> listOfProducts)
