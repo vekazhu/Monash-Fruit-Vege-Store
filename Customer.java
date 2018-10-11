@@ -12,6 +12,7 @@ public class Customer extends User
     private String status;
     private Cart cart;
     private Shelf shelf;
+    private ArrayList<String> customerTransactions = new ArrayList<String>();
 
     /**
      * Constructor for objects of class Customer
@@ -20,6 +21,7 @@ public class Customer extends User
     String userPassword,String securityAnswer)
     {
         super(userId,userName,userEmail,userPhoneNumber,userPassword,securityAnswer);
+        
         status = "active";
         cart = new Cart();
         shelf = new Shelf();
@@ -28,6 +30,7 @@ public class Customer extends User
     public Customer()
     {
         super();
+        
         status = "active";
         cart = new Cart();
         shelf = new Shelf();
@@ -84,13 +87,21 @@ public class Customer extends User
         System.out.println("Are you sure you want to delete this ?(y/n)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
-        if (answer.startsWith("y"))
+        while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
+        {
+            System.out.println("enter your choice again");
+            answer = input.nextLine();
+        }
+        if (answer.toLowerCase().equals("y"))
         {    
             cart.deleteProductInCart(productID);
             System.out.println("Product is deleted");
         }
         else
+        {    
+            System.out.println("It seems you don't want to checkout, check your cart again");
             cart.displayCart();
+        }
     }
     
     public String getProductIdAleadyInCart()
@@ -146,7 +157,7 @@ public class Customer extends User
             String amount = input.nextLine();
             while (!isAmountValid(amount,flagKG,productID))
             {
-                System.out.println("please re-enter the amount");
+                System.out.println("please re-enter the Quantity");
                 amount = input.next().trim();
             }
             // add product to cartInfo in cart
@@ -178,9 +189,14 @@ public class Customer extends User
     public boolean isAmountValid(String amount,int flagKG,String productID) //private
     {
         double inventory = 0;
+        if (!Validator.isDouble(amount))
+        {
+            System.out.println("Quantity should be numbers");
+            return false;
+        }
         if (Double.parseDouble(amount) == 0)
         {
-            System.out.println("Amount should be larger than 0");
+            System.out.println("Quantity should be larger than 0");
             return false;
         }
         if (flagKG == 0)
@@ -192,7 +208,7 @@ public class Customer extends User
                 inventory = shelf.findProductById(productID).getQuantityWhole();
                 if (Double.parseDouble(amount) > inventory)
                 {    
-                    System.out.println("Amount should be less than " + inventory);
+                    System.out.println("Quantity should be less than " + inventory);
                     return false;
                 }
             }
@@ -206,7 +222,7 @@ public class Customer extends User
                 inventory = shelf.findProductById(productID).getQuantityKG();
                 if (Double.parseDouble(amount) > inventory)
                 {    
-                    System.out.println("Amount should be less than " + inventory);
+                    System.out.println("Quantity should be less than " + inventory);
                     return false;
                 }
             }
@@ -219,7 +235,7 @@ public class Customer extends User
         if (cart.getCartInfo().size() != 0)
         {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.format("%-13s%-16s%-10s%-16s%-13s%-10s%n","ProductId","Name","Amount","UnitPrice(AUD)","Price(AUD)","Discount(%off)");
+            System.out.format("%-13s%-16s%-10s%-16s%-13s%-10s%n","ProductId","Name","Quantity","UnitPrice(AUD)","Price(AUD)","Discount(%off)");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             cart.displayCart();
         }
@@ -227,7 +243,7 @@ public class Customer extends User
             System.out.println("You have nothing in your cart, start to add products~");
     }
 
-    public void checkOut()
+    public void checkOut(String userId)
     {
         if (cart.getCartInfo().size() != 0)
         {
@@ -245,8 +261,10 @@ public class Customer extends User
                 shelf.updateInventory(); // write updated products info in "products.txt"
                 System.out.println("Thank you for shopping at MFVS~");
                 double rating = rate();
-                String transaction = super.getUserId() + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
-                FileManager.writeFile(transaction,"transactions.txt");
+                
+                String transaction = userId + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
+                customerTransactions.add(transaction);
+                FileManager.writeFile(customerTransactions,"transactions.txt");
                 cart.clearCartInfo();
             }
             else

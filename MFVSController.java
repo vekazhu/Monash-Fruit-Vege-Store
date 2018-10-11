@@ -157,6 +157,7 @@ public class MFVSController
             break;
             
             case "c":
+            displayAllProducts();
             customer.addProductToCart();
             break;
             
@@ -179,7 +180,7 @@ public class MFVSController
             break;
             
             case "h":
-            customer.checkOut();
+            customer.checkOut(user.getUserId());
             break;
             
             case "i":
@@ -506,13 +507,13 @@ public class MFVSController
     
     public void updateUserList()
     {
-        String content = "";
+        ArrayList<String> content = new ArrayList<String>();
         for (User user: listOfUsers)
         {
             if (content.equals(""))
-                content = user.getUserInfo();
+                content.add(user.getUserInfo());
             else
-                content = content + "\n" + user.getUserInfo();
+                content.add(content + "\n" + user.getUserInfo());
         }
         FileManager.writeFile(content,"users.txt");
     }
@@ -536,6 +537,7 @@ public class MFVSController
     }
     
     public void getCustomerTransaction(String userId){
+        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         ArrayList<Transaction> customerTransactionList = new ArrayList<Transaction>() ;
         if (listOfTransactions.size() !=0)
         {

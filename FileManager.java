@@ -70,13 +70,18 @@ public class FileManager
      *
      * @param a String: contents
      */
-    public static void writeFile(String content,String fileName)
+    public static void writeFile(ArrayList<String> content,String fileName)
     {
         String file = fileName;
         try
         {
-            PrintWriter outputFile = new PrintWriter(fileName);
-            outputFile.println(content);
+            BufferedWriter outputFile;
+            outputFile = new BufferedWriter(new FileWriter(fileName, true));
+            //outputFile.println(content);
+            for(String str: content){
+                outputFile.write(str);
+                outputFile.newLine();
+            }
             outputFile.close();
         }
         catch(IOException e)

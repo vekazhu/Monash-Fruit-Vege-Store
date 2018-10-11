@@ -95,13 +95,13 @@ public class Shelf
     
     public void updateInventory()
     {
-        String content = "";
+        ArrayList<String> content = new ArrayList<String>();
         for (Product product: listOfProducts)
         {
-            if (content.equals(""))
-                content = product.getProductInfo();
-            else
-                content = content + "\n" + product.getProductInfo();
+            //if (content.equals(""))
+                content.add(product.getProductInfo());
+            //else
+                //content.add(content + "\n" + product.getProductInfo());
         }
         FileManager.writeFile(content,"products.txt");
     }

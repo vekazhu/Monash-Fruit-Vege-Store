@@ -12,7 +12,7 @@ public class User
     private String userId;// generate automatically
     private String userName; // first three letters of first name + last three number of userID, eg:abc001
     private String userEmail; //include @
-    private String userPhoneNumber; // 8 digit
+    private String userPhoneNumber; // 10 digit
     private String userPassword; //one upper, one lower, maybe number, length >=4
     private String securityAnswer;
     private static int userNumber = 6;//including 5 customers and one owner
@@ -120,6 +120,7 @@ public class User
         int userExists = 0;
         User user = new User();
         usersList = FileManager.readUserInfo("users.txt");
+        System.out.println(usersList.size());
         System.out.println("Enter your UserId");
         String inpUser = keyboard.nextLine();
         System.out.println("Enter your Password");
@@ -130,6 +131,7 @@ public class User
         {
             user = usersList.get(i);
             String userId = usersList.get(i).getUserId();
+            System.out.println(userId);
             String password = usersList.get(i).getUserPassword();
             if (inpUser.equals(userId) ) {
                 userExists = 1;
@@ -153,6 +155,8 @@ public class User
 
             if (flag == 1){
                 System.out.println("Hi! ,you are successfully logged in. ");
+                this.setUserId(user.getUserId());
+                System.out.println(" User id is "+getUserId());
                 return user.getUserId();
             }
             else {
