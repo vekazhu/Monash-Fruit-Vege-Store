@@ -146,43 +146,45 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
-            System.out.print('\u000C');
             System.out.println("-------------------------------------------------------------------");
             displayAllProducts();
             System.out.println("-------------------------------------------------------------------");
             break;
 
             case "b":
-            System.out.print('\u000C');
             searchForProduct();
             break;
             
             case "c":
-            System.out.print('\u000C');
             customer.addProductToCart();
             break;
             
             case "d":
-            System.out.print('\u000C');
             customer.displayCart();
             break;
             
             case "e":
-            System.out.print('\u000C');
             getCustomerTransaction(user.getUserId());
             menu.displayCustomerMenu();
             break;
             
             case "f":
-            System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
             
             case "g":
-            System.out.print('\u000C');
             unregister();
             System.out.println("You are no longer with MFVS, wish you will come back :)");
+            break;
+            
+            case "h":
+            customer.checkOut();
+            menu.displayCustomerMenu();
+            break;
+            
+            case "i":
+            customer.editProduct();
             break;
             
             case "x":

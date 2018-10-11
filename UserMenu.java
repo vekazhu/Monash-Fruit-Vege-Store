@@ -44,6 +44,8 @@ public class UserMenu
         System.out.println("E. View My Transactions");
         System.out.println("F. Log Out");
         System.out.println("G. Unregister");
+        System.out.println("H.Checkout");
+        System.out.println("I.Edit Cart");
         System.out.println("X.Exit");
         System.out.println("Enter your choice(A/a)");
     }
