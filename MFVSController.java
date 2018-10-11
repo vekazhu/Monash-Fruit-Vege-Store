@@ -55,7 +55,7 @@ public class MFVSController
     
     public void unregister()
     {
-        System.out.println("");
+        System.out.println("Are you sure you want to unregister");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
         if(answer.startsWith("y"))
@@ -99,7 +99,7 @@ public class MFVSController
         
                         customerOption = input.next();
                         
-                        System.out.println("--------------------------------------------------\n\n");
+                        System.out.println("--------------------------------------------------");
                         getCustomerChoice(customerOption);
                     }
                     while (!customerOption.toLowerCase().equals("f"));
@@ -114,7 +114,7 @@ public class MFVSController
                         //System.out.println('\u000C');
                         menu.displayOwnerMenu();
                         ownerOption = input.nextLine();
-                        System.out.println("--------------------------------------------------\n\n");
+                        System.out.println("--------------------------------------------------");
                         getOwnerChoice(ownerOption);
                     }
                     while (!ownerOption.toLowerCase().equals("x") | !ownerOption.toLowerCase().equals("f"));
@@ -143,7 +143,7 @@ public class MFVSController
      */
     public void getCustomerChoice(String option)
     {
-        System.out.println("Inside get customer choice "+option);
+        
         switch (option.toLowerCase())
         {
             case "a":
@@ -166,7 +166,6 @@ public class MFVSController
             
             case "e":
             getCustomerTransaction(user.getUserId());
-            menu.displayCustomerMenu();
             break;
             
             case "f":
@@ -181,7 +180,6 @@ public class MFVSController
             
             case "h":
             customer.checkOut();
-            menu.displayCustomerMenu();
             break;
             
             case "i":
@@ -193,37 +191,6 @@ public class MFVSController
             System.exit(0);
             System.out.println("You have exited the system, see you.");
             break;
-
-            default:
-            System.out.print('\u000C');
-            System.out.println("The entered vaule is unrecognized!");break;
-        }
-    }
-    
-    public void getCartChoice(String option)
-    {
-        switch (option.toLowerCase())
-        {
-            case "a":
-            System.out.println("-------------------------------------------------------------------");
-            customer.checkOut();
-            System.out.println("-------------------------------------------------------------------");
-            menu.displayCustomerMenu();
-            break;
-
-            case "b":
-            customer.editProduct();
-            break;
-            
-            case "c":
-            menu.displayCustomerMenu();
-            break;
-            
-            case "x":
-            System.exit(0);
-            System.out.println("You have exited the system, see you.");
-            break;
-            
 
             default:
             System.out.print('\u000C');
@@ -317,7 +284,7 @@ public class MFVSController
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // , String date,double totalPrice
-        System.out.println("Customer ID: "+listOfTransactions.get(0).getCustomerID()+"\n\n");
+        System.out.println("Customer ID: "+listOfTransactions.get(0).getCustomerID());
         System.out.format("%-20s%-20s%-15s%n","Transaction Date","Total Amount","Your Rating");
         for (Transaction transaction : listOfTransactions)
         {
@@ -575,7 +542,7 @@ public class MFVSController
             for (Transaction transaction : listOfTransactions) {
                 if (userId.equalsIgnoreCase(transaction.getCustomerID()))
                 {
-                customerTransactionList.add(transaction);
+                    customerTransactionList.add(transaction);
                 }     
             }
         }
