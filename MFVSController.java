@@ -229,7 +229,6 @@ public class MFVSController
     }
     
     
-    
     public void getOwnerChoice(String option)
     {
         switch (option.toLowerCase())
