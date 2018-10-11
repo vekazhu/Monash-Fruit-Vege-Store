@@ -42,6 +42,33 @@ public class MFVSController
         }
         while (!option.toLowerCase().equals("x"));
     }
+    
+    public void deleteUserInFiles(String userId)
+    {
+        for (int i = 0; i < listOfCustomers.size(); i++)
+        {
+            if (userId.equals(listOfCustomers.get(i).getUserId())) 
+                listOfCustomers.remove(i);
+        }
+        //update users.txt file
+        updateUserList();
+    }
+    
+    public void unregister()
+    {
+        System.out.println("");
+        Scanner input = new Scanner(System.in);
+        String answer = input.nextLine();
+        if(answer.startsWith("y"))
+        {
+            deleteUserInFiles(customer.getUserId());
+        }
+        else
+        {
+            shelf.displayProductsInfo();
+        }
+    }
+    
 
     public void getChoice(String option)
     {
@@ -154,7 +181,7 @@ public class MFVSController
             
             case "g":
             System.out.print('\u000C');
-            customer.unregister();
+            unregister();
             System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
             
