@@ -158,7 +158,7 @@ public class Shelf
     {
         for ( Product product: listOfProduct)
         {
-            System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
         }
         

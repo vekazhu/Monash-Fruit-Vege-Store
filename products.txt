@@ -1,6 +1,6 @@
-f001,apple,fruit,5days,0.5,4.0,69.25,277.0,0
-f002,banana,fruit,6days,1.0,5.0,62.75,151.0,0
-f003,kiwifruit,fruit,4days,0.6,6.0,75.5,202.0,0
-v004,broccoli,Vegetable,7days,2.0,4.0,50.0,100.0,0
-v005,Cos Lettuce,Vegetable,7days,2.5,5.0,10.0,50.0,0
-f011,pineapple,fruit,2,6.5,5.0,20.0,15.0,10
+f001,apple,fruit,5,0.5,4.0,69.25,277.0,0
+f002,banana,fruit,6,1.0,5.0,61.75,147.0,0
+f003,kiwifruit,fruit,4,0.6,6.0,75.5,202.0,0
+v004,broccoli,Vegetable,7,2.0,4.0,50.0,100.0,0
+v005,Cos Lettuce,Vegetable,7,2.5,5.0,10.0,50.0,0
+f011,pineapple,fruit,2,6.5,5.0,19.75,14.0,10

@@ -73,13 +73,22 @@ public class Customer extends User
             String amount = input.nextLine().trim();
             while (!isAmountValid(amount,flagKG,productID))
             {
+                
                 System.out.println("please re-enter the amount");
                 amount = input.next().trim();
             }
-            double changeAmount = Double.parseDouble(amount);
-            System.out.println("The product is " + productName);
-            System.out.println("Edit completed! The quantity has changed to " + amount);
-            cart.editProductQuantity(productID,changeAmount);
+            int deleted = 0;
+            if (Double.parseDouble(amount) == 0)
+            {        
+                deleteProductFromCart(productID);
+            }
+            if (deleted == 1 || Double.parseDouble(amount) != 0)
+            {   
+                double changeAmount = Double.parseDouble(amount);
+                System.out.println("The product is " + productName);
+                System.out.println("Edit completed! The quantity has changed to " + amount);
+                cart.editProductQuantity(productID,changeAmount);
+            }   
        }
        else
        {
@@ -87,35 +96,29 @@ public class Customer extends User
        }
     }
 
-    public void deleteProductFromCart()
+    public int deleteProductFromCart(String productID)
     {
-        if (cart.getCartInfo().size() != 0)
+        int deleted = 0; // if a product is deleted then is 1, not deleted is 0
+        System.out.println("Are you sure you want to delete this ?(y/n)");
+        Scanner input = new Scanner(System.in);
+        String answer = input.nextLine();
+        while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
         {
-            System.out.println("Enter the productID of the product you want to delete");
-            String productID = getProductIdAleadyInCart();
-            System.out.println("Are you sure you want to delete this ?(y/n)");
-            Scanner input = new Scanner(System.in);
-            String answer = input.nextLine();
-            while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
-            {
-                System.out.println("enter your choice again");
-                answer = input.nextLine();
-            }
-            if (answer.toLowerCase().equals("y"))
-            {    
-                cart.deleteProductInCart(productID);
-                System.out.println("Product is deleted");
-            }
-            else
-            {    
-                System.out.println("It seems you don't want to checkout, check your cart again");
-                cart.displayCart();
-            }
+            System.out.println("please enter y or n only");
+            answer = input.nextLine();
+        }
+        if (answer.toLowerCase().equals("y"))
+        {    
+            cart.deleteProductInCart(productID);
+            System.out.println("Product is deleted");
+            deleted = 1;
         }
         else
-        {
-            System.out.println("You have nothing in your cart, start to add products~");
+        {    
+            System.out.println("It seems you don't want to delete, check your cart again");
+            displayCart();
         }
+        return deleted;
     }
     
     public String getProductIdAleadyInCart()
@@ -169,8 +172,11 @@ public class Customer extends User
         {    
             System.out.println("How many do you want to purchase?");
             String amount = input.nextLine();
+            
             while (!isAmountValid(amount,flagKG,productID))
             {
+                if (Double.parseDouble(amount) == 0)
+                    System.out.println("Quantity should be larger than 0");
                 System.out.println("please re-enter the Quantity");
                 amount = input.next().trim();
             }
@@ -208,11 +214,7 @@ public class Customer extends User
             System.out.println("Quantity should be numbers");
             return false;
         }
-        if (Double.parseDouble(amount) == 0)
-        {
-            System.out.println("Quantity should be larger than 0");
-            return false;
-        }
+        
         if (flagKG == 0)
         {
             if (!Validator.isInt(amount))
@@ -248,10 +250,10 @@ public class Customer extends User
     {
         if (cart.getCartInfo().size() != 0)
         {
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your cart~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.format("%-13s%-16s%-10s%-16s%-13s%-10s%n","ProductId","Name","Quantity","UnitPrice(AUD)","Price(AUD)","Discount(%off)");
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             cart.displayCart();
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         else
             System.out.println("You have nothing in your cart, start to add products~");

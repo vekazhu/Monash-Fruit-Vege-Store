@@ -176,6 +176,7 @@ public class MFVSController
             
             case "g":
             //unregister();
+            logout();
             System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
             
@@ -187,6 +188,7 @@ public class MFVSController
             customer.displayCart();
             customer.editProduct();
             break;
+            
             
             case "x":
             System.out.print('\u000C');
@@ -234,6 +236,11 @@ public class MFVSController
             
             case "f":
             System.out.print('\u000C');
+            //displayAllUsers();
+            break;
+            
+            case "g":
+            System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
@@ -251,35 +258,32 @@ public class MFVSController
 
     public void displayAllProducts()
     {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-        System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
     public void displayProducts(ArrayList<Product> productList)
     {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-        System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife","SellingType","Price","Discount");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
         //shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(productList);
     }
-    
 
     public void displayAllTransactions()
     {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // String customerID, String customerStatus, String date,double totalPrice
-        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","CustomerID","Customer Status","Transaction Date","Total Amount","Rating");
+        System.out.format("%-15s%-20s%-20s%-20s%-10s%n","CustomerID","Customer Status","Transaction Date","Total Amount","Rating");
         for (Transaction transaction : listOfTransactions)
         {
-            System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
+            System.out.format("%-15s%-20s%-20s%-20.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
                 transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
         }
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
     public void displayCustomerTransactions(ArrayList<Transaction> listOfTransactions)
