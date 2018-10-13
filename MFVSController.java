@@ -44,7 +44,7 @@ public class MFVSController
         while (!option.toLowerCase().equals("x"));
     }
     
-    public void deleteUserInFiles(String userId)
+    public void deleteUserInFiles(ArrayList<User> usersList, String userId)
     {
         for (int i = 0; i < listOfUsers.size(); i++)
         {
@@ -62,7 +62,7 @@ public class MFVSController
         String answer = input.nextLine();
         if(answer.startsWith("y"))
         {
-            deleteUserInFiles(customer.getUserId());
+            deleteUserInFiles(listOfUsers,customer.getUserId());
         }
         else
         {

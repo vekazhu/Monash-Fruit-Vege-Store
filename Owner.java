@@ -98,8 +98,7 @@ public class Owner extends User
         sc.close();
         return newProductDiscount;
     }
-   
-    
+       
     public String productCategoryScanner()
     {
         System.out.println("Please select the product category from the menu:");
@@ -172,9 +171,8 @@ public class Owner extends User
         shelf.updateInventory(); 
         shelf.displayProductsInfo();       
     }
-    
-    
-    public void disposalProductFromShelf()
+       
+    public void disposeProductFromShelf()
     {
         System.out.println("Enter the productID of the product you want to disposal: ");
         String productID = shelf.getProductIdAleadyInShelf();
@@ -188,8 +186,7 @@ public class Owner extends User
         else
         {
             shelf.displayProductsInfo();
-        }
-            
+        }        
     }
     
     public void updateProduct()
@@ -275,6 +272,7 @@ public class Owner extends User
                 flag = 0;
                 System.out.println(shelf.getListOfProducts().get(i).getProductID()+"this product NOT found");
             }
+
         }
         if (flag == 0) {
             System.out.println("There is no product with Id "+ id);
@@ -288,7 +286,11 @@ public class Owner extends User
             shelf.displayProductsInfo(updatedProduct);
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
+
     }
+        
+
+}
     
    
-}
+
