@@ -1,6 +1,9 @@
-f001,apple,fruit,5,0.5,4.0,69.25,277.0,0
-f002,banana,fruit,6,1.0,5.0,61.75,147.0,0
+f001,APPLE,fruit,1,1.0,6.0,10.0,50.0,7
+f002,Oranges,fruit,2,1.0,5.0,61.75,147.0,0
 f003,kiwifruit,fruit,4,0.6,6.0,75.5,202.0,0
 v004,broccoli,Vegetable,7,2.0,4.0,50.0,100.0,0
 v005,Cos Lettuce,Vegetable,7,2.5,5.0,10.0,50.0,0
 f011,pineapple,fruit,2,6.5,5.0,19.75,14.0,10
+v024,Spinach,vegetable,3,1.5,5.0,50.0,80.0,0
+v027,peas,vegetable,4,2.0,5.0,50.0,80.0,0
+v039,capsicum,vegetable,5,1.5,6.0,70.0,50.0,0

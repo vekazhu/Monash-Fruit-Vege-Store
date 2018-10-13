@@ -23,10 +23,10 @@ public class UserMenu
     {
         System.out.println("Welcome to The MFVS :)");
         System.out.println("~~~~~~~~~~Main Menu~~~~~~~~~~");
-        System.out.println("A.View All products");
-        System.out.println("B.Login");
-        System.out.println("C.Register");
-        System.out.println("X.Exit");
+        System.out.println("A. View All products");
+        System.out.println("B. Login");
+        System.out.println("C. Register");
+        System.out.println("X. Exit");
         System.out.println("Enter your choice(A/a)");
     }
     
@@ -41,12 +41,12 @@ public class UserMenu
         System.out.println("B. Search Product");
         System.out.println("C. Add Product to Cart"); 
         System.out.println("D. View Cart");
-        System.out.println("E. View My Transactions");
-        System.out.println("F. Log Out");
-        System.out.println("G. Unregister");
-        System.out.println("H.Checkout");
-        System.out.println("I.Edit Cart");
-        System.out.println("X.Exit");
+        System.out.println("E. Edit Cart");
+        System.out.println("F. Checkout");
+        System.out.println("G. View My Transactions");
+        System.out.println("H. Log Out");
+        System.out.println("I. Unregister");
+        System.out.println("X. Exit");
         System.out.println("Enter your choice(A/a)");
     }
     
@@ -56,7 +56,7 @@ public class UserMenu
         System.out.println("A.View All Products"); 
         System.out.println("B. Search Product"); 
         System.out.println("C. Create Products"); 
-        System.out.println("D.Edit Products");
+        System.out.println("D. Edit Products");
         System.out.println("E. View All Transactions");
         System.out.println("F. View All Customers");
         System.out.println("G. Log Out");

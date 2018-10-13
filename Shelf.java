@@ -35,6 +35,7 @@ public class Shelf
      */
     public ArrayList<Product> getListOfProducts()
     {
+        listOfProducts = FileManager.readProductsInfo("products.txt");
         return listOfProducts;
     }
 

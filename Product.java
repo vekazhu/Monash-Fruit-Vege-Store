@@ -71,7 +71,7 @@ public class Product
 
     public String getProductName() 
     {
-        return productName;
+        return this.productName;
     }
 
     public String getShelfLife() 

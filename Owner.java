@@ -129,6 +129,7 @@ public class Owner extends User
  
     public void createProduct()
     {
+        System.out.println("Product create ");
         String newProductName = productNameScanner(); 
         System.out.println("________________________________________________________________________________________________");
         
@@ -193,78 +194,101 @@ public class Owner extends User
     
     public void updateProduct()
     {
+        int flag = 0;
         System.out.println("Please enter the ID of the product you want to update: ");
         Scanner scan = new Scanner (System.in);
         String id = scan.nextLine();
+        ArrayList<Product> updatedProduct = new ArrayList<Product>();
+        int tryAgainFlag = 0;
         for(int i = 0; i < shelf.getListOfProducts().size(); i++)
         {
-            
-            if(shelf.getListOfProducts().get(i).getProductID() == id)
+            if(shelf.getListOfProducts().get(i).getProductID().equals(id))
             {
-                System.out.println("What attribute you want to change about this product: ");
-                System.out.println("1. Name");
-                System.out.println("2. Shelf life");
-                System.out.println("3. Price per KG");
-                System.out.println("4. Price per whole");
-                System.out.println("5. Discount");
-                System.out.println("6. Quantity per KG");
-                System.out.println("7. Quantity per whole");
-                String option = scan.nextLine();
-                switch (option)
-                {
-                    case "1":
-                    System.out.println("Please enter a new name for this product: ");
-                    shelf.getListOfProducts().get(i).setProductName(scan.next());
-                    break;
-                    
-                    case "2":
-                    System.out.println("Please enter a new shelf life for this product: ");
-                    shelf.getListOfProducts().get(i).setShelfLife(scan.next());
-                    break;
-                    
-                    case "3":
-                    System.out.println("Please enter a new price per kg for this product: ");
-                    shelf.getListOfProducts().get(i).setPriceKG(scan.nextDouble());
-                    break;
-                    
-                    case "4":
-                    System.out.println("Please enter a new price per whole for this product: ");
-                    shelf.getListOfProducts().get(i).setPriceWhole(scan.nextDouble());
-                    break;
-                    
-                    case "5":
-                    System.out.println("Please enter a new discount for this product: ");
-                    shelf.getListOfProducts().get(i).setDiscount(scan.nextInt());
-                    break;
-                    
-                    case "6":
-                    System.out.println("Please enter a new quantity of the product measured with KG: ");
-                    shelf.getListOfProducts().get(i).setQuantityKG(scan.nextDouble());
-                    break;
-                    
-                    case "7":
-                    System.out.println("Please enter a new quantity of the product measured with a whole: ");
-                    shelf.getListOfProducts().get(i).setQuantityWhole(scan.nextDouble());
-                    break;
-                    
-                }
+                flag = 1;
+                Product product = shelf.getListOfProducts().get(i);
+                while(tryAgainFlag == 0) 
+                {  
+                    System.out.println("What attribute you want to change about this product: ");
+                    System.out.println("1. Name");
+                    System.out.println("2. Shelf life");
+                    System.out.println("3. Price per KG");
+                    System.out.println("4. Price per whole");
+                    System.out.println("5. Discount");
+                    System.out.println("6. Quantity per KG");
+                    System.out.println("7. Quantity per whole");
+                    String option = scan.nextLine();
+                    switch (option)
+                    {
+                        case "1":
+                        System.out.println("Please enter a new name for this product: ");
+                        String name = scan.nextLine();
+                        product.setProductName(name);
+                        break;
+                        
+                        case "2":
+                        System.out.println("Please enter a new shelf life for this product: ");
+                        product.setShelfLife(scan.nextLine());
+                        break;
+                        
+                        case "3":
+                        System.out.println("Please enter a new price per kg for this product: ");
+                        product.setPriceKG(Double.parseDouble(scan.nextLine()));
+                        break;
+                        
+                        case "4":
+                        System.out.println("Please enter a new price per whole for this product: ");
+                        product.setPriceWhole(Double.parseDouble(scan.nextLine()));
+                        break;
+                        
+                        case "5":
+                        System.out.println("Please enter a new discount for this product: ");
+                        product.setDiscount(Integer.parseInt(scan.nextLine()));
+                        break;
+                        
+                        case "6":
+                        System.out.println("Please enter a new quantity of the product measured with KG: ");
+                        product.setQuantityKG(Double.parseDouble(scan.nextLine()));
+                        break;
+                        
+                        case "7":
+                        System.out.println("Please enter a new quantity of the product measured with a whole: ");
+                        product.setQuantityWhole(Double.parseDouble(scan.nextLine()));
+                        break;
+                        
+                    }
+                    updatedProduct.add(product);
+                    System.out.println("Do you wish to update any other information about this product?(Y/N)");
+                    Scanner scanner = new Scanner (System.in);
+                    String tryAgain = scanner.nextLine();
+                    if (tryAgain.toLowerCase().equals("n"))
+                    {
+                        tryAgainFlag += 1;
+                        break;
+                    }
+                    else
+                        continue;
+                } 
+                break;
             }
             else
             {
-                System.out.println("The product is not found.");
+                flag = 0;
+                System.out.println(shelf.getListOfProducts().get(i).getProductID()+"this product NOT found");
             }
         }
-        
-        
+        if (flag == 0) {
+            System.out.println("There is no product with Id "+ id);
+        }
+        else {
+            System.out.println("Updated inventory");
+            shelf.updateInventory();
+            System.out.println("Product updated successfully");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Updated Product Info~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+            shelf.displayProductsInfo(updatedProduct);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }
     }
-    
-
-    
-    
-        
-    
-    
-    
     
    
 }

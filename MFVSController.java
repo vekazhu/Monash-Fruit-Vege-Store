@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * Write a description of class MFVSController here.
  *
@@ -25,6 +26,7 @@ public class MFVSController
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         menu = new UserMenu();
         customer = new Customer();
+        owner = new Owner();
         user = new User();
         shelf = new Shelf();
     }
@@ -99,15 +101,15 @@ public class MFVSController
         
                         customerOption = input.next();
                         
-                        System.out.println("--------------------------------------------------");
+                        System.out.println("----------------------------------------------------------------------------------");
                         getCustomerChoice(customerOption);
                     }
-                    while (!customerOption.toLowerCase().equals("f"));
+                    while (!customerOption.toLowerCase().equals("h"));
 
                 }
                 else {
                     String ownerOption = "";
-                    do
+                    while (!ownerOption.toLowerCase().equals("g"))
                     {
                         
                         Scanner input = new Scanner(System.in);
@@ -117,7 +119,6 @@ public class MFVSController
                         System.out.println("--------------------------------------------------");
                         getOwnerChoice(ownerOption);
                     }
-                    while (!ownerOption.toLowerCase().equals("x") | !ownerOption.toLowerCase().equals("f"));
                 }
 
             }
@@ -166,30 +167,29 @@ public class MFVSController
             break;
             
             case "e":
-            getCustomerTransaction(user.getUserId());
-            break;
-            
-            case "f":
-            logout();
-            System.out.println("Logout Successful!!\n Thank you :)\n");
-            break;
-            
-            case "g":
-            //unregister();
-            logout();
-            System.out.println("You are no longer with MFVS, wish you will come back :)");
-            break;
-            
-            case "h":
-            customer.checkOut(user.getUserId());
-            break;
-            
-            case "i":
             customer.displayCart();
             customer.editProduct();
             break;
             
+            case "f":
+            customer.checkOut(user.getUserId());
+            break;
             
+            case "g":
+            getCustomerTransaction(user.getUserId());
+            break;
+            
+            case "h":
+            logout();
+            System.out.println("Logout Successful!!\n Thank you :)\n");
+            break;
+            
+            case "i":
+            //unregister();
+            logout();
+            System.out.println("You are no longer with MFVS, wish you will come back :)");
+            break;
+
             case "x":
             System.out.print('\u000C');
             System.exit(0);
@@ -236,7 +236,7 @@ public class MFVSController
             
             case "f":
             System.out.print('\u000C');
-            //displayAllUsers();
+            displayAllUsers();
             break;
             
             case "g":
@@ -246,7 +246,9 @@ public class MFVSController
             break;
             
             case "x":
-            menu.displayMainMenu();
+            System.out.print('\u000C');
+            System.exit(0);
+            System.out.println("You have exited the system, see you.");
             break;
             
 
@@ -303,12 +305,13 @@ public class MFVSController
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Users~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // String customerID, String customerStatus, String date,double totalPrice
-        System.out.format("%-15s%-20s%-15s%-15s%-10s%n","UserID","Customer Status","Date","Total Price","Rating");
-        listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
-        for (Transaction transaction : listOfTransactions)
+        System.out.format("%-15s%-20s%-30s%-15s%n","CustomerID","Customer Name","Email","Phone Number");
+        listOfUsers = FileManager.readUserInfo("users.txt");
+        for (User customer : listOfUsers)
         {
-            System.out.format("%-15s%-20s%-15s%-15.2f%-10.1f%n",transaction.getCustomerID(),transaction.getCustomerStatus(),
-                transaction.getTransactionDate(),transaction.getTotalPrice(),transaction.getRating());
+            if(customer.getUserId().startsWith("c"))
+                System.out.format("%-15s%-20s%-30s%-15s%n",customer.getUserId(),customer.getUserName(),
+                    customer.getUserEmail(),customer.getUserPhoneNumber());
         }
     }
 
@@ -515,10 +518,13 @@ public class MFVSController
         ArrayList<String> content = new ArrayList<String>();
         for (User user: listOfUsers)
         {
-            if (content.equals(""))
-                content.add(user.getUserInfo());
-            else
-                content.add(content + "\n" + user.getUserInfo());
+            content.add(user.getUserInfo());
+        }
+        File f = new File("users.txt");
+        if (f.exists())
+        {
+          //delete if exists
+           f.delete();
         }
         FileManager.writeFile(content,"users.txt");
     }
