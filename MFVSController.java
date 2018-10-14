@@ -227,6 +227,7 @@ public class MFVSController
             
             case "d":
             System.out.print('\u000C');
+            displayAllProducts();
             owner.updateProduct();
             break;
             
