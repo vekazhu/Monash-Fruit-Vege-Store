@@ -506,11 +506,11 @@ public class MFVSController
         
         String userName = generateUserName(userFirstName, userId);
         user.setUserName(userName);
-        User customer = new Customer(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
+        User user = new User(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
         System.out.println("Registration has been completed! Please log in and continue shopping.");
         addUser(user);
         updateUserList();
-        user.login();
+        //user.login();
     }
     
     public void updateUserList()
