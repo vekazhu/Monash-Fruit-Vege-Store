@@ -81,7 +81,5 @@ public class Transaction
     public void setTotalPrice(double totalPrice)
     {
         this.totalPrice = totalPrice;
-    }
-    
-   
+    }       
 }

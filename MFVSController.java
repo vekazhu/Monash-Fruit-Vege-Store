@@ -547,7 +547,8 @@ public class MFVSController
         }
     }
     
-    public void getCustomerTransaction(String userId){
+    public void getCustomerTransaction(String userId)
+    {
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
         ArrayList<Transaction> customerTransactionList = new ArrayList<Transaction>() ;
         if (listOfTransactions.size() !=0)
@@ -564,9 +565,7 @@ public class MFVSController
         }
         else {
             displayCustomerTransactions(customerTransactionList);
-        }
-        
-        
+        }       
     }
     
     public void logout(){

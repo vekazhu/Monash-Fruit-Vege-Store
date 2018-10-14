@@ -67,7 +67,6 @@ public class Shelf
         return false;
     }
 
-    
     /**
      * Method editInventory is to reduce the inventory in the store
      * and return an arrayList with updated inventory
