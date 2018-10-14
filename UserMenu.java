@@ -57,9 +57,10 @@ public class UserMenu
         System.out.println("B. Search Product"); 
         System.out.println("C. Create Products"); 
         System.out.println("D. Edit Products");
-        System.out.println("E. View All Transactions");
-        System.out.println("F. View All Customers");
-        System.out.println("G. Log Out");
+        System.out.println("E. Delete Product");
+        System.out.println("F. View All Transactions");
+        System.out.println("G. View All Customers");
+        System.out.println("H. Log Out");
         System.out.println("X. Exit");
         System.out.println("Enter your choice(A/a)");
         

@@ -112,7 +112,7 @@ public class MFVSController
                 }
                 else {
                     String ownerOption = "";
-                    while (!ownerOption.toLowerCase().equals("g") & !ownerOption.toLowerCase().equals("x"))
+                    while (!ownerOption.toLowerCase().equals("h") & !ownerOption.toLowerCase().equals("x"))
                     {
                         
                         Scanner input = new Scanner(System.in);
@@ -220,7 +220,7 @@ public class MFVSController
         {
             case "a":
             System.out.print('\u000C');
-            displayAllProducts();
+            displayAllProductsForOwner();
             break;
 
             case "b":
@@ -231,26 +231,32 @@ public class MFVSController
             case "c":
             System.out.print('\u000C');
             owner.createProduct();
-            displayAllProducts();
+            displayAllProductsForOwner();
             break;
             
             case "d":
             System.out.print('\u000C');
-            displayAllProducts();
+            displayAllProductsForOwner();
             owner.updateProduct();
             break;
             
             case "e":
             System.out.print('\u000C');
-            displayAllTransactions();
+            displayAllProductsForOwner();
+            owner.disposeProductFromShelf();
             break;
             
             case "f":
             System.out.print('\u000C');
-            displayAllUsers();
+            displayAllTransactions();
             break;
             
             case "g":
+            System.out.print('\u000C');
+            displayAllUsers();
+            break;
+            
+            case "h":
             System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
@@ -276,6 +282,15 @@ public class MFVSController
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+    
+    public void displayAllProductsForOwner()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+        shelf.sortProductByAlphabet();
+        shelf.displayOwnerProductsInfo(shelf.getListOfProducts());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
     public void displayProducts(ArrayList<Product> productList)
