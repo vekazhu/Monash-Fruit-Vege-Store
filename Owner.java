@@ -128,7 +128,7 @@ public class Owner extends User
  
     public void createProduct()
     {
-        System.out.println("Product create ");
+        
         String newProductName = productNameScanner(); 
         System.out.println("________________________________________________________________________________________________");
         
@@ -261,15 +261,20 @@ public class Owner extends User
                         tryAgainFlag += 1;
                         break;
                     }
-                    else
+                    else if (tryAgain.toLowerCase().equals("y"))
                         continue;
+                    else 
+                    {
+                        System.out.println("Sorry!! You entered a wrong choice");
+                        break;
+                    }
                 } 
                 break;
             }
             else
             {
                 flag = 0;
-                System.out.println(shelf.getListOfProducts().get(i).getProductID()+"this product NOT found");
+                
             }
 
         }
