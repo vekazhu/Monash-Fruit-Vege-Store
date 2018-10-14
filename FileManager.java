@@ -166,7 +166,5 @@ public class FileManager
             System.out.println("Unexpected I/O exception occurs.");
         }
         return listOfUsers;
-    }
-
-    
+    }    
 }

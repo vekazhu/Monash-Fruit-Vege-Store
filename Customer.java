@@ -319,9 +319,5 @@ public class Customer extends User
         System.out.println("Thanks for you rating, we'll improve our services");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         return Double.parseDouble(rating);
-    }
-
-    
-    
-    
+    }    
 }

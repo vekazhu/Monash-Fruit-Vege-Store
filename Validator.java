@@ -127,8 +127,5 @@ public class Validator
         }
         catch(NumberFormatException ex){}
         return false;
-    }
-    
-    
-    
+    }    
 }
