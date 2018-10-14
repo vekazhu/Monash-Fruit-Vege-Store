@@ -25,7 +25,7 @@ public class Validator
     {
      if (enteredToken.length() < 3 || enteredToken.length() > 20)
      {
-         System.out.println("Your name should be 3-20 letters long.");
+         System.out.println("The name should be 3-20 letters long.");
          return false;
      }
      for (int i = 0; i < enteredToken.length(); i++)

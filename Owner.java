@@ -57,15 +57,15 @@ public class Owner extends User
     
     public String shelfLifeScanner()
     {
-        System.out.println("Please enter a number for the shelf life (in weeks) of the new product, only integers are allowed.");
+        System.out.println("Please enter a number for the shelf life (in days) of the new product, only integers are allowed.");
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         while (Validator.isInt(enteredToken) == false)
         {
-            System.out.println("Please enter integers only.");
+            System.out.println("Invalid input, please enter again.");
             enteredToken = sc.next().trim();
         }
-        System.out.println("Product life is " + enteredToken + " weeks.");
+        System.out.println("Product life is " + enteredToken + " days.");
         String newProductShelfLife = enteredToken;
         sc.close();
         return newProductShelfLife;
@@ -107,6 +107,11 @@ public class Owner extends User
         Scanner sc = new Scanner (System.in);
         String enteredToken = sc.next().trim();
         String productCategory = "";
+        while (!enteredToken.equals("1") && !enteredToken.equals("2"))
+        {
+            System.out.println("Invalid input, please re-enter");
+            enteredToken = sc.nextLine().trim();
+        }
         if (Integer.parseInt(enteredToken) == 1)
         {
             productCategory = "fruit"; 
@@ -116,11 +121,6 @@ public class Owner extends User
         {
             productCategory = "vegetable"; 
             System.out.println("This is categorised as " + productCategory + ".");
-        }
-        if (Integer.parseInt(enteredToken) != 2 && Integer.parseInt(enteredToken) != 1)
-        {
-            System.out.println("Invalid selection!");
-            productCategoryScanner();
         }
         sc.close();
         return productCategory;
@@ -168,8 +168,7 @@ public class Owner extends User
         System.out.println("The new product ID is " + product.getProductID() + ".");
         
         shelf.addProduct(product);
-        shelf.updateInventory(); 
-        shelf.displayProductsInfo();       
+        shelf.updateInventory();      
     }
        
     public void disposeProductFromShelf()
