@@ -65,4 +65,15 @@ public class UserMenu
         
     }
 
+    public void displaySearchMenu()
+    {
+        System.out.println("Choose the Search Type");
+        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("1. Search By Product Name");
+        System.out.println("2. Search By Product Category");
+        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Enter your choice(1/2)");
+     
+    }
+    
 }

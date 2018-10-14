@@ -186,7 +186,7 @@ public class Shelf
     }
     
     /**
-     * This method is to find the Product object that has the specific productID
+     * This method is to find the Product object of the specific productID
      */
     public Product findProductById(String productId)
     {
@@ -200,6 +200,23 @@ public class Shelf
             }
         }
         return product;
+    }
+    
+    /**
+     * This method is to find the Product object of the specific category
+     */
+    public ArrayList<Product> findProductByCategory(String productType)
+    {
+        ArrayList<Product> foundProductList = new ArrayList<Product>();
+        for ( Product pdct: listOfProducts)
+        {
+            if (productType.equalsIgnoreCase(pdct.getCategory()))
+            {
+                foundProductList.add(pdct);
+                
+            }
+        }
+        return foundProductList;
     }
     
     /**

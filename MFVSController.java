@@ -76,10 +76,7 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
-            System.out.println("-------------------------------------------------------------------");
             displayAllProducts();
-            System.out.println("-------------------------------------------------------------------");
-
             break;
 
             case "b":
@@ -104,19 +101,19 @@ public class MFVSController
                         System.out.println("----------------------------------------------------------------------------------");
                         getCustomerChoice(customerOption);
                     }
-                    while (!customerOption.toLowerCase().equals("h"));
+                    while (!customerOption.toLowerCase().equals("h") & !customerOption.toLowerCase().equals("i") & !customerOption.toLowerCase().equals("x"));
 
                 }
                 else {
                     String ownerOption = "";
-                    while (!ownerOption.toLowerCase().equals("g"))
+                    while (!ownerOption.toLowerCase().equals("g") & !ownerOption.toLowerCase().equals("x"))
                     {
                         
                         Scanner input = new Scanner(System.in);
                         //System.out.println('\u000C');
                         menu.displayOwnerMenu();
                         ownerOption = input.nextLine();
-                        System.out.println("--------------------------------------------------");
+                        System.out.println("-----------------------------------------------------------------------------");
                         getOwnerChoice(ownerOption);
                     }
                 }
@@ -148,9 +145,9 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
-            System.out.println("-------------------------------------------------------------------");
+            
             displayAllProducts();
-            System.out.println("-------------------------------------------------------------------");
+            
             break;
 
             case "b":
@@ -185,14 +182,14 @@ public class MFVSController
             break;
             
             case "i":
-            //unregister();
+            unregister();
             logout();
             System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
 
             case "x":
             System.out.print('\u000C');
-            System.exit(0);
+            //System.exit(0);
             System.out.println("You have exited the system, see you.");
             break;
 
@@ -247,7 +244,7 @@ public class MFVSController
             
             case "x":
             System.out.print('\u000C');
-            System.exit(0);
+            //System.exit(0);
             System.out.println("You have exited the system, see you.");
             break;
             
@@ -533,14 +530,36 @@ public class MFVSController
     public void searchForProduct()
     {
         Scanner input = new Scanner(System.in);
+        ArrayList<Product> foundProducts = new ArrayList<Product>();
         System.out.print('\u000C');
-        System.out.println("Enter the product name to SEARCH");
-        String searchName = input.nextLine();
-        ArrayList<Product> foundProducts = shelf.findProductByName(searchName);
-        System.out.println("Found"+ foundProducts.size() + " "+searchName);
+        menu.displaySearchMenu();
+        int searchType = Integer.parseInt(input.nextLine());
+        
+        switch (searchType)
+        {
+            case 1:
+            System.out.println("Enter the product name to SEARCH");
+            String searchName = input.nextLine();
+            foundProducts = shelf.findProductByName(searchName);
+            System.out.println("Found "+ foundProducts.size() + " "+searchName);
+            break;
+
+            case 2:
+            System.out.println("Enter the product name to SEARCH");
+            String searchCategory = input.nextLine();
+            foundProducts = shelf.findProductByCategory(searchCategory);
+            System.out.println("Found "+ foundProducts.size() + " "+searchCategory);
+            break;
+           
+            default:
+            System.out.print('\u000C');
+            System.out.println("The entered vaule is unrecognized!");break;
+        }
+        
+        
         if(foundProducts.size() == 0)
         {
-            System.out.println("SORRY!! "+searchName + " are unavailable.\n");
+            System.out.println("SORRY!! the product is  unavailable.\n");
         }
         else{
             displayProducts(foundProducts);
