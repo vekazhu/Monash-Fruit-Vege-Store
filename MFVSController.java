@@ -57,16 +57,21 @@ public class MFVSController
     
     public void unregister()
     {
-        System.out.println("Are you sure you want to unregister");
+        System.out.println("Are you sure you want to unregister?(y|Y)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
-        if(answer.startsWith("y"))
+        if(answer.toLowerCase().equals("y"))
         {
-            deleteUserInFiles(listOfUsers,customer.getUserId());
+            deleteUserInFiles(listOfUsers,user.getUserId());
+            System.out.println("You are no longer with MFVS now, wish you will come back :)");
+        }
+        else if(answer.toLowerCase().equals("n"))
+        {
+            System.out.println("THANK YOU!! For making the right choice :), Your account is ACTIVE");
         }
         else
         {
-            shelf.displayProductsInfo();
+            System.out.println("Sorry Wrong choice, Your account is not deactivated");
         }
     }
     
@@ -184,7 +189,6 @@ public class MFVSController
             case "i":
             unregister();
             logout();
-            System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
 
             case "x":
