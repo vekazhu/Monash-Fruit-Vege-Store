@@ -218,7 +218,7 @@ public class Shelf
      */
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
-        
+        sortProductByAlphabet();
         for ( Product product: listOfProduct)
         {
             
