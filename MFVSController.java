@@ -66,6 +66,10 @@ public class MFVSController
         updateUserList();
     }
     
+    /**
+     * Method updateTransactionInFiles is to update the user status to 'inactive' when a registered user is unregistered
+     *
+     */
     public void updateTransactionInFiles()
     {
         for (int i = 0; i < listOfTransactions.size(); i++)
@@ -642,6 +646,10 @@ public class MFVSController
     }
     
 
+    /**
+     * Method updateTransactionList is to update the user text file when a registered user is unregistered
+     *
+     */
     public void updateTransactionList()
     {
         ArrayList<String> content = new ArrayList<String>();

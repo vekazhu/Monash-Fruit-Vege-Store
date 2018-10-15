@@ -2,10 +2,10 @@ import java.util.*;
 import java.lang.Object;
 import java.util.regex.*;
 /**
- * Write a description of class User here.
+ * class User contains all attributes of an user object and related get set methods, also methods will be used by users of MFVS
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class User 
 {
@@ -18,6 +18,10 @@ public class User
     private static int userNumber = 6;//including 5 customers and one owner
     private ArrayList<User> usersList;
 
+    /**
+     * Default constructor of User
+     *
+     */
     public User() 
     {
         userId = "";
@@ -29,6 +33,9 @@ public class User
         userNumber++;
     }
 
+    /**
+     * User Constructor
+     */
     public User(String userID,String userName, String userEmail, String userPhoneNumber, String userPassword, String securityAnswer) 
     {
         this.userId = userID;
@@ -40,77 +47,152 @@ public class User
         userNumber++;
     }
 
+    /**
+     * Method getUserId is to get the user ID of the user
+     *
+     * @return String: userId, the user ID of the user
+     */
     public String getUserId() 
     {
         return userId;
     }
 
+    /**
+     * Method getUserName is to get the username of the user
+     *
+     * @return String: userName, the username of the user
+     */
     public String getUserName() 
     {
         return userName;
     }
 
+    /**
+     * Method getUserEmail is to get the email of the user
+     *
+     * @return String: userEmail, the email of the user
+     */
     public String getUserEmail() 
     {
         return userEmail;
     }
 
+    /**
+     * Method getUserPhoneNumber is to get the phone number of the user
+     *
+     * @return String: userPhoneNumber, the phone number of the user
+     */
     public String getUserPhoneNumber() 
     {
         return userPhoneNumber;
     }
 
+    /**
+     * Method getUserPassword is to get the password of the user
+     *
+     * @return String: userPassword the password of the user
+     */
     public String getUserPassword() 
     {
         return userPassword;
     }
 
+    /**
+     * Method getSecurityAnswer is to get the security answer of the user
+     *
+     * @return String: securityAnswer, the security answer of the user 
+     */
     public String getSecurityAnswer() 
     {
         return securityAnswer;
     }
     
+    /**
+     * Method getUserNumber is to get the number of registered user in the system
+     *
+     * @return int: userNumber, the number of registered user in the system
+     */
     public int getUserNumber()
     {
         return userNumber;
     }
 
+    /**
+     * Method setSecurityAnswer is to record the security answer of the user
+     *
+     * @param securityAnswer: the security answer of the user 
+     */
     public void setSecurityAnswer(String securityAnswer) 
     {
         this.securityAnswer = securityAnswer;
     }
 
+    /**
+     * Method setUserId is to record the user ID of the user
+     *
+     * @param userId: the user ID of the user
+     */
     public void setUserId(String userId) 
     {
         this.userId = userId;
     }
 
+    /**
+     * Method setUserName is to record the username of the user
+     *
+     * @param userName: the username of the user
+     */
     public void setUserName(String userName) 
     {
         this.userName = userName;
     }
 
+    /**
+     * Method setUserEmail is to record the email of the user
+     *
+     * @param userEmail: the email of the user
+     */
     public void setUserEmail(String userEmail) 
     {
         this.userEmail = userEmail;
     }
 
+    /**
+     * Method setUserPhoneNumber is to record the phone number of the user
+     *
+     * @param userPhoneNumber: the phone number of the user
+     */
     public void setUserPhoneNumber(String userPhoneNumber) 
     {
         this.userPhoneNumber = userPhoneNumber;
     }
 
+    /**
+     * Method setUserPassword is to record the password of the user
+     *
+     * @param userPassword: the password of the user
+     */
     public void setUserPassword(String userPassword) 
     {
         this.userPassword = userPassword;
     }
 
+    /**
+     * Method getUserInfo is to get all the information recorded in the system of registered user
+     *
+     * @return String: customerInfo, all the information recorded in the system of registered user
+     */
     public String getUserInfo()
     {
         String customerInfo = getUserId() + "," + getUserName() + "," + getUserEmail() + "," + getUserPhoneNumber() + "," + getUserPassword() + "," + getSecurityAnswer();
         return customerInfo;
     }
     
+    /**
+     * Method login is used for registered users to login to the system
+     *
+     * @return String: system instructions to inform users of the status of the login process
+     */
     public String login()
     {
 

@@ -86,6 +86,11 @@ public class Transaction
         return totalPrice;
     }
     
+    /**
+     * Method getTransactionInfo is to get all the information of transcantions recorded
+     *
+     * @return String: transactionInfo, all the information of transcantions recorded
+     */
     public String getTransactionInfo()
     {
         String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice()+","+ getRating();
