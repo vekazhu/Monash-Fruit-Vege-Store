@@ -60,7 +60,7 @@ public class Transaction
     
     public String getTransactionInfo()
     {
-        String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice();
+        String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice()+","+ getRating();
         return transactionInfo;
     }
     

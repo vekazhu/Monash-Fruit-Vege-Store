@@ -282,12 +282,15 @@ public class Owner extends User
             System.out.println("There is no product with Id "+ id);
         }
         else {
+            Product product = updatedProduct.get(updatedProduct.size()-1);
             System.out.println("Updated inventory");
             shelf.updateInventory();
             System.out.println("Product updated successfully");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Updated Product Info~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.format("%-13s%-16s%-14s%-17s%-15s%-30s%-10s%-25s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Total quantity(in Whole)","Price/KG","Total quantity(in KG)","Discount");
-            shelf.displayOwnerProductsInfo(updatedProduct);
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-30s%-10s%-25s%-13s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount());
+        
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
