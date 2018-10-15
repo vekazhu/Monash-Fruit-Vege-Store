@@ -117,9 +117,9 @@ public class User
     }
     
     /**
-     * Method getUserNumber is to get the number of registered user in the system
+     * Method getUserNumber is to record the number of registered user in the system
      *
-     * @return int: userNumber, the number of registered user in the system
+     * @param number: the number of registered user in the system
      */
     public void setUserNumber(int number)
     {

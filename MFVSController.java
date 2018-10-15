@@ -672,13 +672,6 @@ public class MFVSController
      *
      */
 
-
-    /**
-     * Method searchForProduct is to search products by product name in the store
-     *
-     */
-
-
     public void updateTransactionList()
     {
         ArrayList<String> content = new ArrayList<String>();
@@ -694,8 +687,6 @@ public class MFVSController
         }
         FileManager.writeFile(content,"transactions.txt");
     }
-
-
 
     /**
      * Method searchForProduct is to search products by product name in the store
