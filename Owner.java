@@ -30,10 +30,10 @@ public class Owner extends User
     {
         System.out.println("Please enter the name of the new product.");
         Scanner sc = new Scanner (System.in);
-        String enteredToken = sc.next().trim();
+        String enteredToken = sc.nextLine();
         while (Validator.isFirstNameValid(enteredToken) == false || shelf.doesProductExist(enteredToken)==true)
         {
-            enteredToken = sc.next().trim();
+            enteredToken = sc.nextLine();
         }
         System.out.println("The name of new product is " + enteredToken + ".");
         String newProductName = enteredToken;
@@ -164,7 +164,7 @@ public class Owner extends User
         System.out.println("________________________________________________________________________________________________");
         
         Product product = new Product(newProductName,newProductCategory,newProductShelfLife, priceWhole, 
-        priceKG, quantityKG, quantityWhole, productDiscount);         
+        priceKG, quantityKG, quantityWhole, productDiscount,shelf.getCurrentDate());         
         System.out.println("The new product ID is " + product.getProductID() + ".");
         
         shelf.addProduct(product);

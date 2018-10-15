@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.text.*;
 /**
  * class MFVSController is a controller class of this system of Monash Fruit and Vege Store
  *
@@ -11,12 +12,14 @@ public class MFVSController
     // instance variables - replace the example below with your own
     private ArrayList<User> listOfUsers;
     private ArrayList<Transaction> listOfTransactions;
+    //private ArrayList<Product> listOfProduct;
     private Customer customer;
     private Owner owner;
     private UserMenu menu;
     private User user;
     private Shelf shelf;
     private String userId;
+    
 
     /**
      * Default constructor for objects of class MFVSController
@@ -30,6 +33,8 @@ public class MFVSController
         owner = new Owner();
         user = new User();
         shelf = new Shelf();
+        
+        //today = new SimpleDateFormat ("dd/MM/yyyy").parse(todayDate); 
     }
 
     /**
@@ -48,7 +53,7 @@ public class MFVSController
         }
         while (!option.toLowerCase().equals("x"));
     }
-    
+
     /**
      * Method deleteUserInFiles is to delete the user from the User Arraylist and the user.txt file when customer unregister
      *
@@ -66,13 +71,10 @@ public class MFVSController
         updateUserList();
     }
     
-
-
     /**
      * Method unregister is for registered users to select when they no longer want to register in MFVS
      *
      */
-
 
     public void updateTransactionInFiles()
     {
@@ -84,7 +86,6 @@ public class MFVSController
         //update users.txt file
         updateTransactionList();
     }
-    
 
     /**
      * Method unregister is for registered users to select when they no longer want to register in MFVS
@@ -96,7 +97,7 @@ public class MFVSController
         System.out.println("Are you sure you want to unregister?(y|Y)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
-        
+
         if(answer.toLowerCase().equals("y"))
         {
             updateTransactionInFiles();
@@ -112,7 +113,6 @@ public class MFVSController
             System.out.println("Sorry Wrong choice, Your account is not deactivated");
         }
     }
-    
 
     /**
      * Method getChoice, is to get the input option of all users when the maiMenu is displayed
@@ -145,19 +145,26 @@ public class MFVSController
                         Scanner input = new Scanner(System.in);
                         //System.out.print('\u000C');
                         menu.displayCustomerMenu();
-        
+
                         customerOption = input.next();
-                        
+
                         getCustomerChoice(customerOption);
                     }
                     while (!customerOption.toLowerCase().equals("h") & !customerOption.toLowerCase().equals("i") & !customerOption.toLowerCase().equals("x"));
 
                 }
                 else {
+                    ArrayList<Product> expiredProducts = shelf.checkExpiry();
+                    if(expiredProducts.size() > 0)
+                    {
+                        System.out.println("There are some expired products in the store, Below are the expired products");
+                        displayProducts(expiredProducts);
+                    }
+                        
                     String ownerOption = "";
                     while (!ownerOption.toLowerCase().equals("h") & !ownerOption.toLowerCase().equals("x"))
                     {
-                        
+
                         Scanner input = new Scanner(System.in);
                         //System.out.println('\u000C');
                         menu.displayOwnerMenu();
@@ -168,12 +175,12 @@ public class MFVSController
 
             }
             break;
-            
+
             case"c":
             System.out.print('\u000C');
             register();
             break;
-            
+
             case "x":
             System.out.print('\u000C');
             System.out.println("See you next time");
@@ -191,53 +198,53 @@ public class MFVSController
      */
     public void getCustomerChoice(String option)
     {
-        
+
         switch (option.toLowerCase())
         {
             case "a":
             System.out.print('\u000C');
             displayAllProducts();
-            
+
             break;
 
             case "b":
             System.out.print('\u000C');
             searchForProduct();
             break;
-            
+
             case "c":
             System.out.print('\u000C');
             displayAllProducts();
             customer.addProductToCart();
             break;
-            
+
             case "d":
             System.out.print('\u000C');
             customer.displayCart();
             break;
-            
+
             case "e":
             System.out.print('\u000C');
             customer.displayCart();
             customer.editProduct();
             break;
-            
+
             case "f":
             System.out.print('\u000C');
             customer.checkOut(user.getUserId());
             break;
-            
+
             case "g":
             System.out.print('\u000C');
             getCustomerTransaction(user.getUserId());
             break;
-            
+
             case "h":
             System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
-            
+
             case "i":
             System.out.print('\u000C');
             unregister();
@@ -255,8 +262,7 @@ public class MFVSController
             System.out.println("The entered vaule is unrecognized!");break;
         }
     }
-    
-    
+
     /**
      * Method getOwnerChoice, is to get the input option of the owner when the ownerMenu is displayed
      *
@@ -275,47 +281,46 @@ public class MFVSController
             System.out.print('\u000C');
             searchForProduct();
             break;
-            
+
             case "c":
             System.out.print('\u000C');
             owner.createProduct();
             displayAllProductsForOwner();
             break;
-            
+
             case "d":
             System.out.print('\u000C');
             displayAllProductsForOwner();
             owner.updateProduct();
             break;
-            
+
             case "e":
             System.out.print('\u000C');
             displayAllProductsForOwner();
             owner.disposeProductFromShelf();
             break;
-            
+
             case "f":
             System.out.print('\u000C');
             displayAllTransactions();
             break;
-            
+
             case "g":
             System.out.print('\u000C');
             displayAllUsers();
             break;
-            
+
             case "h":
             System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
-            
+
             case "x":
             System.out.print('\u000C');
             //System.exit(0);
             System.out.println("You have exited the system, see you.");
             break;
-            
 
             default:
             System.out.print('\u000C');
@@ -330,12 +335,12 @@ public class MFVSController
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount","Expiry Date");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-    
+
     /**
      * Method displayAllProductsForOwner will display all products in the MFVS for the store owner in default alphabetical order
      *
@@ -343,12 +348,12 @@ public class MFVSController
     public void displayAllProductsForOwner()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-15s%-13s%-15s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Quantity/each","Price/KG","Quantity/Kg","Discount");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-15s%-13s%-15s%-13s%-20s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Quantity/each","Price/KG","Quantity/Kg","Discount","Expiry Date");
         shelf.sortProductByAlphabet();
         shelf.displayOwnerProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-    
+
     /**
      * Method displayProducts will display all available products found according to the search condition inputed by users
      *
@@ -357,11 +362,11 @@ public class MFVSController
     public void displayProducts(ArrayList<Product> productList)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount","Expiry Date");
         //shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(productList);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    
+
     }
 
     /**
@@ -380,7 +385,7 @@ public class MFVSController
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-    
+
     /**
      * Method displayCustomerTransactions will display all recorded transactions of the current logged in customer for this customer
      * to view
@@ -399,7 +404,7 @@ public class MFVSController
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-    
+
     /**
      * Method displayAllUsers will display all registered users in the MFVS for the store owner to view
      *
@@ -417,7 +422,7 @@ public class MFVSController
                     customer.getUserEmail(),customer.getUserPhoneNumber());
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    
+
     }
 
     /**
@@ -535,7 +540,7 @@ public class MFVSController
         System.out.println("Please make sure you will remember the answer of the security question.");
         System.out.println("Security Question: Who is your favourite singer?");
         Scanner sc = new Scanner (System.in);
-        String enteredToken = sc.next().trim();
+        String enteredToken = sc.next();
         System.out.println("Your answer is " + enteredToken + ".");
         //String securityAnswer = enteredToken;
         sc.close();
@@ -580,13 +585,13 @@ public class MFVSController
         System.out.println("Your username is " + userName + ".");
         return userName;    
     }
-    
-     /**
-      * Method addUser is to add the new registered user into the Arraylist of the registered users of the MFVS
-      *
-      * @param user, the new registered user of the MFVS
-      */
-     public void addUser(User user)
+
+    /**
+     * Method addUser is to add the new registered user into the Arraylist of the registered users of the MFVS
+     *
+     * @param user, the new registered user of the MFVS
+     */
+    public void addUser(User user)
     {
         listOfUsers.add(user);
     }
@@ -600,27 +605,27 @@ public class MFVSController
         System.out.println("Welcome to join Monash Fruit and Vege Store, please follow the registration instructions :)");
         String userFirstName = nameScanner();
         System.out.println("___________________________________________________________________________________");
-        
+
         String userPassWord = passwordScanner();
-        
+
         System.out.println("___________________________________________________________________________________");
-        
+
         String userEmail = emailScanner();
-        
+
         System.out.println("___________________________________________________________________________________");
-        
+
         String userPhoneNumber = phoneNumberScanner();
-        
+
         System.out.println("___________________________________________________________________________________");
-        
+
         String userSecurityAnswer = securityAnswerScanner();
-        
+
         System.out.println("___________________________________________________________________________________");
-        
+
         String userId = generateUserId(user.getUserNumber());
-        
+
         System.out.println("___________________________________________________________________________________");
-        
+
         String userName = generateUserName(userFirstName, userId);
         user.setUserName(userName);
         User user = new User(userId,userFirstName,userEmail,userPhoneNumber,userPassWord,userSecurityAnswer);
@@ -629,7 +634,7 @@ public class MFVSController
         updateUserList();
         //user.login();
     }
-    
+
     /**
      * Method updateUserList is to update the users.txt file of registered users of the MFVS when there is a new registered user
      * has been added into the Arraylist of registered users of MFVS
@@ -645,19 +650,17 @@ public class MFVSController
         File f = new File("users.txt");
         if (f.exists())
         {
-          //delete if exists
-           f.delete();
+            //delete if exists
+            f.delete();
         }
         FileManager.writeFile(content,"users.txt");
     }
-    
 
 
     /**
      * Method searchForProduct is to search products by product name in the store
      *
      */
-
 
     public void updateTransactionList()
     {
@@ -669,12 +672,11 @@ public class MFVSController
         File f = new File("transactions.txt");
         if (f.exists())
         {
-          //delete if exists
-           f.delete();
+            //delete if exists
+            f.delete();
         }
         FileManager.writeFile(content,"transactions.txt");
     }
-
 
 
     /**
@@ -689,7 +691,7 @@ public class MFVSController
         System.out.print('\u000C');
         menu.displaySearchMenu();
         String searchType = (input.nextLine());
-        
+
         switch (searchType.toLowerCase())
         {
             case "a":
@@ -719,16 +721,15 @@ public class MFVSController
                 displayProducts(foundProducts);
             }
             break;
-           
+
             default:
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
         }
-        
-        
+
         
     }
-    
+
     /**
      * Method getCustomerTransaction is to display the transaction of one customer for the store owner according to the 
      * user ID inputed by the owner
@@ -755,7 +756,7 @@ public class MFVSController
             displayCustomerTransactions(customerTransactionList);
         }       
     }
-    
+
     /**
      * Method logout is for the logged in user to log out the system
      *
@@ -763,6 +764,5 @@ public class MFVSController
     public void logout(){
         user = new User();
     }
-    
 
 }

@@ -1,4 +1,7 @@
 import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 /**
  * class Product contains all attributes of a product object, related get set methods and the method the generate product ID
  * and to dispose products
@@ -18,7 +21,10 @@ public class Product
     private int discount;
     private double quantityKG;
     private double quantityWhole;
+    private String productDate;
+    private String expiryDate;
     private static int productNumber = 5;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
     
     /**
      * Default constructor of product
@@ -35,6 +41,9 @@ public class Product
         quantityKG = 0;
         quantityWhole = 0;
         discount = 0;
+        productDate = "";
+        //this.expiryDate = convertStringToDate(this.productDate).plusDays(Integer.parseInt(shelfLife)).format(formatter);         
+        
         productNumber++;
     }
     
@@ -42,7 +51,7 @@ public class Product
      * Non default consturctor of product starts with productID
      */
     public Product(String productID,String productName, String category, String shelfLife, double priceWhole, double priceKG,
-                    double quantityKG,double quantityWhole,int discount) 
+                    double quantityKG,double quantityWhole,int discount, String productDate) 
     {
         this.productID = productID;
         this.productName = productName;
@@ -53,6 +62,9 @@ public class Product
         this.quantityKG = quantityKG;
         this.quantityWhole = quantityWhole;
         this.discount = discount;
+        this.productDate = productDate;
+        this.expiryDate = convertStringToDate(this.productDate).plusDays(Integer.parseInt(shelfLife)).format(formatter);         
+        
         productNumber++;
     }
     
@@ -60,7 +72,7 @@ public class Product
      * Non default consturctor of product starts with generateProductID(String, category)
      */
     public Product(String productName, String category, String shelfLife, double priceWhole, double priceKG,
-                    double quantityKG,double quantityWhole,int discount) 
+                    double quantityKG,double quantityWhole,int discount,String productDate) 
     {
         this.productID = generateProductID(productNumber, category);
         this.productName = productName;
@@ -71,6 +83,8 @@ public class Product
         this.quantityKG = quantityKG;
         this.quantityWhole = quantityWhole;
         this.discount = discount;
+        this.productDate = productDate;
+        this.expiryDate = convertStringToDate(this.productDate).plusDays(Integer.parseInt(shelfLife)).format(formatter);         
         productNumber++;
     }
 
@@ -173,6 +187,45 @@ public class Product
     {
         return productNumber;
     }
+    
+    /**
+     * Method getProductdate is to get the number of product added at the MFVS
+     *
+     * @return String: productDate, the date in string format created at the MFVS
+     */
+    public String getProductDate()
+    {
+        return productDate;
+    }
+    /**
+     * Method getExpirydate is to get the expiry date of product added at the MFVS
+     *
+     * @return String: expiryDate, the date in string format indicating expiry of the product
+     */
+    public String getExpiryDate()
+    {
+        return expiryDate;
+    }
+
+    /**
+     * Method setProductDate is to record the date of the product
+     *
+     * @param productDate, the created date  of the product
+     */
+    public void setExpiryDate(String date) 
+    {
+        this.expiryDate = date;
+    }
+
+    /**
+     * Method setProductDate is to record the date of the product
+     *
+     * @param productDate, the created date  of the product
+     */
+    public void setProductDate(String date) 
+    {
+        this.productDate = date;
+    }
 
     /**
      * Method setProductID is to record the ID of the product
@@ -273,7 +326,7 @@ public class Product
     public String getProductInfo()
     {
         String productInfo = productID + "," + productName + "," + category + "," + shelfLife + "," + priceWhole + "," + priceKG
-        + "," + quantityKG + "," + quantityWhole + "," + discount;
+        + "," + quantityKG + "," + quantityWhole + "," + discount + ","+productDate;
         return productInfo;
     }
     
@@ -328,5 +381,11 @@ public class Product
         }
         
         System.out.println("The Product is not found.");
+    }
+    
+    public LocalDate convertStringToDate(String dateInString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        LocalDate localDate = LocalDate.parse(dateInString, formatter);
+        return localDate;
     }
 }

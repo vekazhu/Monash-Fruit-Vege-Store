@@ -46,7 +46,8 @@ public class FileManager
                     double quantityKG = Double.parseDouble(parts[6]);
                     double quantityWhole = Double.parseDouble(parts[7]);
                     int discount = Integer.parseInt(parts[8]);
-                    Product product = new Product(productID,productName,category,shelfLife,priceWhole,priceKG,quantityKG,quantityWhole,discount);
+                    String productDate = parts[9];
+                    Product product = new Product(productID,productName,category,shelfLife,priceWhole,priceKG,quantityKG,quantityWhole,discount,productDate);
                     listOfProducts.add(product);
                 }
             }

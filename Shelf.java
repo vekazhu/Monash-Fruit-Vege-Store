@@ -1,5 +1,8 @@
 import java.util.*;
 import java.io.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 /**
  * class Shelf contains an Arraylist of products in the MFVS, and to manage the inventory of these products
  *
@@ -10,6 +13,8 @@ public class Shelf
 {
     // instance variables - replace the example below with your own
     private ArrayList<Product> listOfProducts;
+    private LocalDate today = LocalDate.now();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
     //private HashMap productQuantity;
 
     /**
@@ -18,6 +23,29 @@ public class Shelf
     public Shelf()
     {
         listOfProducts = FileManager.readProductsInfo("products.txt");
+    }
+
+    /**
+     * Method checkexpiry is to check the expiry date of the products and notify owner about the expiry products
+     *
+     * 
+     */
+    public ArrayList<Product> checkExpiry()
+    {
+        LocalDate productDate;
+        ArrayList<Product> expiredProducts = new ArrayList<Product>();
+        for(Product product: listOfProducts)
+        {
+            
+            productDate = convertStringToDate(product.getProductDate());
+            int daysBetween = (int)(ChronoUnit.DAYS.between(productDate,today));
+            
+            if(daysBetween > Integer.parseInt(product.getShelfLife()))
+            {
+                expiredProducts.add(product);
+            }
+        }
+        return expiredProducts;
     }
 
     /**
@@ -58,7 +86,7 @@ public class Shelf
     {
         listOfProducts.add(product);
     }
-    
+
     /**
      * Method doesProductExist is to verify whether the product will be created is already in the store
      *
@@ -106,9 +134,9 @@ public class Shelf
                 }
             }
         }
-        
+
     }
-    
+
     /**
      * Method updateInventory is to update the new inventory quantity of products in MFVS
      *
@@ -119,16 +147,16 @@ public class Shelf
         for (Product product: listOfProducts)
         {
             //if (content.equals(""))
-                content.add(product.getProductInfo());
+            content.add(product.getProductInfo());
             //else
-                //content.add(content + "\n" + product.getProductInfo());
+            //content.add(content + "\n" + product.getProductInfo());
         }  
-        
+
         File f = new File("products.txt");
         if (f.exists())
         {
-          //delete if exists
-           f.delete();
+            //delete if exists
+            f.delete();
         }
         FileManager.writeFile(content,"products.txt");
     }
@@ -190,12 +218,31 @@ public class Shelf
      */
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
+        
         for ( Product product: listOfProduct)
         {
-            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
-                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
+            
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount(),product.getExpiryDate());
         }
-        
+
+    }
+
+    /**
+     * Method displayProductsInfo is to display the ID, name, category, shelflife, price each, price per kg and discount of
+     * products in the Arraylist of products for all users
+     *
+     * 
+     */
+    public void displayProductsInfo()
+    {
+        for ( Product product: listOfProducts)
+        {
+            
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount(),product.getExpiryDate());
+        }
+
     }
     
     /**
@@ -208,12 +255,13 @@ public class Shelf
     {
         for ( Product product: listOfProduct)
         {
-            System.out.format("%-13s%-16s%-14s%-17s%-15.1f%-15.1f%-13.2f%-15.2f%-13d%n",product.getProductID(),product.getProductName(),
-                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount());
+            System.out.println("Expiry date is "+product.getExpiryDate());
+            System.out.format("%-13s%-16s%-14s%-17s%-15.1f%-15.1f%-13.2f%-15.2f%-13d%-20s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount(),product.getExpiryDate());
         }
-        
+
     }
-    
+
     /**
      * Method deleteProductInShelf is to delete the disposed products from the shelf and also the Arraylist of products
      *
@@ -229,21 +277,7 @@ public class Shelf
             }
         }
     }
-    
-    /**
-     * Method displayProductsInfo is to display ID, name, category, shelflife, price each, price per kg and discount of products
-     * that meet the search condition
-     *
-     */
-    public void displayProductsInfo()
-    {
-        for ( Product product: listOfProducts)
-        {
-            System.out.format("%-13s%-16s%-14s%-13s%-15s%-10s%-13s%n",product.getProductID(),product.getProductName(),
-                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount());
-        }
-        
-    }
+
     
     /**
      * This method is to find the Product object of the specific productID
@@ -261,7 +295,7 @@ public class Shelf
         }
         return product;
     }
-    
+
     /**
      * This method is to find the Product object of the specific category
      */
@@ -273,12 +307,12 @@ public class Shelf
             if (productType.equalsIgnoreCase(pdct.getCategory()))
             {
                 foundProductList.add(pdct);
-                
+
             }
         }
         return foundProductList;
     }
-    
+
     /**
      * This method is to find the Product object that has the specific productID
      */
@@ -294,7 +328,7 @@ public class Shelf
         }
         return foundProductList;
     }
-    
+
     public boolean isProductExistInShelf(String productID)
     {
         for (Product pdct: listOfProducts)
@@ -306,7 +340,7 @@ public class Shelf
         }
         return false;
     }
-    
+
     public String getProductIdAleadyInShelf()
     {
         Scanner input = new Scanner(System.in);
@@ -317,5 +351,17 @@ public class Shelf
             productID = input.nextLine();
         }
         return productID;
+    }
+
+    public LocalDate convertStringToDate(String dateInString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        LocalDate localDate = LocalDate.parse(dateInString, formatter);
+        return localDate;
+    }
+    
+    public String getCurrentDate(){
+        
+        LocalDate localDate = LocalDate.now();
+        return localDate.format(formatter);
     }
 }
