@@ -222,8 +222,8 @@ public class Shelf
         for ( Product product: listOfProduct)
         {
             
-            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n",product.getProductID(),product.getProductName(),
-                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount(),product.getExpiryDate());
+            System.out.format("%-13s%-16s%-14s%-15s%-10s%-13s%-20s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getPriceWhole(),product.getPriceKG(),product.getDiscount(),product.getExpiryDate());
         }
 
     }
@@ -255,7 +255,6 @@ public class Shelf
     {
         for ( Product product: listOfProduct)
         {
-            System.out.println("Expiry date is "+product.getExpiryDate());
             System.out.format("%-13s%-16s%-14s%-17s%-15.1f%-15.1f%-13.2f%-15.2f%-13d%-20s%n",product.getProductID(),product.getProductName(),
                 product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount(),product.getExpiryDate());
         }

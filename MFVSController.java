@@ -337,7 +337,7 @@ public class MFVSController
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount","Expiry Date");
+        System.out.format("%-13s%-16s%-14s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","Price/each","Price/KG","Discount","Expiry Date");
         shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -364,7 +364,7 @@ public class MFVSController
     public void displayProducts(ArrayList<Product> productList)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount","Expiry Date");
+        System.out.format("%-13s%-16s%-14s%-15s%-10s%-13s%-20s%n","ProductID","Name","Category","Price/each","Price/KG","Discount","Expiry Date");
         //shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(productList);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
