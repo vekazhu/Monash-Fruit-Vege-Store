@@ -67,13 +67,10 @@ public class MFVSController
     }
     
 
-
     /**
-     * Method unregister is for registered users to select when they no longer want to register in MFVS
+     * Method updateTransactionInFiles is to update the user status to 'inactive' when a registered user is unregistered
      *
      */
-
-
     public void updateTransactionInFiles()
     {
         for (int i = 0; i < listOfTransactions.size(); i++)
@@ -670,6 +667,10 @@ public class MFVSController
         FileManager.writeFile(content,"users.txt");
     }
     
+    /**
+     * Method updateTransactionList is to update the user text file when a registered user is unregistered
+     *
+     */
 
 
     /**
@@ -743,9 +744,7 @@ public class MFVSController
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
         }
-        
-        
-        
+                        
     }
     
     /**

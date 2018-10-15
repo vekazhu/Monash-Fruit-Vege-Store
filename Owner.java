@@ -5,12 +5,13 @@ import java.util.*;
  * 
  * super("o0000","owner","MFVowner@gmail.com","01234567","Mfvs")
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class Owner extends User
 {
     private Shelf shelf;
+    
     /**
      * Constructor for objects of class Owner
      */
@@ -19,12 +20,11 @@ public class Owner extends User
         
         shelf = new Shelf();
     }
-
+   
     /**
-     * An example of a method - replace this comment with your own
+     * Method productNameScanner is to save the owner input of name of the product will be created
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return String: newProductName, the name of the product will be created
      */
     public String productNameScanner()
     {
@@ -41,6 +41,11 @@ public class Owner extends User
         return newProductName;
     }
     
+    /**
+     * Method quantityWholeScanner is to save the owner input of how much of this product as a whole will be created
+     *
+     * @return double: quantityWhole, how much of this product as a whole will be created
+     */
     public double quantityWholeScanner()
     {
         Scanner sc = new Scanner (System.in);
@@ -55,6 +60,11 @@ public class Owner extends User
         return quantityWhole;    
     }
     
+    /**
+     * Method shelfLifeScanner is to save the owner input of shelflife of the product will be created
+     *
+     * @return String: newProductShelfLife, shelflife of the product will be created
+     */
     public String shelfLifeScanner()
     {
         System.out.println("Please enter a number for the shelf life (in days) of the new product, only integers are allowed.");
@@ -71,6 +81,11 @@ public class Owner extends User
         return newProductShelfLife;
     }
     
+    /**
+     * Method doubleInputScanner is to save the owner input of datatype 'double'
+     *
+     * @return double: newProductPrice, price selling as a whole and price per KG of the product will be created
+     */
     public double doubleInputScanner()
     {
         Scanner sc = new Scanner (System.in);
@@ -85,6 +100,11 @@ public class Owner extends User
         return newProductPrice;
     }
     
+    /**
+     * Method intInputScanner is to save the owner input of datatype 'int'
+     *
+     * @return int: newProductDiscount, discount of the product will be created
+     */
     public int intInputScanner()
     {
         Scanner sc = new Scanner (System.in);
@@ -99,6 +119,11 @@ public class Owner extends User
         return newProductDiscount;
     }
        
+    /**
+     * Method productCategoryScanner is to save the owner input of category of the product will be created
+     *
+     * @return String: productCategory, category of the product will be created
+     */
     public String productCategoryScanner()
     {
         System.out.println("Please select the product category from the menu:");
@@ -126,6 +151,11 @@ public class Owner extends User
         return productCategory;
     }
  
+    /**
+     * Method createProduct is for owner to create a new product and add the new product to the Arraylist of the products in the
+     * MFVS
+     *
+     */
     public void createProduct()
     {
         
@@ -171,6 +201,10 @@ public class Owner extends User
         shelf.updateInventory();      
     }
        
+    /**
+     * Method disposeProductFromShelf is for owner to dispose expired product or any products to the charity or bin
+     *
+     */
     public void disposeProductFromShelf()
     {
         System.out.println("Enter the productID of the product you want to disposal: ");
@@ -181,7 +215,7 @@ public class Owner extends User
         if (answer.startsWith("y"))
         {
             shelf.deleteProductInShelf(productID);
-            System.out.println("Where do you want to put you expired product?");
+            System.out.println("Choose disposal way");
             System.out.println("1.Charity");
             System.out.println("2.Rubbish bin");
             String choice = input.nextLine();
@@ -192,7 +226,7 @@ public class Owner extends User
             }
             if (choice.equals("1"))
             {
-                System.out.println("The product will send to charity");
+                System.out.println("Thank You for your kind heart!!");
             }
             if (choice.equals("2"))
             {
@@ -207,6 +241,10 @@ public class Owner extends User
         }        
     }
     
+    /**
+     * Method updateProduct is for owner to edit products in MFVS, and change their product information
+     *
+     */
     public void updateProduct()
     {
         int flag = 0;
