@@ -183,7 +183,7 @@ public class Owner extends User
         System.out.println("Price as a whole is $" + priceWhole + ".");
         System.out.println("________________________________________________________________________________________________");
         
-        System.out.println("Please enter the total amount of this product.");
+        System.out.println("Please enter the total quantity of this product.");
         double quantityWhole = quantityWholeScanner();
         System.out.println("There are total " + quantityWhole + " this product.");
         System.out.println("________________________________________________________________________________________________");
