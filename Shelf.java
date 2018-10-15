@@ -1,10 +1,10 @@
 import java.util.*;
 import java.io.*;
 /**
- * Write a description of class Shelf here.
+ * class Shelf contains an Arraylist of products in the MFVS, and to manage the inventory of these products
  *
  * @author (Team 114)
- * @version (a version number or a date)
+ * @version (15/OCT/2018)
  */
 public class Shelf
 {
@@ -29,9 +29,9 @@ public class Shelf
     }
 
     /**
-     * get ArrayList of product
+     * get ArrayList of products that are in the MFVS
      *
-     * @return    an arraylist of product
+     * @return an arraylist of product, all products in the MFVS
      */
     public ArrayList<Product> getListOfProducts()
     {
@@ -40,20 +40,32 @@ public class Shelf
     }
 
     /**
-     * set a new ArrayList of product
+     * set a new ArrayList of product is to record products that are in the MFVS
      *
-     * @param    an arraylist of product
+     * @param an arraylist of product, the products will be added to the MFVS
      */
     public void setListOfProduct(ArrayList<Product> listOfProducts)
     {
         this.listOfProducts = listOfProducts;
     }
 
+    /**
+     * Method addProduct is to add new created product to the Arraylist of products in the MFVS
+     *
+     * @param product, the new created product will be added to the list
+     */
     public void addProduct(Product product)
     {
         listOfProducts.add(product);
     }
     
+    /**
+     * Method doesProductExist is to verify whether the product will be created is already in the store
+     *
+     * @param productName, the product name inputed by the owner of the product will be created
+     * @return boolean: true if the MFVS already has this product
+     *                  false if the MFVS does not have this product
+     */
     public boolean doesProductExist(String productName)
     {
         for (int i = 0; i < listOfProducts.size(); i++)
@@ -72,6 +84,9 @@ public class Shelf
      * and return an arrayList with updated inventory
      * for all product,1 each = 0.25KG
      *
+     *@param productID, amount, flagKG: product ID is the id of the product needed to be reduced, and amount is the number
+     *that inventory will be reduced by, and the flagKG is 1 indicates quantity KG will be reduced, 
+     *                                           flagKG is 0 indicates quantity Whole will be reduced
      */
     public void reduceInventory(String productID, double amount, int flagKG)
     {
@@ -94,6 +109,10 @@ public class Shelf
         
     }
     
+    /**
+     * Method updateInventory is to update the new inventory quantity of products in MFVS
+     *
+     */
     public void updateInventory()
     {
         ArrayList<String> content = new ArrayList<String>();
@@ -114,6 +133,10 @@ public class Shelf
         FileManager.writeFile(content,"products.txt");
     }
 
+    /**
+     * Method sortProductByAlphabet is to sort the displayed products in alphabetical order
+     *
+     */
     public void sortProductByAlphabet()
     {
         Product temp = new Product();
@@ -131,6 +154,11 @@ public class Shelf
         }
     }
 
+    /**
+     * Method sortProductByCategory is to sort the displayed products in based on their categories 
+     *
+     * @param str A parameter
+     */
     public void sortProductByCategory(String str)
     {
         ArrayList<Product> vege = new ArrayList<Product>();
@@ -154,6 +182,12 @@ public class Shelf
         }
     }
 
+    /**
+     * Method displayProductsInfo is to display the ID, name, category, shelflife, price each, price per kg and discount of
+     * products in the Arraylist of products for all users
+     *
+     * @param listOfProduct, the Arraylist of products in the MFVS
+     */
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
         for ( Product product: listOfProduct)
@@ -164,6 +198,12 @@ public class Shelf
         
     }
     
+    /**
+     * Method displayOwnerProductsInfo is to display the ID, name, category, shelflife, price each, price per kg, discount, 
+     * remaining quantity and remaining KG of products in the Arraylist of products for the owner
+     *
+     * @param listOfProduct, the Arraylist of products in the MFVS
+     */
     public void displayOwnerProductsInfo(ArrayList<Product> listOfProduct)
     {
         for ( Product product: listOfProduct)
@@ -174,6 +214,11 @@ public class Shelf
         
     }
     
+    /**
+     * Method deleteProductInShelf is to delete the disposed products from the shelf and also the Arraylist of products
+     *
+     * @param deleteProductId, the product ID of the disposed products
+     */
     public void deleteProductInShelf(String deleteProductId)
     {
         for (int i = 0; i < listOfProducts.size(); i++)
@@ -185,6 +230,11 @@ public class Shelf
         }
     }
     
+    /**
+     * Method displayProductsInfo is to display ID, name, category, shelflife, price each, price per kg and discount of products
+     * that meet the search condition
+     *
+     */
     public void displayProductsInfo()
     {
         for ( Product product: listOfProducts)

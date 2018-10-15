@@ -2,10 +2,11 @@ import java.util.*;
 import java.lang.*;
 
 /**
- * Write a description of class Customer here.
+ * class Customer extends class User and contains additional attributes of customer object and the methods only used by 
+ * customers
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (a15/OCT/2018)
  */
 public class Customer extends User
 {
@@ -27,6 +28,10 @@ public class Customer extends User
         shelf = new Shelf();
     }
 
+    /**
+     * Constructor for objects of class Customer
+     *
+     */
     public Customer()
     {
         super();
@@ -38,23 +43,40 @@ public class Customer extends User
     }
 
     /**
+     * Method getStatus is to get the status of customer
+     *
+     * @return String: status, the status of customer 
      */
     public String getStatus()
     {
         return status;
     }
 
+    /**
+     * Method setStatus is to record the status of customer
+     *
+     * @param status: the status of customer 
+     */
     public void setStatus(String status)
     {
         this.status = status;
     }
     
+    /**
+     * Method getCustomerInfo  is to get the ID, username, email, phone number, password and security answer of the customer
+     *
+     * @return String: customerInfo, the mentioned information of the customer
+     */
     public String getCustomerInfo()
     {
         String customerInfo = getUserId() + "," + getUserName() + "," + getUserEmail() + "," + getUserPhoneNumber() + "," + getUserPassword() + "," + getSecurityAnswer();
         return customerInfo;
     }
     
+    /**
+     * Method editProduct is to edit the products that are already in the cart
+     *
+     */
     public void editProduct()
     {
        if (cart.getCartInfo().size() != 0)     
@@ -96,6 +118,13 @@ public class Customer extends User
        }
     }
 
+    /**
+     * Method deleteProductFromCart is to delete the products that are already in the cart
+     *
+     * @param productID, the ID of the product that will be deteled
+     * @return int: 1 means the product is deleted
+     *              0 means the product is not deleted
+     */
     public int deleteProductFromCart(String productID)
     {
         int deleted = 0; // if a product is deleted then is 1, not deleted is 0
@@ -121,6 +150,11 @@ public class Customer extends User
         return deleted;
     }
     
+    /**
+     * Method getProductIdAleadyInCart is to get the ID of products already in the cart
+     *
+     * @return String: productID, the ID of products already in the cart
+     */
     public String getProductIdAleadyInCart()
     {
         Scanner input = new Scanner(System.in);
@@ -133,6 +167,10 @@ public class Customer extends User
         return productID;
     }
 
+    /**
+     * Method addProductToCart is to add product that is not in the cart to the cart
+     *
+     */
     public void addProductToCart()
     {
         System.out.println("Enter the productID of the product you want to buy");
@@ -206,6 +244,16 @@ public class Customer extends User
             System.out.println("Please choose other products to purchase");
     }
 
+    /**
+     * Method isAmountValid is to verify whether the amount customers want to buy of a product is valid
+     *
+     * @param amount: the amount customers want to buy of a product
+     * @param flagKG: 1 indicates customers want to buy the product in KG
+     *                0 indicates customers want to buy the product as a whole
+     * @param productID: the ID of the product that customers want to buy
+     * @return boolean: true if the amount entered is valid
+     *                  false if the amount entered is invalid
+     */
     public boolean isAmountValid(String amount,int flagKG,String productID) //private
     {
         double inventory = 0;
@@ -246,6 +294,10 @@ public class Customer extends User
         return true;
     }
 
+    /**
+     * Method displayCart is to display products already in the cart
+     *
+     */
     public void displayCart()
     {
         if (cart.getCartInfo().size() != 0)
@@ -259,6 +311,11 @@ public class Customer extends User
             System.out.println("You have nothing in your cart, start to add products~");
     }
 
+    /**
+     * Method checkOut is to check out and buy products already in the cart
+     *
+     * @param userId, the ID of the customer that wants to check out
+     */
     public void checkOut(String userId)
     {
         if (cart.getCartInfo().size() != 0)
@@ -299,6 +356,11 @@ public class Customer extends User
             System.out.println("You have nothing in your cart, add products to checkout~");
     }
 
+    /**
+     * Method rate is for customers to rate their experience of using the system, from 1 to 5
+     *
+     * @return double: rating, the rate given by customers
+     */
     public double rate()
     {
         Scanner input = new Scanner(System.in);

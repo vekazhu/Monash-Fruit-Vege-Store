@@ -2,10 +2,10 @@ import java.util.regex.*;
 import java.util.*;
 
 /**
- * Write a description of class Validator here.
+ * class Validator contains all the validation methods that used to verify the user inputs
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class Validator
 {
@@ -19,7 +19,11 @@ public class Validator
     }
 
     /**
+     * Method isFirstNameValid is to verify the user input of firstname
      * 
+     * @param enteredToken: the token entered by the user for firstname
+     * @return boolean: true if the entered token is valid input
+     *                  false if the entered token is invalid input
      */
     public static boolean isFirstNameValid(String enteredToken)
     {
@@ -39,6 +43,13 @@ public class Validator
      return true;
     }
     
+    /**
+     * Method isPasswordValid is to verify the user input of password
+     *
+     * @param password: the password entered by the user
+     * @return boolean: true if the password entered is valid input
+     *                  false if the password enterd is invalid input
+     */
     public static boolean isPasswordValid(String password)
     {
         if (password.length() < 4 || password.length() > 15)
@@ -68,6 +79,13 @@ public class Validator
         return true;
     }  
     
+    /**
+     * Method isEmailValid is to verify the user input of email
+     *
+     * @param email: the email entered by the user
+     * @return boolean: true if the email entered is valid input
+     *                  false if the email enterd is invalid input
+     */
     public static boolean isEmailValid(String email)
     {
      Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
@@ -83,6 +101,13 @@ public class Validator
      }
      }
      
+    /**
+     * Method isPhoneNumberValid is to verify the user input of phone number
+     *
+     * @param phoneNumber: the phone number entered by the user
+     * @return boolean: true if the phone number entered is valid input
+     *                false if the phone number enterd is invalid input
+     */
     public static boolean isPhoneNumberValid(String phoneNumber)
     {
         if (phoneNumber.length() != 10 || phoneNumber.startsWith("04") == false)
@@ -101,6 +126,13 @@ public class Validator
         return true;
     }
     
+    /**
+     * Method isDouble is to verify whether the user input belongs to datetype 'double'
+     *
+     * @param str: the user input
+     * @return boolean: true if the user input is a double
+     *                  false if the user input is not a double
+     */
     public static boolean isDouble(String str)
     {
         if (str.startsWith(".") || str.endsWith("."))
@@ -118,6 +150,13 @@ public class Validator
         return false;
     }
     
+    /**
+     * Method isInt is to verify whether the user input belongs to datetype 'int'
+     *
+     * @param str: the user input
+     * @return boolean: true if the user input is an integer
+     *                  false if the user input is not an integer
+     */
     public static boolean isInt(String str)
     {
         try
