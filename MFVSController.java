@@ -186,7 +186,10 @@ public class MFVSController
             case "x":
             System.out.print('\u000C');
             System.out.println("See you next time");
+            System.exit(0);
+            
             break;
+            
             default:
             System.out.print('\u000C');
             System.out.println("The entered vaule is unrecognized!");break;
@@ -258,8 +261,8 @@ public class MFVSController
 
             case "x":
             System.out.print('\u000C');
-            //System.exit(0);
             System.out.println("You have exited the system, see you.");
+            System.exit(0);
             break;
 
             default:
@@ -323,8 +326,8 @@ public class MFVSController
 
             case "x":
             System.out.print('\u000C');
-            //System.exit(0);
             System.out.println("You have exited the system, see you.");
+            System.exit(0);
             break;
 
             default:
@@ -701,7 +704,7 @@ public class MFVSController
 
 
     /**
-     * Method searchForProduct is to search products by product name in the store
+     * Method searchForProduct is to search products by product name and product category in the store
      *
      */
 
@@ -730,7 +733,7 @@ public class MFVSController
             break;
 
             case "b":
-            System.out.println("Enter the product name to SEARCH");
+            System.out.println("Enter the product category to SEARCH");
             String searchCategory = input.nextLine();
             foundProducts = shelf.findProductByCategory(searchCategory);
             System.out.println("Found "+ foundProducts.size() + " "+searchCategory);

@@ -135,7 +135,7 @@ public class Owner extends User
         while (!enteredToken.equals("1") && !enteredToken.equals("2"))
         {
             System.out.println("Invalid input, please re-enter");
-            enteredToken = sc.nextLine().trim();
+            enteredToken = sc.next().trim();
         }
         if (Integer.parseInt(enteredToken) == 1)
         {
