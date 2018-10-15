@@ -165,7 +165,7 @@ public class Shelf
      * Method sortProductByAlphabet is to sort the displayed products in alphabetical order
      *
      */
-    public void sortProductByAlphabet()
+    public void sortProductByAlphabet(ArrayList<Product> listOfProducts)
     {
         Product temp = new Product();
         for (int i = 0; i < listOfProducts.size(); i++)
@@ -218,7 +218,7 @@ public class Shelf
      */
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
-        sortProductByAlphabet();
+        sortProductByAlphabet(listOfProduct);
         for ( Product product: listOfProduct)
         {
             
@@ -253,6 +253,7 @@ public class Shelf
      */
     public void displayOwnerProductsInfo(ArrayList<Product> listOfProduct)
     {
+        sortProductByAlphabet(listOfProduct);
         for ( Product product: listOfProduct)
         {
             System.out.format("%-13s%-16s%-14s%-17s%-15.1f%-15.1f%-13.2f%-15.2f%-13d%-20s%n",product.getProductID(),product.getProductName(),

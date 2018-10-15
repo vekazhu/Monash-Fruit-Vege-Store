@@ -85,6 +85,7 @@ public class FileManager
             for(String str: content){
                 outputFile.write(str);
                 outputFile.newLine();
+                
             }
             outputFile.close();
         }
