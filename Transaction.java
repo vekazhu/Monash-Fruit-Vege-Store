@@ -58,6 +58,12 @@ public class Transaction
         return totalPrice;
     }
     
+    public String getTransactionInfo()
+    {
+        String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice();
+        return transactionInfo;
+    }
+    
     public void setCustomerID(String customerID)
     {
         this.customerID= customerID;
