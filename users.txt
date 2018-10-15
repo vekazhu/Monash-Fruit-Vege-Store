@@ -1,7 +1,0 @@
-O001,jac001,jack@gmail.com,0111111111,pass3,samsmith
-c0013,Andrews,andrews@gmail.com,0456789876,Pass4,siya
-<<<<<<< HEAD
-c0015,David,david@gmail.com,0457683942,David,JayZhou
-=======
-c0014,Ryan,ryan@gmail.com,0465342243,Pass5,Lady
->>>>>>> b971db4dbdd6fce69d7eab143faeb08efc496b57

@@ -81,7 +81,6 @@ public class MFVSController
         //update users.txt file
         updateTransactionList();
     }
-    
 
     /**
      * Method unregister is for registered users to select when they no longer want to register in MFVS
@@ -98,6 +97,7 @@ public class MFVSController
         {
             updateTransactionInFiles();
             deleteUserInFiles(listOfUsers,user.getUserId());
+            user.setUserNumber(user.getUserNumber()-1);
             System.out.println("You are no longer with MFVS now, wish you will come back :)");
         }
         else if(answer.toLowerCase().equals("n"))

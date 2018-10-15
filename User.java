@@ -11,9 +11,9 @@ public class User
 {
     private String userId;// generate automatically
     private String userName; // first three letters of first name + last three number of userID, eg:abc001
-    private String userEmail; //include @
+    private String userEmail; 
     private String userPhoneNumber; // 10 digit
-    private String userPassword; //one upper, one lower, maybe number, length >=4
+    private String userPassword; //one upper, one lower, length >=4
     private String securityAnswer;
     private static int userNumber = 6;//including 5 customers and one owner
     private ArrayList<User> usersList;
@@ -30,7 +30,6 @@ public class User
         userPhoneNumber = "";
         userPassword = "";
         securityAnswer = "";
-        userNumber++;
     }
 
     /**
@@ -115,6 +114,16 @@ public class User
     public int getUserNumber()
     {
         return userNumber;
+    }
+    
+    /**
+     * Method getUserNumber is to get the number of registered user in the system
+     *
+     * @return int: userNumber, the number of registered user in the system
+     */
+    public void setUserNumber(int number)
+    {
+        userNumber = userNumber + number;
     }
 
     /**
