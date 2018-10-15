@@ -363,6 +363,27 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     
     }
+    
+    /**
+     * Method displayAllTransactions will sort all recorded transactions in the MFVS
+     *
+     */
+    public void sortAllTransactions()
+    {
+        Transaction temp = new Transaction();
+        for (int i = 0; i < listOfTransactions.size(); i++)
+        {
+            for (int j = i + 1; j < listOfTransactions.size(); j++)
+            {
+                if (listOfTransactions.get(i).getTransactionDate().compareTo(listOfTransactions.get(j).getTransactionDate())>0)
+                {
+                    temp = listOfTransactions.get(i);
+                    listOfTransactions.set(i,listOfTransactions.get(j));
+                    listOfTransactions.set(i+1,temp);
+                }
+            }
+        }
+    }
 
     /**
      * Method displayAllTransactions will display all recorded transactions in the MFVS for the store owner to view
@@ -370,8 +391,8 @@ public class MFVSController
      */
     public void displayAllTransactions()
     {
+        sortAllTransactions();
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // String customerID, String customerStatus, String date,double totalPrice
         System.out.format("%-15s%-20s%-20s%-20s%-10s%n","CustomerID","Customer Status","Transaction Date","Total Amount","Rating");
         for (Transaction transaction : listOfTransactions)
         {
@@ -390,7 +411,6 @@ public class MFVSController
     public void displayCustomerTransactions(ArrayList<Transaction> listOfTransactions)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // , String date,double totalPrice
         System.out.println("Customer ID: "+listOfTransactions.get(0).getCustomerID());
         System.out.format("%-20s%-20s%-15s%n","Transaction Date","Total Amount","Your Rating");
         for (Transaction transaction : listOfTransactions)
@@ -407,7 +427,6 @@ public class MFVSController
     public void displayAllUsers()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Users~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // String customerID, String customerStatus, String date,double totalPrice
         System.out.format("%-15s%-20s%-30s%-15s%n","CustomerID","Customer Name","Email","Phone Number");
         listOfUsers = FileManager.readUserInfo("users.txt");
         for (User customer : listOfUsers)
