@@ -67,10 +67,12 @@ public class MFVSController
     }
     
 
+
     /**
      * Method unregister is for registered users to select when they no longer want to register in MFVS
      *
      */
+
 
     public void updateTransactionInFiles()
     {
@@ -83,6 +85,11 @@ public class MFVSController
         updateTransactionList();
     }
     
+
+    /**
+     * Method unregister is for registered users to select when they no longer want to register in MFVS
+     *
+     */    
 
     public void unregister()
     {
@@ -645,10 +652,12 @@ public class MFVSController
     }
     
 
+
     /**
      * Method searchForProduct is to search products by product name in the store
      *
      */
+
 
     public void updateTransactionList()
     {
@@ -665,8 +674,13 @@ public class MFVSController
         }
         FileManager.writeFile(content,"transactions.txt");
     }
-    
 
+
+
+    /**
+     * Method searchForProduct is to search products by product name in the store
+     *
+     */
 
     public void searchForProduct()
     {

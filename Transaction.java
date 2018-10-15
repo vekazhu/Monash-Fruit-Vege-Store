@@ -87,11 +87,14 @@ public class Transaction
     }
     
 
+
     /**
      * Method setCustomerID is to record the user ID of the customer commenced the transaction
      *
      * @param customerID, the user ID of the customer commenced the transaction
      */
+
+
 
     public String getTransactionInfo()
     {
@@ -99,6 +102,12 @@ public class Transaction
         return transactionInfo;
     }
     
+
+     /**
+     * Method setCustomerID is to record the user ID of the customer commenced the transaction
+     *
+     * @param customerID, the user ID of the customer commenced the transaction
+     */
 
     public void setCustomerID(String customerID)
     {
