@@ -383,7 +383,7 @@ public class MFVSController
     }
 
     /**
-     * Method displayAllTransactions will display all recorded transactions in the MFVS for the store owner to view
+     * Method displayAllTransactions will display all recorded transactions by date in the MFVS for the store owner to view
      *
      */
     public void displayAllTransactions()
