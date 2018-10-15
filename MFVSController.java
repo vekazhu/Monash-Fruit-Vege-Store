@@ -16,6 +16,7 @@ public class MFVSController
     private UserMenu menu;
     private User user;
     private Shelf shelf;
+    private String userId;
 
     /**
      * Constructor for objects of class MFVSController
@@ -55,13 +56,26 @@ public class MFVSController
         updateUserList();
     }
     
+    public void updateTransactionInFiles()
+    {
+        for (int i = 0; i < listOfTransactions.size(); i++)
+        {
+            if (userId.equals(listOfTransactions.get(i).getCustomerID())) 
+                listOfTransactions.get(i).setCustomerStatus("Inactive");
+        }
+        //update users.txt file
+        updateTransactionList();
+    }
+    
     public void unregister()
     {
         System.out.println("Are you sure you want to unregister?(y|Y)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
+        
         if(answer.toLowerCase().equals("y"))
         {
+            updateTransactionInFiles();
             deleteUserInFiles(listOfUsers,user.getUserId());
             System.out.println("You are no longer with MFVS now, wish you will come back :)");
         }
@@ -87,7 +101,7 @@ public class MFVSController
 
             case "b":
             System.out.print('\u000C');
-            String userId = user.login();
+            userId = user.login();
             user.setUserId(userId);
             if (userId.equals("")){
                 break;
@@ -557,6 +571,22 @@ public class MFVSController
            f.delete();
         }
         FileManager.writeFile(content,"users.txt");
+    }
+    
+    public void updateTransactionList()
+    {
+        ArrayList<String> content = new ArrayList<String>();
+        for (Transaction transaction: listOfTransactions)
+        {
+            content.add(transaction.getTransactionInfo());
+        }
+        File f = new File("transactions.txt");
+        if (f.exists())
+        {
+          //delete if exists
+           f.delete();
+        }
+        FileManager.writeFile(content,"transactions.txt");
     }
     
 

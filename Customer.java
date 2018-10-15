@@ -282,7 +282,7 @@ public class Customer extends User
                 shelf.updateInventory(); // write updated products info in "products.txt"
                 System.out.println("Thank you for shopping at MFVS~");
                 double rating = rate();
-                
+                customerTransactions = new ArrayList<String>();
                 String transaction = userId + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
                 customerTransactions.add(transaction);
                 FileManager.writeFile(customerTransactions,"transactions.txt");
