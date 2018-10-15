@@ -181,6 +181,25 @@ public class Owner extends User
         if (answer.startsWith("y"))
         {
             shelf.deleteProductInShelf(productID);
+            System.out.println("Where do you want to put you expired product?");
+            System.out.println("1.Charity");
+            System.out.println("2.Rubbish bin");
+            String choice = input.nextLine();
+            while (!choice.equals("1") && !choice.equals("2"))
+            {
+                System.out.println("Invalid input, please re-enter");
+                choice = input.nextLine().trim();
+            }
+            if (choice.equals("1"))
+            {
+                System.out.println("The product will send to charity");
+            }
+            if (choice.equals("2"))
+            {
+                System.out.println("The product will be put in rubbish bin");
+            }
+            shelf.deleteProductInShelf(productID);
+            shelf.updateInventory();
         }
         else
         {
@@ -282,12 +301,15 @@ public class Owner extends User
             System.out.println("There is no product with Id "+ id);
         }
         else {
+            Product product = updatedProduct.get(updatedProduct.size()-1);
             System.out.println("Updated inventory");
             shelf.updateInventory();
             System.out.println("Product updated successfully");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Updated Product Info~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.format("%-13s%-16s%-14s%-17s%-15s%-30s%-10s%-25s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Total quantity(in Whole)","Price/KG","Total quantity(in KG)","Discount");
-            shelf.displayOwnerProductsInfo(updatedProduct);
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-30s%-10s%-25s%-13s%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount());
+        
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 

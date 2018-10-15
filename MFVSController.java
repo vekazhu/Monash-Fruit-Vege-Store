@@ -16,6 +16,7 @@ public class MFVSController
     private UserMenu menu;
     private User user;
     private Shelf shelf;
+    private String userId;
 
     /**
      * Default constructor for objects of class MFVSController
@@ -65,17 +66,33 @@ public class MFVSController
         updateUserList();
     }
     
+<<<<<<< HEAD
     /**
      * Method unregister is for registered users to select when they no longer want to register in MFVS
      *
      */
+=======
+    public void updateTransactionInFiles()
+    {
+        for (int i = 0; i < listOfTransactions.size(); i++)
+        {
+            if (userId.equals(listOfTransactions.get(i).getCustomerID())) 
+                listOfTransactions.get(i).setCustomerStatus("Inactive");
+        }
+        //update users.txt file
+        updateTransactionList();
+    }
+    
+>>>>>>> 43e71499eb80f8db2715b5f3373311b84eab8b2b
     public void unregister()
     {
         System.out.println("Are you sure you want to unregister?(y|Y)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
+        
         if(answer.toLowerCase().equals("y"))
         {
+            updateTransactionInFiles();
             deleteUserInFiles(listOfUsers,user.getUserId());
             System.out.println("You are no longer with MFVS now, wish you will come back :)");
         }
@@ -106,7 +123,7 @@ public class MFVSController
 
             case "b":
             System.out.print('\u000C');
-            String userId = user.login();
+            userId = user.login();
             user.setUserId(userId);
             if (userId.equals("")){
                 break;
@@ -319,7 +336,7 @@ public class MFVSController
     public void displayAllProductsForOwner()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-15s%-13s%-15s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Quantity/each","Price/KG","Quantity/Kg","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayOwnerProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -627,10 +644,30 @@ public class MFVSController
         FileManager.writeFile(content,"users.txt");
     }
     
+<<<<<<< HEAD
     /**
      * Method searchForProduct is to search products by product name in the store
      *
      */
+=======
+    public void updateTransactionList()
+    {
+        ArrayList<String> content = new ArrayList<String>();
+        for (Transaction transaction: listOfTransactions)
+        {
+            content.add(transaction.getTransactionInfo());
+        }
+        File f = new File("transactions.txt");
+        if (f.exists())
+        {
+          //delete if exists
+           f.delete();
+        }
+        FileManager.writeFile(content,"transactions.txt");
+    }
+    
+
+>>>>>>> 43e71499eb80f8db2715b5f3373311b84eab8b2b
     public void searchForProduct()
     {
         Scanner input = new Scanner(System.in);

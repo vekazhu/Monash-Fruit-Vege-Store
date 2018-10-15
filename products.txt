@@ -1,7 +1,7 @@
-f001,apple,fruit,1,1.0,6.0,8.75,45.0,7
-f002,Oranges,fruit,2,1.0,5.0,61.75,147.0,0
+f001,apple,fruit,1,1.0,6.0,7.5,40.0,7
+f002,Oranges,fruit,2,1.0,5.0,59.25,137.0,0
 f003,kiwifruit,fruit,4,0.6,6.0,75.5,202.0,0
-v004,broccoli,Vegetable,7,2.0,4.0,50.0,100.0,0
+v004,broccoli,Vegetable,7,2.0,4.0,49.25,97.0,0
 v005,Cos Lettuce,Vegetable,7,2.5,5.0,10.0,50.0,0
 f011,pineapple,fruit,2,6.5,5.0,19.75,14.0,10
 v024,Spinach,vegetable,3,1.5,5.0,50.0,80.0,0
@@ -12,4 +12,3 @@ f047,Pears,fruit,5,2.0,5.0,80.0,50.0,3
 f117,banana,fruit,4,1.0,4.5,100.0,300.0,0
 f042,avocado,fruit,7,2.5,10.0,50.0,100.0,0
 v045,Wombak,vegetable,3,2.5,3.0,100.0,80.0,0
-f063,GreenApple,fruit,7,0.75,4.0,40.0,60.0,0
