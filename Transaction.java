@@ -86,20 +86,17 @@ public class Transaction
         return totalPrice;
     }
     
-<<<<<<< HEAD
-    /**
-     * Method setCustomerID is to record the user ID of the customer commenced the transaction
-     *
-     * @param customerID, the user ID of the customer commenced the transaction
-     */
-=======
     public String getTransactionInfo()
     {
         String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice()+","+ getRating();
         return transactionInfo;
     }
     
->>>>>>> 43e71499eb80f8db2715b5f3373311b84eab8b2b
+     /**
+     * Method setCustomerID is to record the user ID of the customer commenced the transaction
+     *
+     * @param customerID, the user ID of the customer commenced the transaction
+     */
     public void setCustomerID(String customerID)
     {
         this.customerID= customerID;

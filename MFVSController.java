@@ -66,12 +66,6 @@ public class MFVSController
         updateUserList();
     }
     
-<<<<<<< HEAD
-    /**
-     * Method unregister is for registered users to select when they no longer want to register in MFVS
-     *
-     */
-=======
     public void updateTransactionInFiles()
     {
         for (int i = 0; i < listOfTransactions.size(); i++)
@@ -83,7 +77,10 @@ public class MFVSController
         updateTransactionList();
     }
     
->>>>>>> 43e71499eb80f8db2715b5f3373311b84eab8b2b
+    /**
+     * Method unregister is for registered users to select when they no longer want to register in MFVS
+     *
+     */    
     public void unregister()
     {
         System.out.println("Are you sure you want to unregister?(y|Y)");
@@ -644,12 +641,7 @@ public class MFVSController
         FileManager.writeFile(content,"users.txt");
     }
     
-<<<<<<< HEAD
-    /**
-     * Method searchForProduct is to search products by product name in the store
-     *
-     */
-=======
+
     public void updateTransactionList()
     {
         ArrayList<String> content = new ArrayList<String>();
@@ -665,9 +657,11 @@ public class MFVSController
         }
         FileManager.writeFile(content,"transactions.txt");
     }
-    
 
->>>>>>> 43e71499eb80f8db2715b5f3373311b84eab8b2b
+    /**
+     * Method searchForProduct is to search products by product name in the store
+     *
+     */
     public void searchForProduct()
     {
         Scanner input = new Scanner(System.in);
