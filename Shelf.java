@@ -164,6 +164,16 @@ public class Shelf
         
     }
     
+    public void displayOwnerProductsInfo(ArrayList<Product> listOfProduct)
+    {
+        for ( Product product: listOfProduct)
+        {
+            System.out.format("%-13s%-16s%-14s%-17s%-15.1f%-15.1f%-13.2f%-15.2f%-13d%n",product.getProductID(),product.getProductName(),
+                product.getCategory(),product.getShelfLife(),product.getPriceWhole(),product.getQuantityWhole(),product.getPriceKG(),product.getQuantityKG(),product.getDiscount());
+        }
+        
+    }
+    
     public void deleteProductInShelf(String deleteProductId)
     {
         for (int i = 0; i < listOfProducts.size(); i++)

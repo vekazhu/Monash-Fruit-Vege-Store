@@ -128,7 +128,7 @@ public class Owner extends User
  
     public void createProduct()
     {
-        System.out.println("Product create ");
+        
         String newProductName = productNameScanner(); 
         System.out.println("________________________________________________________________________________________________");
         
@@ -181,6 +181,25 @@ public class Owner extends User
         if (answer.startsWith("y"))
         {
             shelf.deleteProductInShelf(productID);
+            System.out.println("Where do you want to put you expired product?");
+            System.out.println("1.Charity");
+            System.out.println("2.Rubbish bin");
+            String choice = input.nextLine();
+            while (!choice.equals("1") && !choice.equals("2"))
+            {
+                System.out.println("Invalid input, please re-enter");
+                choice = input.nextLine().trim();
+            }
+            if (choice.equals("1"))
+            {
+                System.out.println("The product will send to charity");
+            }
+            if (choice.equals("2"))
+            {
+                System.out.println("The product will be put in rubbish bin");
+            }
+            shelf.deleteProductInShelf(productID);
+            shelf.updateInventory();
         }
         else
         {
@@ -261,15 +280,20 @@ public class Owner extends User
                         tryAgainFlag += 1;
                         break;
                     }
-                    else
+                    else if (tryAgain.toLowerCase().equals("y"))
                         continue;
+                    else 
+                    {
+                        System.out.println("Sorry!! You entered a wrong choice");
+                        break;
+                    }
                 } 
                 break;
             }
             else
             {
                 flag = 0;
-                System.out.println(shelf.getListOfProducts().get(i).getProductID()+"this product NOT found");
+                
             }
 
         }
@@ -280,10 +304,10 @@ public class Owner extends User
             System.out.println("Updated inventory");
             shelf.updateInventory();
             System.out.println("Product updated successfully");
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Updated Product Info~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
-            shelf.displayProductsInfo(updatedProduct);
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Updated Product Info~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.format("%-13s%-16s%-14s%-17s%-15s%-30s%-10s%-25s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Total quantity(in Whole)","Price/KG","Total quantity(in KG)","Discount");
+            shelf.displayOwnerProductsInfo(updatedProduct);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
     }

@@ -120,7 +120,7 @@ public class User
         int userExists = 0;
         User user = new User();
         usersList = FileManager.readUserInfo("users.txt");
-        System.out.println(usersList.size());
+        
         System.out.println("Enter your UserId");
         String inpUser = keyboard.nextLine();
         System.out.println("Enter your Password");
@@ -131,7 +131,7 @@ public class User
         {
             user = usersList.get(i);
             String userId = usersList.get(i).getUserId();
-            System.out.println(userId);
+            
             String password = usersList.get(i).getUserPassword();
             if (inpUser.equals(userId) ) {
                 userExists = 1;

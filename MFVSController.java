@@ -57,16 +57,21 @@ public class MFVSController
     
     public void unregister()
     {
-        System.out.println("Are you sure you want to unregister");
+        System.out.println("Are you sure you want to unregister?(y|Y)");
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
-        if(answer.startsWith("y"))
+        if(answer.toLowerCase().equals("y"))
         {
-            deleteUserInFiles(listOfUsers,customer.getUserId());
+            deleteUserInFiles(listOfUsers,user.getUserId());
+            System.out.println("You are no longer with MFVS now, wish you will come back :)");
+        }
+        else if(answer.toLowerCase().equals("n"))
+        {
+            System.out.println("THANK YOU!! For making the right choice :), Your account is ACTIVE");
         }
         else
         {
-            shelf.displayProductsInfo();
+            System.out.println("Sorry Wrong choice, Your account is not deactivated");
         }
     }
     
@@ -76,10 +81,12 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
+            System.out.print('\u000C');
             displayAllProducts();
             break;
 
             case "b":
+            System.out.print('\u000C');
             String userId = user.login();
             user.setUserId(userId);
             if (userId.equals("")){
@@ -98,7 +105,6 @@ public class MFVSController
         
                         customerOption = input.next();
                         
-                        System.out.println("----------------------------------------------------------------------------------");
                         getCustomerChoice(customerOption);
                     }
                     while (!customerOption.toLowerCase().equals("h") & !customerOption.toLowerCase().equals("i") & !customerOption.toLowerCase().equals("x"));
@@ -106,14 +112,13 @@ public class MFVSController
                 }
                 else {
                     String ownerOption = "";
-                    while (!ownerOption.toLowerCase().equals("g") & !ownerOption.toLowerCase().equals("x"))
+                    while (!ownerOption.toLowerCase().equals("h") & !ownerOption.toLowerCase().equals("x"))
                     {
                         
                         Scanner input = new Scanner(System.in);
                         //System.out.println('\u000C');
                         menu.displayOwnerMenu();
                         ownerOption = input.nextLine();
-                        System.out.println("-----------------------------------------------------------------------------");
                         getOwnerChoice(ownerOption);
                     }
                 }
@@ -122,10 +127,12 @@ public class MFVSController
             break;
             
             case"c":
+            System.out.print('\u000C');
             register();
             break;
             
             case "x":
+            System.out.print('\u000C');
             System.out.println("See you next time");
             break;
             default:
@@ -145,46 +152,53 @@ public class MFVSController
         switch (option.toLowerCase())
         {
             case "a":
-            
+            System.out.print('\u000C');
             displayAllProducts();
             
             break;
 
             case "b":
+            System.out.print('\u000C');
             searchForProduct();
             break;
             
             case "c":
+            System.out.print('\u000C');
             displayAllProducts();
             customer.addProductToCart();
             break;
             
             case "d":
+            System.out.print('\u000C');
             customer.displayCart();
             break;
             
             case "e":
+            System.out.print('\u000C');
             customer.displayCart();
             customer.editProduct();
             break;
             
             case "f":
+            System.out.print('\u000C');
             customer.checkOut(user.getUserId());
             break;
             
             case "g":
+            System.out.print('\u000C');
             getCustomerTransaction(user.getUserId());
             break;
             
             case "h":
+            System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
             break;
             
             case "i":
+            System.out.print('\u000C');
             unregister();
             logout();
-            System.out.println("You are no longer with MFVS, wish you will come back :)");
             break;
 
             case "x":
@@ -206,9 +220,7 @@ public class MFVSController
         {
             case "a":
             System.out.print('\u000C');
-            System.out.println("-------------------------------------------------------------------");
-            displayAllProducts();
-            System.out.println("-------------------------------------------------------------------");
+            displayAllProductsForOwner();
             break;
 
             case "b":
@@ -217,27 +229,34 @@ public class MFVSController
             break;
             
             case "c":
+            System.out.print('\u000C');
             owner.createProduct();
-            displayAllProducts();
+            displayAllProductsForOwner();
             break;
             
             case "d":
             System.out.print('\u000C');
-            displayAllProducts();
+            displayAllProductsForOwner();
             owner.updateProduct();
             break;
             
             case "e":
             System.out.print('\u000C');
-            displayAllTransactions();
+            displayAllProductsForOwner();
+            owner.disposeProductFromShelf();
             break;
             
             case "f":
             System.out.print('\u000C');
-            displayAllUsers();
+            displayAllTransactions();
             break;
             
             case "g":
+            System.out.print('\u000C');
+            displayAllUsers();
+            break;
+            
+            case "h":
             System.out.print('\u000C');
             logout();
             System.out.println("Logout Successful!!\n Thank you :)\n");
@@ -265,12 +284,23 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
+    public void displayAllProductsForOwner()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-15s%-13s%-15s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Quantity/each","Price/KG","Quantity/Kg","Discount");
+        shelf.sortProductByAlphabet();
+        shelf.displayOwnerProductsInfo(shelf.getListOfProducts());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+    
     public void displayProducts(ArrayList<Product> productList)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
         //shelf.sortProductByAlphabet();
         shelf.displayProductsInfo(productList);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
     }
 
     public void displayAllTransactions()
@@ -311,6 +341,8 @@ public class MFVSController
                 System.out.format("%-15s%-20s%-30s%-15s%n",customer.getUserId(),customer.getUserName(),
                     customer.getUserEmail(),customer.getUserPhoneNumber());
         }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
     }
 
     public String nameScanner()
@@ -534,22 +566,36 @@ public class MFVSController
         ArrayList<Product> foundProducts = new ArrayList<Product>();
         System.out.print('\u000C');
         menu.displaySearchMenu();
-        int searchType = Integer.parseInt(input.nextLine());
+        String searchType = (input.nextLine());
         
-        switch (searchType)
+        switch (searchType.toLowerCase())
         {
-            case 1:
+            case "a":
             System.out.println("Enter the product name to SEARCH");
             String searchName = input.nextLine();
             foundProducts = shelf.findProductByName(searchName);
             System.out.println("Found "+ foundProducts.size() + " "+searchName);
+            if(foundProducts.size() == 0)
+            {
+                System.out.println("SORRY!! the product is  unavailable.\n");
+            }
+            else{
+                displayProducts(foundProducts);
+            }
             break;
 
-            case 2:
+            case "b":
             System.out.println("Enter the product name to SEARCH");
             String searchCategory = input.nextLine();
             foundProducts = shelf.findProductByCategory(searchCategory);
             System.out.println("Found "+ foundProducts.size() + " "+searchCategory);
+            if(foundProducts.size() == 0)
+            {
+                System.out.println("SORRY!! the product is  unavailable.\n");
+            }
+            else{
+                displayProducts(foundProducts);
+            }
             break;
            
             default:
@@ -558,13 +604,7 @@ public class MFVSController
         }
         
         
-        if(foundProducts.size() == 0)
-        {
-            System.out.println("SORRY!! the product is  unavailable.\n");
-        }
-        else{
-            displayProducts(foundProducts);
-        }
+        
     }
     
     public void getCustomerTransaction(String userId)
