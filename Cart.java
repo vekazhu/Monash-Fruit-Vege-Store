@@ -66,7 +66,7 @@ public class Cart
      */
     public void addTotalPrice(double price)
     {
-        totalPrice = Math.round(totalPrice + price);
+        totalPrice = totalPrice + price;
     }
 
     /**
