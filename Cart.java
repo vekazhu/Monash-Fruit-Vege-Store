@@ -99,6 +99,7 @@ public class Cart
                 System.out.format("%-13s%-16s%-10.1f%-16s%-13.2f%-10d%n",productId,productName,amount,unitPrice,price,discount);
                 //ProductId,productName,price,amount,onePrice,totalPrice,discount
             }
+            String allPrice = String.format("%.2f",totalPrice);
             System.out.println("Your total price is " + totalPrice + " AUD");
         }
         else

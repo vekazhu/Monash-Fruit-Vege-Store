@@ -71,8 +71,9 @@ public class MFVSController
         updateUserList();
     }
     
+
     /**
-     * Method unregister is for registered users to select when they no longer want to register in MFVS
+     * Method updateTransactionInFiles is to update the user status to 'inactive' when a registered user is unregistered
      *
      */
 
@@ -102,6 +103,7 @@ public class MFVSController
         {
             updateTransactionInFiles();
             deleteUserInFiles(listOfUsers,user.getUserId());
+            user.setUserNumber(user.getUserNumber()-1);
             System.out.println("You are no longer with MFVS now, wish you will come back :)");
         }
         else if(answer.toLowerCase().equals("n"))
@@ -368,15 +370,36 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
     }
+    
+    /**
+     * Method displayAllTransactions will sort all recorded transactions in the MFVS
+     *
+     */
+    public void sortAllTransactions()
+    {
+        Transaction temp = new Transaction();
+        for (int i = 0; i < listOfTransactions.size(); i++)
+        {
+            for (int j = i + 1; j < listOfTransactions.size(); j++)
+            {
+                if (listOfTransactions.get(i).getTransactionDate().compareTo(listOfTransactions.get(j).getTransactionDate())>0)
+                {
+                    temp = listOfTransactions.get(i);
+                    listOfTransactions.set(i,listOfTransactions.get(j));
+                    listOfTransactions.set(i+1,temp);
+                }
+            }
+        }
+    }
 
     /**
-     * Method displayAllTransactions will display all recorded transactions in the MFVS for the store owner to view
+     * Method displayAllTransactions will display all recorded transactions by date in the MFVS for the store owner to view
      *
      */
     public void displayAllTransactions()
     {
+        sortAllTransactions();
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // String customerID, String customerStatus, String date,double totalPrice
         System.out.format("%-15s%-20s%-20s%-20s%-10s%n","CustomerID","Customer Status","Transaction Date","Total Amount","Rating");
         for (Transaction transaction : listOfTransactions)
         {
@@ -395,7 +418,6 @@ public class MFVSController
     public void displayCustomerTransactions(ArrayList<Transaction> listOfTransactions)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // , String date,double totalPrice
         System.out.println("Customer ID: "+listOfTransactions.get(0).getCustomerID());
         System.out.format("%-20s%-20s%-15s%n","Transaction Date","Total Amount","Your Rating");
         for (Transaction transaction : listOfTransactions)
@@ -412,7 +434,6 @@ public class MFVSController
     public void displayAllUsers()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Users~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        // String customerID, String customerStatus, String date,double totalPrice
         System.out.format("%-15s%-20s%-30s%-15s%n","CustomerID","Customer Name","Email","Phone Number");
         listOfUsers = FileManager.readUserInfo("users.txt");
         for (User customer : listOfUsers)
@@ -656,9 +677,8 @@ public class MFVSController
         FileManager.writeFile(content,"users.txt");
     }
 
-
     /**
-     * Method searchForProduct is to search products by product name in the store
+     * Method updateTransactionList is to update the user text file when a registered user is unregistered
      *
      */
 
@@ -727,7 +747,6 @@ public class MFVSController
             System.out.println("The entered vaule is unrecognized!");break;
         }
 
-        
     }
 
     /**

@@ -87,15 +87,11 @@ public class Transaction
     }
     
 
-
     /**
-     * Method setCustomerID is to record the user ID of the customer commenced the transaction
+     * Method getTransactionInfo is to get all the information of transcantions recorded
      *
-     * @param customerID, the user ID of the customer commenced the transaction
+     * @return String: transactionInfo, all the information of transcantions recorded
      */
-
-
-
     public String getTransactionInfo()
     {
         String transactionInfo = getCustomerID() + "," + getCustomerStatus() + "," + getTransactionDate() + "," + getTotalPrice()+","+ getRating();
