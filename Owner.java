@@ -215,7 +215,7 @@ public class Owner extends User
         if (answer.startsWith("y"))
         {
             shelf.deleteProductInShelf(productID);
-            System.out.println("Where do you want to put you expired product?");
+            System.out.println("Choose disposal way");
             System.out.println("1.Charity");
             System.out.println("2.Rubbish bin");
             String choice = input.nextLine();
@@ -226,7 +226,7 @@ public class Owner extends User
             }
             if (choice.equals("1"))
             {
-                System.out.println("The product will send to charity");
+                System.out.println("Thank You for your kind heart!!");
             }
             if (choice.equals("2"))
             {
