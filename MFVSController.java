@@ -233,7 +233,10 @@ public class MFVSController
 
             case "f":
             System.out.print('\u000C');
-            customer.checkOut(user.getUserId());
+            ArrayList<Transaction> customerTransaction = customer.checkOut(user.getUserId());
+            for(Transaction transaction: customerTransaction)
+                listOfTransactions.add(transaction);
+            updateTransactionList();
             break;
 
             case "g":

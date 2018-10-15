@@ -13,7 +13,7 @@ public class Customer extends User
     private String status;
     private Cart cart;
     private Shelf shelf;
-    private ArrayList<String> customerTransactions = new ArrayList<String>();
+    private ArrayList<Transaction> customerTransactions = new ArrayList<Transaction>();
 
     /**
      * Constructor for objects of class Customer
@@ -316,7 +316,7 @@ public class Customer extends User
      *
      * @param userId, the ID of the customer that wants to check out
      */
-    public void checkOut(String userId)
+    public ArrayList<Transaction> checkOut(String userId)
     {
         if (cart.getCartInfo().size() != 0)
         {
@@ -324,6 +324,7 @@ public class Customer extends User
             System.out.println("Are you sure you want to checkout? (y/n)");
             Scanner input = new Scanner(System.in);
             String answer = input.nextLine();
+            customerTransactions = new ArrayList<Transaction>();
             while (!answer.toLowerCase().equals("y") && !answer.toLowerCase().equals("n"))
             {
                 System.out.println("please enter y or n only");
@@ -339,10 +340,10 @@ public class Customer extends User
                 shelf.updateInventory(); // write updated products info in "products.txt"
                 System.out.println("Thank you for shopping at MFVS~");
                 double rating = rate();
-                customerTransactions = new ArrayList<String>();
-                String transaction = userId + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
+                Transaction transaction = new Transaction(userId, status, cart.generateDate(),cart.getTotalPrice(),rating);
+                //String transaction = userId + "," + status + "," + cart.generateDate() + "," + cart.getTotalPrice() + "," + rating;
                 customerTransactions.add(transaction);
-                FileManager.writeFile(customerTransactions,"transactions.txt");
+                //FileManager.writeFile(customerTransactions,"transactions.txt");
                 cart.setTotalPrice(0);
                 cart.clearCartInfo();
             }
@@ -354,6 +355,7 @@ public class Customer extends User
         }
         else
             System.out.println("You have nothing in your cart, add products to checkout~");
+        return customerTransactions;
     }
 
     /**

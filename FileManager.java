@@ -76,12 +76,13 @@ public class FileManager
      */
     public static void writeFile(ArrayList<String> content,String fileName)
     {
-        String file = fileName;
+        //String file = fileName;
         try
         {
             BufferedWriter outputFile;
             outputFile = new BufferedWriter(new FileWriter(fileName, true));
-            //outputFile.println(content);
+            
+            
             for(String str: content){
                 outputFile.write(str);
                 outputFile.newLine();
@@ -89,6 +90,8 @@ public class FileManager
             }
             outputFile.close();
         }
+        
+        
         catch(IOException e)
         {
             System.out.println("Unexpected I/O exception occurs.");
