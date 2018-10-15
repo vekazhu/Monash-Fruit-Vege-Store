@@ -174,9 +174,9 @@ public class Shelf
             {
                 if (listOfProducts.get(i).getProductName().toLowerCase().compareTo(listOfProducts.get(j).getProductName().toLowerCase())>0)
                 {
-                    temp = listOfProducts.get(i);
-                    listOfProducts.set(i,listOfProducts.get(j));
-                    listOfProducts.set(i+1,temp);
+                    temp = listOfProducts.get(j);
+                    listOfProducts.remove(listOfProducts.get(j));
+                    listOfProducts.add(i,temp);
                 }
             }
         }
@@ -218,7 +218,7 @@ public class Shelf
      */
     public void displayProductsInfo(ArrayList<Product> listOfProduct)
     {
-        
+        sortProductByAlphabet();
         for ( Product product: listOfProduct)
         {
             
