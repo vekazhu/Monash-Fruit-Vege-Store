@@ -1,10 +1,10 @@
 import java.util.*;
 import java.io.*;
 /**
- * A class is to read and write file.
+ * FileManager class is to read and write file.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class FileManager
 {
@@ -12,15 +12,16 @@ public class FileManager
      * Default constructor for objects of class FileController
      */
     public FileManager()
-    {
+     {
 
-    }
+     }
 
+    
     /**
-     * A method is to read all lines in a file.
+     * Method readProductsInfo is to read information of all products in the MFVS and build an Arraylist of products 
      *
-     * @param a String: the file name
-     * @return an arrayList: an arrayList that include team info
+     * @param fileName, the name of the text file the method reads from
+     * @return ArrayList<Product>: listOfProducts, the Arraylist of products in MFVS
      */
     public static ArrayList<Product> readProductsInfo(String fileName)
     {
@@ -65,10 +66,12 @@ public class FileManager
         return listOfProducts;
     }
 
+    
     /**
-     * A method is to write all the lines in a new file.
+     * Method writeFile is to write the content of an Arraylist of String to a text file
      *
-     * @param a String: contents
+     * @param content: the Arraylist of String we are going to write to the text file
+     * @param fileName: the name of the text file the method writes to
      */
     public static void writeFile(ArrayList<String> content,String fileName)
     {
@@ -90,6 +93,12 @@ public class FileManager
         }
     }
 
+    /**
+     * Method readTransactionsInfo is to read information of all transactions commenced and build an Arraylist of transcation 
+     *
+     * @param fileName, the name of the text file the method reads from
+     * @return ArrayList<Transaction>: listOfTransactions, the Arraylist of transactions commenced
+     */
     public static ArrayList<Transaction> readTransactionsInfo(String fileName)
     {
         ArrayList<Transaction> listOfTransactions = new ArrayList<Transaction> ();
@@ -128,7 +137,13 @@ public class FileManager
         }
         return listOfTransactions;
     }
-
+   
+    /**
+     * Method readUserInfo is to read information of all registered users and build an Arraylist of user 
+     *
+     * @param fileName, the name of the text file the method reads from
+     * @return ArrayList<User>: listOfUsers, the Arraylist of all registered users of MFVS
+     */
     public static ArrayList<User> readUserInfo(String fileName)
     {
         ArrayList<User> listOfUsers = new ArrayList<User> ();

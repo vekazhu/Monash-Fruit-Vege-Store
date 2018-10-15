@@ -1,15 +1,15 @@
 
 /**
- * Write a description of class UserMenu here.
+ * class UserMenu contains all the menu the system will display to users
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class UserMenu
 {
     
     /**
-     * Constructor for objects of class UserMenu
+     * Default constructor for objects of class UserMenu
      */
     public UserMenu()
     {
@@ -17,7 +17,7 @@ public class UserMenu
     }
 
     /**
-     * A method to display main menu
+     * A method to display main menu, the menu displayed before users have logged in
      */
     public void displayMainMenu()
     {
@@ -31,7 +31,7 @@ public class UserMenu
     }
     
     /**
-     * A method to display menu when a customer has logined
+     * A method to display menu when a customer has logged in
      */
     public void displayCustomerMenu()
     {
@@ -50,6 +50,10 @@ public class UserMenu
         System.out.println("Enter your choice(A/a)");
     }
     
+    /**
+     * A method to display menu when the owner has logged in
+     *
+     */
     public void displayOwnerMenu()
     {
         System.out.println("~~~~~~~~~~Your Menu~~~~~~~~~~");
@@ -66,6 +70,10 @@ public class UserMenu
         
     }
 
+    /**
+     * A method to display menu when 'search product' option is selected 
+     *
+     */
     public void displaySearchMenu()
     {
         System.out.println("Choose the Search Type");

@@ -181,6 +181,25 @@ public class Owner extends User
         if (answer.startsWith("y"))
         {
             shelf.deleteProductInShelf(productID);
+            System.out.println("Where do you want to put you expired product?");
+            System.out.println("1.Charity");
+            System.out.println("2.Rubbish bin");
+            String choice = input.nextLine();
+            while (!choice.equals("1") && !choice.equals("2"))
+            {
+                System.out.println("Invalid input, please re-enter");
+                choice = input.nextLine().trim();
+            }
+            if (choice.equals("1"))
+            {
+                System.out.println("The product will send to charity");
+            }
+            if (choice.equals("2"))
+            {
+                System.out.println("The product will be put in rubbish bin");
+            }
+            shelf.deleteProductInShelf(productID);
+            shelf.updateInventory();
         }
         else
         {

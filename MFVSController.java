@@ -1,10 +1,10 @@
 import java.util.*;
 import java.io.*;
 /**
- * Write a description of class MFVSController here.
+ * class MFVSController is a controller class of this system of Monash Fruit and Vege Store
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class MFVSController
 {
@@ -19,7 +19,7 @@ public class MFVSController
     private String userId;
 
     /**
-     * Constructor for objects of class MFVSController
+     * Default constructor for objects of class MFVSController
      */
     public MFVSController()
     {
@@ -32,6 +32,10 @@ public class MFVSController
         shelf = new Shelf();
     }
 
+    /**
+     * Method start is a method to start the system
+     *
+     */
     public void start()
     {
         String option="";
@@ -45,6 +49,12 @@ public class MFVSController
         while (!option.toLowerCase().equals("x"));
     }
     
+    /**
+     * Method deleteUserInFiles is to delete the user from the User Arraylist and the user.txt file when customer unregister
+     *
+     * @param usersList, the Arraylist of registered users of MFVS
+     * @param userId, the unique id number of registered users of MFVS
+     */
     public void deleteUserInFiles(ArrayList<User> usersList, String userId)
     {
         for (int i = 0; i < listOfUsers.size(); i++)
@@ -56,6 +66,12 @@ public class MFVSController
         updateUserList();
     }
     
+
+    /**
+     * Method unregister is for registered users to select when they no longer want to register in MFVS
+     *
+     */
+
     public void updateTransactionInFiles()
     {
         for (int i = 0; i < listOfTransactions.size(); i++)
@@ -67,6 +83,7 @@ public class MFVSController
         updateTransactionList();
     }
     
+
     public void unregister()
     {
         System.out.println("Are you sure you want to unregister?(y|Y)");
@@ -90,6 +107,11 @@ public class MFVSController
     }
     
 
+    /**
+     * Method getChoice, is to get the input option of all users when the maiMenu is displayed
+     *
+     * @param option, is the option that users input to the system
+     */
     public void getChoice(String option)
     {
         switch (option.toLowerCase())
@@ -156,9 +178,9 @@ public class MFVSController
     }
 
     /**
-     * Method getCustomerChoice
+     * Method getCustomerChoice, is to get the input option of all customers when the customerMenu is displayed
      *
-     * @param option A parameter
+     * @param option, is the option that customers input to the system
      */
     public void getCustomerChoice(String option)
     {
@@ -228,6 +250,11 @@ public class MFVSController
     }
     
     
+    /**
+     * Method getOwnerChoice, is to get the input option of the owner when the ownerMenu is displayed
+     *
+     * @param option, is the option that the owner inputs to the system
+     */
     public void getOwnerChoice(String option)
     {
         switch (option.toLowerCase())
@@ -289,6 +316,10 @@ public class MFVSController
         }
     }
 
+    /**
+     * Method displayAllProducts will display all available products in the MFVS in default alphabetical order
+     *
+     */
     public void displayAllProducts()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -298,15 +329,24 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
+    /**
+     * Method displayAllProductsForOwner will display all products in the MFVS for the store owner in default alphabetical order
+     *
+     */
     public void displayAllProductsForOwner()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.format("%-13s%-16s%-14s%-17s%-15s%-10s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Price/KG","Discount");
+        System.out.format("%-13s%-16s%-14s%-17s%-15s%-15s%-13s%-15s%-13s%n","ProductID","Name","Category","ShelfLife(days)","Price/each","Quantity/each","Price/KG","Quantity/Kg","Discount");
         shelf.sortProductByAlphabet();
         shelf.displayOwnerProductsInfo(shelf.getListOfProducts());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
+    /**
+     * Method displayProducts will display all available products found according to the search condition inputed by users
+     *
+     * @param productList, an Arraylist of products that meet the search condition
+     */
     public void displayProducts(ArrayList<Product> productList)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Products~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -317,6 +357,10 @@ public class MFVSController
     
     }
 
+    /**
+     * Method displayAllTransactions will display all recorded transactions in the MFVS for the store owner to view
+     *
+     */
     public void displayAllTransactions()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -330,6 +374,12 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
+    /**
+     * Method displayCustomerTransactions will display all recorded transactions of the current logged in customer for this customer
+     * to view
+     *
+     * @param listOfTransactions, an Arraylist of transcation of this current logged in customer
+     */
     public void displayCustomerTransactions(ArrayList<Transaction> listOfTransactions)
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Transactions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -343,6 +393,10 @@ public class MFVSController
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
+    /**
+     * Method displayAllUsers will display all registered users in the MFVS for the store owner to view
+     *
+     */
     public void displayAllUsers()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~All Users~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -359,6 +413,11 @@ public class MFVSController
     
     }
 
+    /**
+     * Method nameScanner is to scan the input of user firstname
+     *
+     * @return String: firstName, the firstname inputed by the user
+     */
     public String nameScanner()
     {
         System.out.println("Please enter your first Name between 3-20 letters and only letters are allowed.");
@@ -378,7 +437,7 @@ public class MFVSController
     /**
      * Method passwordScanner is to scan the input of user password
      *
-     * @return The return value
+     * @return String: passWord, the password inputed by the user
      */
     public String passwordScanner()
     {
@@ -400,8 +459,8 @@ public class MFVSController
      * Method doesEmailExist is to validate the existence of inputed email address
      *
      * @param String email,the inputed email address
-     * @return boolean, true if inputed email already exists
-     *                  false if inputed email has not been saved before
+     * @return boolean, true if inputed email does exist
+     *                  false if inputed email does not exist
      */
     public boolean doesEmailExist(String email)
     {
@@ -419,7 +478,7 @@ public class MFVSController
     /**
      * Method emailScanner is to scan the input of user email address
      *
-     * @return String userEmail, 
+     * @return String: userEmail, the email inputed by the user
      */
     public String emailScanner()
     {
@@ -439,7 +498,7 @@ public class MFVSController
     /**
      * Method phoneNumberScanner is to scan the input of user phone number
      *
-     * @return String userPhoneNumber
+     * @return String: userPhoneNumber, the phone number inputed by the user
      */
     public String phoneNumberScanner()
     {
@@ -460,7 +519,7 @@ public class MFVSController
      * Method securityAnswerScanner is to scan theinput of user sercurity answer
      * of security question
      *
-     * @return String enteredToken
+     * @return String: enteredToken, the sercurity answer inputed by the user
      */
     public String securityAnswerScanner()
     {
@@ -477,9 +536,11 @@ public class MFVSController
     }
 
     /**
-     * generate userId, like"u0001"
+     * Method generateUserId is to generate userId, like"c0001" for new registered users and it's unique for each user.
+     * It starts with 'o' for the store owner (but there is only one owner), and starts with 'c' for customers.                  
      * 
-     * @param int i
+     * @param int i is the current user number of the system
+     * @return String: newUserId, the user ID of the new registered user
      */
     public String generateUserId(int i)
     {
@@ -497,11 +558,11 @@ public class MFVSController
     }
 
     /**
-     * Method generateUserName is to generate the unique user name
+     * Method generateUserName is to generate the unique user name based on the user ID and the firstname of the user
      *
-     * @param firstName A parameter
-     * @param userId A parameter
-     * @return The userName
+     * @param firstName, the firstname of the user
+     * @param userId, the user ID of the user
+     * @return String: userName, the generated user name for the new registered user
      */
     public String generateUserName(String firstName, String userId)
     {
@@ -513,13 +574,18 @@ public class MFVSController
         return userName;    
     }
     
+     /**
+      * Method addUser is to add the new registered user into the Arraylist of the registered users of the MFVS
+      *
+      * @param user, the new registered user of the MFVS
+      */
      public void addUser(User user)
     {
         listOfUsers.add(user);
     }
 
     /**
-     * Method register
+     * Method register is to create a new registered user of the MFVS 
      *
      */
     public void register()
@@ -557,6 +623,11 @@ public class MFVSController
         //user.login();
     }
     
+    /**
+     * Method updateUserList is to update the users.txt file of registered users of the MFVS when there is a new registered user
+     * has been added into the Arraylist of registered users of MFVS
+     *
+     */
     public void updateUserList()
     {
         ArrayList<String> content = new ArrayList<String>();
@@ -573,6 +644,12 @@ public class MFVSController
         FileManager.writeFile(content,"users.txt");
     }
     
+
+    /**
+     * Method searchForProduct is to search products by product name in the store
+     *
+     */
+
     public void updateTransactionList()
     {
         ArrayList<String> content = new ArrayList<String>();
@@ -589,6 +666,7 @@ public class MFVSController
         FileManager.writeFile(content,"transactions.txt");
     }
     
+
 
     public void searchForProduct()
     {
@@ -637,6 +715,12 @@ public class MFVSController
         
     }
     
+    /**
+     * Method getCustomerTransaction is to display the transaction of one customer for the store owner according to the 
+     * user ID inputed by the owner
+     *
+     * @param userId, is the user ID inputed by the owner
+     */
     public void getCustomerTransaction(String userId)
     {
         listOfTransactions = FileManager.readTransactionsInfo("transactions.txt");
@@ -658,6 +742,10 @@ public class MFVSController
         }       
     }
     
+    /**
+     * Method logout is for the logged in user to log out the system
+     *
+     */
     public void logout(){
         user = new User();
     }

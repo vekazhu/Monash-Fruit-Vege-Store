@@ -4,10 +4,10 @@ import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 
 /**
- * Write a description of class Cart here.
+ * class Cart contains attributes of a cart object and related get set methods and methods to manage the cart
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 114)
+ * @version (15/OCT/2018)
  */
 public class Cart
 {
@@ -29,31 +29,60 @@ public class Cart
         totalPrice=0;
     }
 
+    /**
+     * Method getCartInfo is to get the information of the cart as an Arraylist of String
+     *
+     * @return ArrayList<String>: cartInfo, the information of the cart
+     */
     public ArrayList<String> getCartInfo()
     {
         return cartInfo;
     }
 
+    /**
+     * Method setCartInfo is to record the information of the cart, which is an Arraylist of String
+     *
+     * @param cartInfo: an Arraylist of String of the information of the cart 
+     */
     public void setCartInfo(ArrayList<String> cartInfo)
     {
         this.cartInfo = cartInfo;
     }
 
+    /**
+     * Method setTotalPrice is to record the total price of products added to cart
+     *
+     * @param totalPrice: the total price of products added to cart
+     */
     public void setTotalPrice(double totalPrice)
     {
         this.totalPrice = totalPrice;
     }
     
+    /**
+     * Method addTotalPrice is to calculate the total price of products added to cart
+     *
+     * @param price: the price change that needed to be added to the original total price
+     */
     public void addTotalPrice(double price)
     {
         totalPrice = totalPrice + price;
     }
 
+    /**
+     * Method getTotalPrice is to get the total price of products added to cart
+     *
+     * @return double: totalPrice, the total price of products added to cart
+     */
     public double getTotalPrice()
     {
         return totalPrice;
     }
 
+    /**
+     * Method displayCart is to display the information of products already in the cart to users
+     *
+     */
     public void displayCart()
     {
         if (cartInfo.size() != 0)
@@ -76,17 +105,32 @@ public class Cart
             System.out.println("You have nothing in the cart");
     }
 
+    /**
+     * Method generateDate is to generate the transaction date
+     *
+     * @return String: date, the transaction date generated
+     */
     public String generateDate()
     {
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
         return dtf.format(date).toString();
     }
     
+    /**
+     * Method clearCartInfo is to clear all the previous information of the cart
+     *
+     */
     public void clearCartInfo()
     {
         cartInfo.clear();
     }
     
+    /**
+     * Method findProductInfo is to find the product information of products in the cart based on the entered product ID
+     *
+     * @param productID, the ID of the product
+     * @return String: productInfo, the information of products in the cart of the specific product ID
+     */
     public String findProductInfo(String productID)
     {
         String productInfo = "";
@@ -100,6 +144,11 @@ public class Cart
         return productInfo;
     }
     
+    /**
+     * Method deleteProductInCart is to delete products in the cart based on the entered product ID
+     *
+     * @param deleteProductId: the ID of products that customers want to delete in the cart
+     */
     public void deleteProductInCart(String deleteProductId)
     {
         for (int i = 0; i < cartInfo.size(); i++)
@@ -115,11 +164,22 @@ public class Cart
         }
     }
     
+    /**
+     * Method addProductInCart is to add the information of products that customer want to add to the cart to the cartinfo 
+     *
+     * @param productInfo, the information of products that customer want to add to the cart
+     */
     public void addProductInCart(String productInfo)
     {
         cartInfo.add(productInfo);
     }
     
+    /**
+     * Method editProductQuantity is to edit the quantity of products already in the cart
+     *
+     * @param changeProductId, the product ID of the product that will be edited
+     * @param changeAmount, the changed quantity of this product
+     */
     public void editProductQuantity(String changeProductId,double changeAmount)
     {
         for (int i = 0; i < cartInfo.size(); i++)
@@ -150,6 +210,13 @@ public class Cart
         
     }
     
+    /**
+     * Method isProductExistInCart is to verify whether a product in already in the cart
+     *
+     * @param userInput, the input of user for product ID
+     * @return boolean: true if the product is already in the cart
+     *                  false is the product is not in the cart
+     */
     public boolean isProductExistInCart(String userInput)
     {
         for (String str: cartInfo)
