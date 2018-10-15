@@ -733,7 +733,7 @@ public class MFVSController
             break;
 
             case "b":
-            System.out.println("Enter the product category to SEARCH");
+            System.out.println("Enter the product category (fruit or vegetable) to SEARCH");
             String searchCategory = input.nextLine();
             foundProducts = shelf.findProductByCategory(searchCategory);
             System.out.println("Found "+ foundProducts.size() + " "+searchCategory);
